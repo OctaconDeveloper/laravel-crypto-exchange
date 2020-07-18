@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic_copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <path d="M16.701,19.6065 L6.25,19.6065 C4.869,19.6065 3.75,18.4875 3.75,17.1065 L3.75,7.6555" id="Stroke-1" stroke="#656FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <rect id="Rectangle" stroke="#878BC8" stroke-width="1.5" x="6.72" y="4.75" width="13.55" height="11.89" rx="1.5"></rect>
+    </g>
+</svg>

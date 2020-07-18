@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="37px" viewBox="0 0 41 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icon / ic_ivite friends</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Invite-Friends" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="2.-Invite-Friends---Empty-State" transform="translate(-865.000000, -1438.000000)" stroke-width="1.5">
+            <g id="Group-30" transform="translate(402.000000, 1192.000000)">
+                <g id="Mask-Copy-3">
+                    <g id="Group-2" transform="translate(403.000000, 246.000000)">
+                        <g id="Icon-/-ic_ivite-friends" transform="translate(60.000000, 0.000000)">
+                            <g id="Group-13" transform="translate(0.000000, 0.333333)">
+                                <path d="M28.0140667,8.53376667 C28.0140667,12.8317667 24.5304,16.3177667 20.2300667,16.3177667 C15.9297333,16.3177667 12.4460667,12.8317667 12.4460667,8.53376667 C12.4460667,4.23576667 15.9297333,0.749766667 20.2300667,0.749766667 C24.5304,0.749766667 28.0140667,4.23576667 28.0140667,8.53376667 Z" id="Stroke-1" stroke="#878BC8"></path>
+                                <path d="M32.3251333,35.1426333 L32.3251333,30.6673 C32.3251333,26.5046333 25.5094667,23.1306333 20.1848,23.1306333 C14.8578,23.1306333 8.04213333,26.5046333 8.04213333,30.6673 L8.04213333,35.1426333" id="Stroke-3" stroke="#878BC8"></path>
+                                <path d="M35.3899667,6.48183333 C36.8949667,7.35683333 37.9076333,8.9855 37.9076333,10.8498333 C37.9076333,13.6381667 35.6466333,15.8968333 32.8606333,15.8968333" id="Stroke-5" stroke="#D5D4DC"></path>
+                                <path d="M39.5804,33.6182667 L39.5804,29.1452667 C39.5804,27.4116 38.9107333,25.2696 37.3054,23.6176" id="Stroke-7" stroke="#D5D4DC"></path>
+                                <path d="M4.94043333,6.48183333 C3.43543333,7.35683333 2.42276667,8.9855 2.42276667,10.8498333 C2.42276667,13.6381667 4.68376667,15.8968333 7.46976667,15.8968333" id="Stroke-9" stroke="#D5D4DC"></path>
+                                <path d="M0.75,33.6182667 L0.75,29.1452667 C0.75,27.4116 1.41966667,25.2696 3.025,23.6176" id="Stroke-11" stroke="#D5D4DC"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Coin / LTC Litecoin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#767FFF" offset="0%"></stop>
+            <stop stop-color="#5560FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Coin-/-LTC-Litecoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="url(#linearGradient-1)" cx="32" cy="32" r="32"></circle>
+        <polygon id="Fill-1" fill="#FFFFFF" points="27.6863985 16 23.9205155 33.7612286 19.99634 36.3897028 19 41.4975446 22.8285439 38.9120472 20.9018054 48 23.4426856 48 27.9534452 48 43.6521155 48 44.8157698 41.8958182 29.2476702 41.8958182 31.058765 33.3542613 40.3907998 27.0520909 41.3904204 22.0607129 32.1395823 28.2564255 34.7380384 16"></polygon>
+    </g>
+</svg>

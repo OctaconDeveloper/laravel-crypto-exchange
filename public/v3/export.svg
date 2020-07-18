@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icon / QR</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Save-Address" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.-Wallet-withdraw" transform="translate(-319.000000, -211.000000)">
+            <g id="Group-14" transform="translate(44.000000, 192.000000)">
+                <g id="Group-6">
+                    <g id="Mask-2">
+                        <g id="Mask-3">
+                            <g id="Group-4">
+                                <g id="Icon-/-QR" transform="translate(272.000000, 16.000000)">
+                                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                                    <g id="Asset-30" transform="translate(4.000000, 4.000000)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                                        <g id="Group">
+                                            <g id="Group-2" transform="translate(4.371220, -0.000000)" stroke="#656FFF">
+                                                <polyline id="Path" points="-2.14050999e-13 3.30285714 3.30285714 -4.21884749e-15 6.61714286 3.30285714"></polyline>
+                                                <path d="M3.30285714,10.2628571 L3.30285714,1.59872116e-14" id="Path"></path>
+                                            </g>
+                                            <path d="M0.00550574981,7.52 L0.00550574981,14 C-0.0612655574,14.7546846 0.486829101,15.424578 1.23979146,15.5085714 L14.1997915,15.5085714 C14.9527538,15.424578 15.5008485,14.7546846 15.4340772,14 L15.4340772,7.52" id="Path" stroke="#878BC8"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

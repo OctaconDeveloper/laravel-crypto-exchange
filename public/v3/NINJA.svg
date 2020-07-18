@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Ninja</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#767FFF" offset="0%"></stop>
+            <stop stop-color="#5560FF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="0 0 62 0 62 36 0 36"></polygon>
+    </defs>
+    <g id="Ninja" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="64" height="64"></rect>
+        <g id="Group">
+            <g id="CYVA" fill="url(#linearGradient-1)" fill-rule="nonzero">
+                <circle id="Oval" cx="32" cy="32" r="32"></circle>
+            </g>
+            <g id="Group-3" transform="translate(1.000000, 11.000000)">
+                <mask id="mask-3" fill="white">
+                    <use xlink:href="#path-2"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M53.5192421,28.7979988 L53.4709995,22.7414238 L53.4518516,20.3317514 L53.2919546,0.228634958 L42.3901124,10.9917382 L41.2499449,12.1088976 L41.3066424,16.6573325 C41.3262876,16.6085537 41.3509063,16.5632769 41.3720435,16.5154987 C41.3501602,16.5642775 41.3267849,16.6118056 41.3066424,16.661585 L41.3521496,20.05834 L41.3635886,20.9083417 L25.1339187,10.4631762 L8.87241851,0 L8.87241851,13.0619602 L8.87241851,13.0664628 L8.87241851,23.084126 L8.87241851,29.0266338 L0,29.0266338 C0.46097819,31.0114007 1.36767578,33.3358561 2.72009277,36 L22.3960244,36 L22.3778713,25.4955495 L22.3393269,21.2077685 L22.3960244,21.2420387 L22.3960244,21.2305319 L29.8166876,25.826745 L46.2530051,36 L59.2792969,36 C59.9898275,34.6774902 60.4650472,33.6882324 60.7049561,33.0322266 C61.1039777,31.9411432 61.5765322,30.529734 62.1226196,28.7979988 L53.5192421,28.7979988 Z" id="Fill-1" fill="#FFFFFF" mask="url(#mask-3)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

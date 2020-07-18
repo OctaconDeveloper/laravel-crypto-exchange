@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="38px" viewBox="0 0 24 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_menu</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic_menu" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-Copy-7" x="0" y="0" width="24" height="38" rx="6"></rect>
+        <g id="Group-7" transform="translate(10.000000, 10.000000)" stroke="#FFFFFF" stroke-width="1.5">
+            <path d="M3.75,8.998 C3.75,9.826 3.078,10.498 2.25,10.498 C1.422,10.498 0.75,9.826 0.75,8.998 C0.75,8.17 1.422,7.498 2.25,7.498 C3.078,7.498 3.75,8.17 3.75,8.998 Z" id="Stroke-1"></path>
+            <path d="M3.75,2.2499 C3.75,3.0779 3.078,3.7499 2.25,3.7499 C1.422,3.7499 0.75,3.0779 0.75,2.2499 C0.75,1.4219 1.422,0.7499 2.25,0.7499 C3.078,0.7499 3.75,1.4219 3.75,2.2499 Z" id="Stroke-3"></path>
+            <path d="M3.75,15.746 C3.75,16.574 3.078,17.246 2.25,17.246 C1.422,17.246 0.75,16.574 0.75,15.746 C0.75,14.918 1.422,14.246 2.25,14.246 C3.078,14.246 3.75,14.918 3.75,15.746 Z" id="Stroke-5"></path>
+        </g>
+    </g>
+</svg>

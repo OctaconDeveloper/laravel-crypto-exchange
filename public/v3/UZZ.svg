@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>UZZ</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#767FFF" offset="0%"></stop>
+            <stop stop-color="#5560FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="UZZ" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CYVA" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <circle id="Oval" cx="32" cy="32" r="32"></circle>
+        </g>
+        <path d="M21.6808511,44.3095238 C19.2269504,41.8492063 18,38.3613445 18,33.8459384 L18,17 L26.4255319,17 L26.4255319,33.5854342 C26.4255319,38.4481793 28.3120567,40.8795518 32.0851064,40.8795518 C35.8297872,40.8795518 37.7021277,38.4481793 37.7021277,33.5854342 L37.7021277,17 L46,17 L46,33.8459384 C46,38.3613445 44.7730496,41.8492063 42.3191489,44.3095238 C39.8652482,46.7698413 36.4255319,48 32,48 C27.5744681,48 24.1347518,46.7698413 21.6808511,44.3095238 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+</svg>

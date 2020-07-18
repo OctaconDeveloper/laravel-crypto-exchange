@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Icon / ic_add_24 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icon-/-ic_add_24-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="0" y="0" width="36" height="36"></rect>
+        <g id="Group-7" transform="translate(6.000000, 6.000000)" stroke="#6670FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+            <path d="M18.8493,23.83125 L6.1083,23.83125 C3.3558,23.83125 1.1253,21.60075 1.1253,18.84975 L1.1253,6.10875 C1.1253,3.35625 3.3558,1.12425 6.1083,1.12425 L18.8493,1.12425 C21.6003,1.12425 23.8308,3.35625 23.8308,6.10875 L23.8308,18.84975 C23.8308,21.60075 21.6003,23.83125 18.8493,23.83125 Z" id="Stroke-1"></path>
+            <path d="M19.36785,7.95975 C19.36785,9.26775 18.30735,10.32825 16.99935,10.32825 C15.69135,10.32825 14.63085,9.26775 14.63085,7.95975 C14.63085,6.65175 15.69135,5.59125 16.99935,5.59125 C18.30735,5.59125 19.36785,6.65175 19.36785,7.95975 Z" id="Stroke-3"></path>
+            <polyline id="Stroke-5" points="1.6125 20.99535 9.0525 11.87385 18.849 23.83185"></polyline>
+        </g>
+    </g>
+</svg>

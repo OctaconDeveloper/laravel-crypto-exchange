@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>XinPin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#767FFF" offset="0%"></stop>
+            <stop stop-color="#5560FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="XinPin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CYVA" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <circle id="Oval" cx="32" cy="32" r="32"></circle>
+        </g>
+        <polygon id="Fill-1" fill="#FFFFFF" points="42.633 13 32.508 27.765 22.348 13 15.703 13 29.098 31.808 15 51.531 21.61 51.531 32.508 35.921 43.301 51.531 49.91 51.531 35.813 31.808 49.207 13"></polygon>
+    </g>
+</svg>

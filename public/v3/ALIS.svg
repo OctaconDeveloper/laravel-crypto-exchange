@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Alis</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#767FFF" offset="0%"></stop>
+            <stop stop-color="#5560FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Alis" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CYVA" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <circle id="Oval" cx="32" cy="32" r="32"></circle>
+        </g>
+        <g id="Group-5" transform="translate(14.000000, 16.000000)" fill="#FFFFFF">
+            <polygon id="Fill-1" points="13.7867356 0.0477894138 0 33 9.51894252 32.9241582 18.3227015 11.1732605 27.0912954 32.9241582 36 32.9283159 22.8230482 0"></polygon>
+        </g>
+    </g>
+</svg>

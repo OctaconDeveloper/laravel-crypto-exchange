@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_profile</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic_profile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="0" y="0" width="56" height="56"></rect>
+        <path d="M38.0125667,17.4993 C38.0125667,22.3316333 34.0949,26.2493 29.2625667,26.2493 C24.4302333,26.2493 20.5125667,22.3316333 20.5125667,17.4993 C20.5125667,12.6693 24.4302333,8.7493 29.2625667,8.7493 C34.0949,8.7493 38.0125667,12.6693 38.0125667,17.4993 Z" id="Stroke-1" stroke="#878BC8" stroke-width="3"></path>
+        <path d="M45.1105667,47.411 L45.1105667,42.2146667 C45.1105667,37.3823333 36.2135667,33.4646667 29.2625667,33.4646667 C22.3115667,33.4646667 13.4169,37.3823333 13.4169,42.2146667 L13.4169,47.411" id="Stroke-3" stroke="#878BC8" stroke-width="3" stroke-linecap="round"></path>
+    </g>
+</svg>

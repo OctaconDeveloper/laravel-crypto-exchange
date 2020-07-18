@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_close black</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic_close-black" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+        <path d="M16.7474,7.7501 L7.7504,16.7481" id="Stroke-1" stroke="#4F4B6C" stroke-width="1.5" stroke-linecap="round"></path>
+        <path d="M16.7474,16.7482 L7.7504,7.7502" id="Stroke-3" stroke="#4F4B6C" stroke-width="1.5" stroke-linecap="round"></path>
+    </g>
+</svg>

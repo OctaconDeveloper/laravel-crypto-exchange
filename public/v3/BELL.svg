@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Bellcoin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#767FFF" offset="0%"></stop>
+            <stop stop-color="#5560FF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="0 0 29 0 29 33 0 33"></polygon>
+    </defs>
+    <g id="Bellcoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CYVA" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <circle id="Oval" cx="32" cy="32" r="32"></circle>
+        </g>
+        <g id="Group-3" transform="translate(18.000000, 16.000000)">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <g id="Clip-2"></g>
+            <path d="M7.91041125,23.9934351 L17.2725357,26.1989586 C17.6043213,26.2806447 18.3688708,26.4576311 19.407504,25.5182415 C20.345159,24.6741522 21.1241339,23.2718749 21.5424723,21.6926111 C22.0762143,19.6913027 22.1194907,16.3149456 20.0133734,15.8248293 L10.6512489,13.6056914 L7.91041125,23.9934351 Z M15.5414803,32.7338432 L2.71724515,29.7114591 C0.798658781,29.2621858 -0.369803592,27.4378638 0.106236634,25.6271562 L0.106236634,25.6135419 L6.19378134,2.56445921 C6.66982157,0.753751597 8.61725886,-0.349010184 10.5214198,0.100263134 C12.4400061,0.549536452 13.6084685,2.38747275 13.1324283,4.18456603 L12.3678788,7.04357805 L21.7300033,9.24910161 C27.4280605,10.5833072 30.2554509,16.5055464 28.4666937,23.2991036 C27.7165697,26.1308869 26.2595981,28.635926 24.3410118,30.3649476 C21.8309815,32.6385428 18.7150818,33.4826321 15.5414803,32.7338432 L15.5414803,32.7338432 Z" id="Fill-1" fill="#FFFFFF" mask="url(#mask-3)"></path>
+        </g>
+    </g>
+</svg>
