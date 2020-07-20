@@ -81,7 +81,7 @@
 	  									</a>
   										<a style="text-decoration: none;" href="/user/history">
   											<div _ngcontent-jwu-c23="" class="{{ is_active('user/history') }}" tabindex="0">
-  												<span _ngcontent-jwu-c23="" class="referral-title">history</span>
+  												<span _ngcontent-jwu-c23="" class="referral-title">History</span>
 	  										</div>
 	  									</a>
   									</div>

@@ -51,7 +51,7 @@ Route::namespace('Web')->group(function () {
     Route::get('remove-wallet-addresses/{id}','WalletController@removeWithdrawalAddress');
     Route::post('/user/address-generate','WalletController@newAddress');
     Route::post('/user/request-withdrawal','WalletController@requestWithdrawal');
-    Route::get('/user/withdrawal','WalletController@listRequest');
+    Route::get('/user/history','WalletController@listRequest');
 
 
     Route::post('add-phone','VerificationController@addPhone');

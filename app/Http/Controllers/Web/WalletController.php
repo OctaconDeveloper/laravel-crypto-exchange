@@ -8,6 +8,7 @@ use App\WithdrawalAddress;
 use App\Wallet;
 use App\Token;
 use App\WithdrawRequest;
+use App\WalletTransaction;
 use Illuminate\Support\Facades\Http;
 class WalletController extends Controller
 {
@@ -101,21 +102,20 @@ class WalletController extends Controller
         ]);
 
 
-       $debit =  WithdrawRequest::create([
+       $debit =  WalletTransaction::create([
             'user_id' => auth()->user()->id,
             'withdraw_address' => request()->address,
             'withdraw_amount' => request()->amount,
             'withdraw_fee' => $withdrawal_fee,
             'ticker' => request()->coin,
             'status' => 1,
+            'type' => 'withdrawal'
         ]);
-
-        $msg = "Withdrawal request made";
-        return redirect('/user/withdrawal')->with('msg', $msg);
+        return redirect('/user/history');
     }
 
     public function listRequest(){
-        $data = WithdrawRequest::with('trans_type')->whereUserId(auth()->user()->id)->orderBy('created_at','DESC')->get();
-        return redirect('/user/withdrawal')->with('data', $data);
+        $data = WalletTransaction::with('trans_type')->whereUserId(auth()->user()->id)->orderBy('created_at','DESC')->get();
+        return view('user.history', compact('data'));
     }
 }
