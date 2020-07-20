@@ -25,7 +25,7 @@
                                             @if(auth()->user()->email_verified_at == null)
                                             <div class="user-verification-steps not-submitted ng-star-inserted">
                                                 <div class="submittion-steps ">
-                                                    <span class="red">Not submitted</span>
+                                                    <span class="red">Not Verified</span>
                                                     <img alt="earning" class="icon" src="{{ asset('v3/ic_information_red.svg') }}">
                                                 </div>
                                             </div>
@@ -37,7 +37,9 @@
                                                 </div>
                                             </div>
                                             @endif
-  							 			</div>
+                                           </div>
+
+
   							 			<div class="form-body">
   							 				<div class="profile">
                                                 <span id="errorMail" style="color:green; font-weight:bolder">
@@ -57,6 +59,8 @@
   							 									</div>
   							 									<div class="description-space">
   							 										<h4>Phone number</h4>
+                                                                       <br/>
+                                                                       @if($kyc->phone){{$kyc->phone}}@endif
   							 									</div>
   							 								</div><!----><!---->
                                                             @if(auth()->user()->email_verified_at == null)
@@ -72,16 +76,21 @@
   							 							<div class="upload-img">
   							 								<div class="img-info-container"><div>
   							 									<div class="icon-part">
-  							 										<img alt="icon" src="{{ asset('v3/id.svg') }}">
+                                                                       <img alt="icon" src="{{ asset('v3/id.svg') }}">
+
   							 									</div>
   							 									<div class="description-space">
   							 										<h4>Government-issued ID</h4>
-  							 										<p>(e.g. passport or other photo identification document).</p><!----><!----></div>
+                                                                       <p>(e.g. passport or other photo identification document).</p><!----><!---->
+                                                                       <br/>
+                                                                       @if($kyc->idcard)<img src="{{$kyc->idcard}}" style="width:70px; height:70px" />@endif
                                                                 </div>
-                                                                <div>
+
+                                                            </div>
+                                                            <div>
                                                                 @if(auth()->user()->email_verified_at == null)
                                                                 <div class="add-number ng-star-inserted">
-                                                                    <button data-type="idcard" class="uploaddoc button secondary filled-btn sec-middle"> Upload ID Card </button>
+                                                                    <button data-type="idcard" class="uploaddoc button secondary filled-btn sec-middle"> Upload  </button>
                                                                 </div>
                                                                 @endif
                                                             </div>
@@ -102,18 +111,43 @@
                                                                         <li>Holding ID that was used for KYC.</li>
                                                                         <li>Paper with the current date and {{ config('app.full_name')}} KYC” handwritten on it.</li>
                                                                     </p><!----><!---->
+                                                                    <br/>
+                                                                    @if($kyc->passport)<img src="{{$kyc->passport}}" style="width:70px; height:70px" />@endif
                                                                 </div>
                                                             </div>
                                                             <div class="if-verified">
                                                                 @if(auth()->user()->email_verified_at == null)
                                                                 <div class="add-number ng-star-inserted">
-                                                                    <button data-type="passport" class="uploaddoc button secondary filled-btn sec-middle">Upload Selfie </button>
+                                                                    <button data-type="passport" class="uploaddoc button secondary filled-btn sec-middle">Upload </button>
                                                                 </div>
                                                                 @endif
                                                             </div>
                                                         </div>
                                                     </div><!---->
                                                 </div><!---->
+                                                <div style="margin-bottom: 20px">
+  							 							<div class="upload-img">
+  							 								<div class="img-info-container"><div>
+  							 									<div class="icon-part">
+  							 										<img alt="icon" src="{{ asset('v3/id.svg') }}">
+  							 									</div>
+  							 									<div class="description-space">
+  							 										<h4>Proof of Residence</h4>
+  							 										<p>(e.g. Government issued document in area of residence).</p><!----><!---->
+                                                                       <br/>
+                                                                       @if($kyc->residence)<img src="{{$kyc->residence}}" style="width:70px; height:70px" />@endif
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                @if(auth()->user()->email_verified_at == null)
+                                                                <div class="add-number ng-star-inserted">
+                                                                    <button data-type="residence" class="uploaddoc button secondary filled-btn sec-middle"> Upload </button>
+                                                                </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div><!---->
+                                                </div>
                                                 <p class="info-par ng-star-inserted">Allowed file types: JPG, PNG or PDF and max. size: 16MB.</p>
                                             </div>
                                         </div>

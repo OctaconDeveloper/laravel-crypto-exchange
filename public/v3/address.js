@@ -77,9 +77,10 @@
   $(".uploaddoc").click(function(){
     $data = $(this).data('type');
     $("#filetype").val($data);
-    $title = ($data == 'passport') ? 'Selfie' : 'Government-issued ID';
+    $title = ($data == 'passport') ? 'Selfie' : ($data == 'residence') ? 'Proof of Residence' : 'Government Issued ID';
     $("#cardtitle").html($title);
      $("#upload").toggleClass('show');
+
 
 
   });

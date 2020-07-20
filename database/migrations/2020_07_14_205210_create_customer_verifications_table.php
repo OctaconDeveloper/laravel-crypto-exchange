@@ -22,6 +22,7 @@ class CreateCustomerVerificationsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('passport')->nullable();
             $table->string('idcard')->nullable();
+            $table->string('residence')->nullable();
             $table->integer('stat')->default(0);
             $table->timestamps();
         });
