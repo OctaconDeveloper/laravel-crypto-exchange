@@ -21,7 +21,7 @@ class TokenSeeder extends Seeder
                 'withdrawal_fee' => '0.002',
                 'withdraw_stat' => '1',
                 'deposit_stat' => '1',
-                'image' => 'token/bitcoin.svg',
+                'image' => config('app.url').'token/bitcoin.svg',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
