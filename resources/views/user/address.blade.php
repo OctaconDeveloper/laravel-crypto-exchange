@@ -67,7 +67,7 @@ html[_ngcontent-llj-c10]{font-size:16px;-webkit-font-smoothing:antialiased;line-
                                       <div class="cdk-virtual-scroll-content-wrapper" style="transform: translateY(0px);">
                                         @forelse ($tokens as $token)
                                         <div _ngcontent-jma-c15="" class="select-item ctype ng-star-inserted">
-                                            {{ $token->name}}
+                                            {{ $token->ticker}}
                                           </div>
                                         @empty
 

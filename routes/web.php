@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\User;
+use App\WithdrawRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::get('alltoken', function () {return view('alltoken');});
  Route::get('user/verification', function () {return view('user.verification');});
  Route::get('/user/trans/{token}', function () {return view('user.transaction');});
 
+
+
 Route::namespace('Web')->group(function () {
 
     Route::post('create-user','AuthController@register');
@@ -46,6 +49,11 @@ Route::namespace('Web')->group(function () {
     Route::post('activate-tfa','AuthController@activateTfa');
     Route::post('add-wallet','WalletController@addWithdrawalAddress');
     Route::get('remove-wallet-addresses/{id}','WalletController@removeWithdrawalAddress');
+    Route::post('/user/address-generate','WalletController@newAddress');
+    Route::post('/user/request-withdrawal','WalletController@requestWithdrawal');
+    Route::get('/user/withdrawal','WalletController@listRequest');
+
+
     Route::post('add-phone','VerificationController@addPhone');
     Route::post('upload-kyc','VerificationController@uploadKYC');
 

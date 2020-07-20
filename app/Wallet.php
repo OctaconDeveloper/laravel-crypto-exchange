@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wallet extends Model
 {
-    //
+    protected $fillable = [
+        'user_id',
+        'address',
+        'ticker',
+        'base',
+        'amount',
+        'privateKey',
+        'publicKey',
+        'status',
+    ];
 }
+

@@ -153,7 +153,6 @@
 		 $("#walletadd").toggleClass('show');
 	});
 	$(".header-deposit-button").click(function(){
-		alert("hello");
 	});
 </script>
 <!--

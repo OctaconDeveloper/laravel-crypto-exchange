@@ -19,6 +19,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/logo.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="robots" content="noindex">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- <script type="text/javascript" async="" src="{{ asset('v3/roundtrip.js') }}"></script> -->
@@ -188,6 +189,9 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
                 <!---->
                 <a href="/user/wallet-addresses">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> Withdrawal Addresses </div>
+                </a>
+                <a href="/user/history">
+                  <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> History </div>
                 </a>
                 <a href="/signout">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item"> Sign out </div>

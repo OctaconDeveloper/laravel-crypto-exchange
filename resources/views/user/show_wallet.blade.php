@@ -19,7 +19,7 @@
                         {{auth()->user()->email}}
                     </td>
                     <td _ngcontent-jwu-c27="">
-                        {{ucfirst($address->type)}}
+                        {{strtoupper($address->ticker)}}
                     </td>
                     <td _ngcontent-jwu-c27="">
                         {{$address->address}}

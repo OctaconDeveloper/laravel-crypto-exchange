@@ -8,14 +8,16 @@
         $tile = 0;
     	$tokens = \App\Token::orderBy('name','ASC')->get();
     }
+
 @endphp
 
 @if(sizeof($tokens) > 0)
 
     @php
-        $wallet2 = \App\Wallet::whereUserId(auth()->user()->id)->whereType($tokens[0]->ticker)->first();
-        $wallet_address2 = \App\WithdrawalAddress::whereUserId(auth()->user()->id)->whereType($tokens[0]->ticker)->first();
-        if($wallet2->amount > 0){
+        $wallet2 = \App\Wallet::whereUserId(auth()->user()->id)->whereTicker($tokens[0]->ticker)->first();
+        $wallet_address2 = \App\WithdrawalAddress::whereUserId(auth()->user()->id)->whereTicker($tokens[0]->ticker)->first();
+
+        if($wallet2 && $wallet2->amount > 0 ){
                     $percent  = $wallet2->amount * 0.002;
                     $available = ($wallet2->amount) - $percent;
             }else{
@@ -23,14 +25,14 @@
                     $available = 0.00000;
             }
     @endphp
-    <div id="default" data-stuff='["{{ $tokens[0]->ticker }}","{{ $tokens[0]->withdrawal_fee }}","{{ ($wallet2) ? $wallet2->address : ''}}","{{ ($wallet_address2) ? $wallet_address2->address : ''}}","{{ ($wallet2) ? sprintf("%0.5f",$wallet2->amount) : '0.00000' }}","{{ $available }}"]'>
+    <div id="default" data-stuff='["{{ $tokens[0]->ticker }}","{{ $tokens[0]->withdrawal_fee }}","{{ ($wallet2) ? $wallet2->address : ''}}","{{ ($wallet_address2) ? $wallet_address2->address : ''}}","{{ ($wallet2) ? sprintf("%0.5f",$wallet2->amount) : '0.00000' }}","{{ $available }}","{{ $tokens[0]->type }}","{{ $tokens[0]->base }}"]'>
 
     </div>
 
     @forelse ($tokens as $token)
         @php
-            $wallet = \App\Wallet::whereUserId(auth()->user()->id)->whereType($token->ticker)->first();
-            $wallet_address = \App\WithdrawalAddress::whereUserId(auth()->user()->id)->whereType($token->ticker)->first();
+            $wallet = \App\Wallet::whereUserId(auth()->user()->id)->whereTicker($token->ticker)->first();
+            $wallet_address = \App\WithdrawalAddress::whereUserId(auth()->user()->id)->whereTicker($token->ticker)->first();
             if($wallet && $wallet->amount > 0){
                     $percent  = $wallet->amount * 0.002;
                     $available = ($wallet->amount) - $percent;
@@ -39,7 +41,7 @@
                     $available = 0.00000;
             }
         @endphp
-        <div _ngcontent-she-c18="" data-stuff='["{{$token->ticker}}","{{$token->withdrawal_fee}}","{{ ($wallet) ? $wallet->address : ''}}","{{ ($wallet_address) ? $wallet_address->address : ''}}","{{ ($wallet) ? sprintf("%0.5f",$wallet->amount) : '0.00000' }}","{{ $available }}"]' class="choseTicker  pending-coin ng-star-inserted active" routerlinkactive="active" tabindex="0">
+        <div _ngcontent-she-c18="" data-stuff='["{{$token->ticker}}","{{$token->withdrawal_fee}}","{{ ($wallet) ? $wallet->address : ''}}","{{ ($wallet_address) ? $wallet_address->address : ''}}","{{ ($wallet) ? sprintf("%0.5f",$wallet->amount) : '0.00000' }}","{{ $available }}","{{ $token->type }}","{{ $token->base }}"]' class="choseTicker  pending-coin ng-star-inserted active" routerlinkactive="active" tabindex="0">
     		<div _ngcontent-she-c18="" class="main-container-item special">
     			<img _ngcontent-she-c18="" style="width: 25px; height: 25px" class="wallet-icon" src="{{ $token->image }}">
     			<div _ngcontent-she-c18="" class="text-header">
@@ -110,7 +112,10 @@
     		$("#wTicker").val($ticker2.toUpperCase());
             $("#wAddress").val($stuff2[3]);
     		$log = '<span _ngcontent-she-c18="">Fee:</span><b _ngcontent-she-c18="">'+$fee2+'<span> '+$ticker2.toUpperCase()+'</span></b>';
+            $log2 = '<span _ngcontent-she-c18="">Total:</span><b _ngcontent-she-c18="">'+(Number(2.00)+Number($fee2))+'<span> '+$ticker2.toUpperCase()+'</span></b>';
+
     		$("#withFee").html($log);
+            $("#withTotal").html($log2);
     		$("#co-address").val($qrcode2);
     		$("#qrcodeImg").empty();
     		$("#qrcodeImg").qrcode({
@@ -120,6 +125,8 @@
             });
             $(".wNow").attr("disabled","disabled");
             $("#amount_number").val('');
+            $("#token_base").val($stuff2[7]);
+            $("#token_type").val($ticker2);
         }
 	})
 
@@ -138,7 +145,9 @@
 		$("#wTicker").val($ticker.toUpperCase());
         $("#wAddress").val($stuff[3]);
 		$log = '<span _ngcontent-she-c18="">Fee:</span><b _ngcontent-she-c18="">'+$fee+'<span> '+$ticker.toUpperCase()+'</span></b>';
+		$log2 = '<span _ngcontent-she-c18="">Total:</span><b _ngcontent-she-c18="">'+(Number(2.00)+Number($fee))+'<span> '+$ticker.toUpperCase()+'</span></b>';
 		$("#withFee").html($log);
+        $("#withTotal").html($log2);
 		$("#co-address").val($qrcode);
 		$("#qrcodeImg").empty();
 		$("#qrcodeImg").qrcode({
@@ -161,6 +170,8 @@
         }
         $(".wNow").attr("disabled","disabled");
         $("#amount_number").val('');
+            $("#token_base").val($stuff[7]);
+            $("#token_type").val($ticker);
 
 	})
 </script>

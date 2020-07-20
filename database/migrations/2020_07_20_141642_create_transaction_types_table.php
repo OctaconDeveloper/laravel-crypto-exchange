@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWithdrawalAddressesTable extends Migration
+class CreateTransactionTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateWithdrawalAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('withdrawal_addresses', function (Blueprint $table) {
+        Schema::create('transaction_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('address');
-            $table->string('ticker');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateWithdrawalAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('withdrawal_addresses');
+        Schema::dropIfExists('transaction_types');
     }
 }

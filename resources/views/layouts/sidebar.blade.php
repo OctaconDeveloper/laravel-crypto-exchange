@@ -79,6 +79,11 @@
   												<span _ngcontent-jwu-c23="" class="referral-title">Withdrawal Addresses</span>
 	  										</div>
 	  									</a>
+  										<a style="text-decoration: none;" href="/user/history">
+  											<div _ngcontent-jwu-c23="" class="{{ is_active('user/history') }}" tabindex="0">
+  												<span _ngcontent-jwu-c23="" class="referral-title">history</span>
+	  										</div>
+	  									</a>
   									</div>
   								</div>
 
