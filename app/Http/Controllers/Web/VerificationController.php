@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CustomerVerification;
 use App\User;
+use App\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use function PHPSTORM_META\type;
 
 class VerificationController extends Controller
 {
@@ -20,6 +23,12 @@ class VerificationController extends Controller
             ['phone' => request()->phone]
         );
         $this->checkStatus();
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => 'add phone number to account'
+            ]
+        );
         $msg = "phone number updated";
         return redirect('/user/verification')->with('msg', $msg);
     }
@@ -38,6 +47,13 @@ class VerificationController extends Controller
             [request()->file_type => $file]
         );
         $this->checkStatus();
+
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => 'uploaded '.request()->file_type.' document'
+            ]
+        );
         $msg = "File Upload Successful";
         return redirect('/user/verification')->with('msg', $msg);
     }

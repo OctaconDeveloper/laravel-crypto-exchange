@@ -19,7 +19,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/logo.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="robots" content="noindex">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- <script type="text/javascript" async="" src="{{ asset('v3/roundtrip.js') }}"></script> -->

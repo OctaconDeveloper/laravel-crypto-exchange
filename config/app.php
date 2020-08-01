@@ -15,7 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'full_name' => 'SPECTREX EXCHANGE',
-    'app_image' => '/img/logo.png',
+    'app_image' => env('APP_IMAGE', 'Laravel'),
     'url_short' => env('APP_URL_SHORT', ''),
 
     /*

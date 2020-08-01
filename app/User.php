@@ -37,6 +37,9 @@ class User extends Authenticatable
     ];
 
     public function user_type(){
-        return $this->belongsTo(UserType::class, 'id');
+        return $this->belongsTo(UserType::class, );
+    }
+    public function kyc(){
+        return $this->belongsTo(CustomerVerification::class, 'id','user_id');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\WithdrawalAddress;
 use App\Wallet;
 use App\Token;
+use App\Log;
 use App\WithdrawRequest;
 use App\WalletTransaction;
 use Illuminate\Support\Facades\Http;
@@ -29,6 +30,12 @@ class WalletController extends Controller
                 'ticker' => strtolower(request()->coin_type),
                 'address' => request()->address
             ]);
+            Log::create(
+                [
+                    'user_id' => auth()->user()->id,
+                    'log' => 'add withdrawal address for '.request()->coin_type
+                ]
+            );
             $msg = "New withdrawal address added.";
             return redirect('/user/wallet-addresses')->with('msg', $msg);
         }
@@ -37,6 +44,13 @@ class WalletController extends Controller
     public function removeWithdrawalAddress(WithdrawalAddress $id)
     {
         $id->delete();
+
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => 'deleted withdrawal address for '.$id->ticker
+            ]
+        );
         $msg = "Address deleted.";
         return redirect('/user/wallet-addresses')->with('msg', $msg);
     }
@@ -82,11 +96,19 @@ class WalletController extends Controller
             'amount' => 0,
             'status' => 0
         ]);
+
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => 'created new address for '.$coin_type
+            ]
+        );
         return $user_wallet->address;
     }
 
 
-    public function requestWithdrawal(){
+    public function requestWithdrawal()
+    {
         //Get Fee  Structure
         $coin_info = Token::whereTicker(request()->coin)->first();
         $withdrawal_fee = $coin_info->withdrawal_fee;
@@ -111,6 +133,13 @@ class WalletController extends Controller
             'status' => 1,
             'type' => 'withdrawal'
         ]);
+
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => 'made withdrawal request of '.request()->amount.' '.request()->coin
+            ]
+        );
         return redirect('/user/history');
     }
 

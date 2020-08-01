@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Log;
 use App\ReferalBalance;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ use App\Mail\TFAEnabled;
 use Illuminate\Support\Facades\DB;
 use PragmaRX\Google2FA\Google2FA;
 
-//is_active => 0-> inactive:: 1->active::
+//is_active => 0-> inactive:: 1->active:: 2-> block
 
 
 class AuthController extends Controller
@@ -27,6 +28,7 @@ class AuthController extends Controller
         $this->loginVerify();
 
         $user = request()->only('email','password');
+
        return $this->login($user);
     }
 
@@ -106,6 +108,12 @@ class AuthController extends Controller
                 }else{
                     return redirect('/');
                 }
+                Log::create(
+                    [
+                        'user_id' => $user_detail->id,
+                        'log' => 'logged in'
+                    ]
+                );
             }else if($user_detail->is_active == 2){
                 $error = "Account is blocked";
                 return redirect('/user/signin')->withErrors([$error]);
@@ -133,6 +141,12 @@ class AuthController extends Controller
             $user->update([
                 'is_active' => 1
             ]);
+            Log::create(
+                [
+                    'user_id' => $user->id,
+                    'log' => ' activated account'
+                ]
+            );
             $msg = "Account activated successfully, login to proceed ";
             return redirect('/user/signin')->with('msg', $msg);
         }else{
@@ -170,6 +184,12 @@ class AuthController extends Controller
 
         // send email to user
 
+                    Log::create(
+                        [
+                            'user_id' => $user->id,
+                            'log' => 'reset account details'
+                        ]
+                    );
             Mail::to(request()->email)->send(new PasswordReset($tokenData));
             $msg = "Password reset code sent to ".request()->email;
             return redirect('/user/password-reset')->with('msg', $msg);
@@ -189,6 +209,13 @@ class AuthController extends Controller
         $user->update([
             'password' => Hash::make(request()->password),
         ]);
+
+        Log::create(
+            [
+                'user_id' => $user->id,
+                'log' => 'reset account password'
+            ]
+        );
         Mail::to(auth()->user()->email)->send(new PasswordChange($user));
         $msg = "Activation Code sent to ".auth()->user()->email;
 		return redirect('/user/profile')->with('msg', $msg);
@@ -214,7 +241,12 @@ class AuthController extends Controller
         $user->update([
             'tfa_stat' => 1
         ]);
-
+        Log::create(
+            [
+                'user_id' => $user->id,
+                'log' => 'activate two factor authentication'
+            ]
+        );
         Mail::to(auth()->user()->email)->send(new TFAEnabled($user));
         $msg = "TFA enabled for ".auth()->user()->email;
 		return redirect('/user/profile')->with('msg', $msg);
