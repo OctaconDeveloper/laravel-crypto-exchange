@@ -14,7 +14,7 @@ class TradeSetupTableSeeder extends Seeder
         App\TradeSetup::create(
             [
                 'trade_fee' => '0.005',
-                'trade-mode' => 'testnet'
+                'trade_mode' => 'testnet'
             ]
         );
     }
