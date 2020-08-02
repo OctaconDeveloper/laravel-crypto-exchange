@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CoinPair extends Model
 {
     protected $hidden = ['created_at','updated_at'];
-    protected $fillable = ['pair','target','base','stat'];
+    protected $fillable = ['pair','target_id','base_id','stat'];
 
     public function coinbase()
     {
