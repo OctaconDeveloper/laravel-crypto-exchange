@@ -20,7 +20,7 @@ class MarketController extends Controller
             $error = "can't pair same coins together";
             return redirect('/block/markets/addpair')->withErrors([$error]);
         }
-            $isValid = CoinPair::whereTarget(request()->target_coin)->whereBase(request()->base_coin)->exists();
+            $isValid = CoinPair::whereTargetId(request()->target_coin)->whereBaseId(request()->base_coin)->exists();
             if($isValid)
                 $error = 'Market pair for '.request()->target_coin.' and '.request()->base_coin.' already captured';
                 return redirect('/block/markets/addpair')->withErrors([$error]);
