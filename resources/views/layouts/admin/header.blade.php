@@ -121,16 +121,18 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
-      <li class="nav-item {{ is_active(array('/block/wallets/viewwallets','/block/wallets/refreshwallets')) }}">
+      <li class="nav-item {{ is_active(array('/block/wallets/viewwallets','/block/wallets/refreshwallets','/block/wallets/withdrawals','/block/wallets/deposits')) }}">
         <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#wallet" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wallet"></i>
           <span>Wallet</span>
         </a>
-        <div id="wallet" class="collapse {{ nav_active(array('/block/wallets/viewwallets','/block/wallets/refreshwallets')) }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="wallet" class="collapse {{ nav_active(array('/block/wallets/viewwallets','/block/wallets/refreshwallets','/block/wallets/withdrawals','/block/wallets/deposits')) }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Wallet Components:</h6>
             <a class="collapse-item" href="/block/wallets/viewwallets">View Wallets</a>
-            <a class="collapse-item" href="/block/wallets/refreshwallets">Refresh Wallets</a>
+            {{-- <a class="collapse-item" href="/block/wallets/refreshwallets">Refresh Wallets</a> --}}
+            <a class="collapse-item" href="/block/wallets/withdrawals">Withdrawals</a>
+            <a class="collapse-item" href="/block/wallets/deposits">Deposits</a>
           </div>
         </div>
       </li>

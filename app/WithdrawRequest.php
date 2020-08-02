@@ -15,7 +15,15 @@ class WithdrawRequest extends Model
         'status'
     ];
 
-    public function trans_type(){
+    public function trans_type()
+    {
         return $this->belongsTo(\App\TransactionType::class,'status' ,'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class,);
+    }
+
+
 }

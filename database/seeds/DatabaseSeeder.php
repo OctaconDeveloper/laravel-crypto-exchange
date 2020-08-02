@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(TokenSeeder::class);
         $this->call(TransactionTypeSeeder::class);
+        $this->call(SystemWalletTableSeeder::class);
+        $this->call(TradeSetupTableSeeder::class);
+
     }
 }

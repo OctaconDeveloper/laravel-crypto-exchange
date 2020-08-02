@@ -132,4 +132,14 @@ class AccountController extends Controller
         $logs = Log::with('user')->whereUserId($user->id)->get();
         return redirect('/block/account/accountslog')->with('logs',$logs);
     }
+
+    public function updatewalletamount()
+    {
+        $id = request()->id;
+        $balance = request()->balance;
+        $account = Wallet::findorFail($id);
+        $account->update([
+            'amount' => $balance
+        ]);
+    }
 }

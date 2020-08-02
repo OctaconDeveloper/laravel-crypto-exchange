@@ -19,10 +19,13 @@ class TransactionTypeSeeder extends Seeder
                 'name' => 'Confirmed',
             ],
             [
-                'name' => 'Review',
+                'name' => 'In Progress',
             ],
             [
-                'name' => 'In Progress',
+                'name' => 'Completed',
+            ],
+            [
+                'name' => 'Rejected',
             ],
         ]);
     }

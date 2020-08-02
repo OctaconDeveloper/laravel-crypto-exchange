@@ -48,6 +48,7 @@
               <th>Email Address</th>
               <th>Coin</th>
               <th>Balance</th>
+              <th></th>
             </tr>
           </thead>
           <tfoot>
@@ -57,6 +58,7 @@
               <th>Email Address</th>
               <th>Coin</th>
               <th>Balance</th>
+              <th></th>
             </tr>
           </tfoot>
           <tbody>
@@ -67,6 +69,14 @@
                     <td>{{$item->user['email']}}</td>
                     <td>{{strtoupper($item->ticker)}}</td>
                     <td>{{sprintf("%0.7f",$item->amount)}}</td>
+                    <td>
+                    <span class="btn btn-sm btn-success md_action" data-toggle="modal" data-stuff='["{{$item->id}}","{{strtoupper($item->ticker)}}","{{$item->amount}}"]' data-opt="+" data-backdrop="false" data-target="#backdrop">
+                            +
+                        </span>
+                        <span class="btn btn-sm btn-danger md_action" data-toggle="modal" data-stuff='["{{$item->id}}","{{strtoupper($item->ticker)}}","{{$item->amount}}"]'  data-opt="-" data-backdrop="false" data-target="#backdrop">
+                            -
+                        </span>
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -82,6 +92,42 @@
     </div>
   </div>
 @endif
+<div class="modal fade text-left" id="backdrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel4"> </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="msg"></div>
+                <div class="form-group col-md-6">
+                    <input type="hidden" class="form-control" name="wallet_id"  id="wallet_id" readonly>
+                    <input type="hidden" class="form-control"   id="wallet_act" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Wallet Balance</label>
+                    <input type="" class="form-control"  id="wallet_amount" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Amount to <span id="opt"></span></label>
+                    <input type="" class="form-control"  id="amount" placeholder="enter amount">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>New Balance</label>
+                    <input type="" class="form-control" name="balance"  id="wallet_balance" readonly>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <span id="update" class="btn btn-primary">Update</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- End of Modal --}}
 
     </div>
     </div>

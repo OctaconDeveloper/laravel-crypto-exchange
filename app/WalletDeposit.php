@@ -4,20 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WalletTransaction extends Model
+class WalletDeposit extends Model
 {
     protected $fillable = [
         'user_id',
-        'withdraw_address',
-        'withdraw_amount',
-        'withdraw_fee',
+        'address',
+        'amount',
         'ticker',
-        'type',
-        'transID',
         'status'
     ];
 
-    public function trans_type(){
+    public function trans_type()
+    {
         return $this->belongsTo(\App\TransactionType::class,'status' ,'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class,);
     }
 }

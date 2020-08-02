@@ -75,6 +75,8 @@ Route::group(['prefix' => 'block'], function () {
     //Wallet Views
     Route::get('wallets/viewwallets',function() {return view('admin.wallets.viewwallets');});
     Route::get('wallets/refreshwallets',function() {return view('admin.wallets.refreshwallets');});
+    Route::get('wallets/deposits',function() {return view('admin.wallets.deposits');});
+    Route::get('wallets/withdrawals',function() {return view('admin.wallets.withdrawals');});
 
     // KYC Views
     Route::get('kyc/pendingverification',function() {return view('admin.kyc.pendingverification');});
@@ -139,6 +141,8 @@ Route::namespace('Web')->group(function () {
         Route::get('account/zerotrading/{user_id}/{id}','AccountController@changeZeroTradeStatus');
         Route::get('account/zerotrading/{user_id}/{id}','AccountController@changeZeroTradeStatus');
         Route::get('account/blocked/{user_id}/{status}','AccountController@changeBlockStatus');
+        Route::post('updatewalletamount','AccountController@updatewalletamount');
+
 
         Route::post('addtoken','TokenController@addToken');
         Route::get('delete-token/{token}','TokenController@removeToken');
@@ -149,6 +153,10 @@ Route::namespace('Web')->group(function () {
         Route::get('deletemarkets/{pair}','MarketController@deletepair');
         Route::post('updatetradefee','MarketController@updatetradefee');
         Route::post('checkmarket','MarketController@checkmarket');
+
+
+        Route::get('withdrawaction/{id}/{status}','WalletController@withdrawaction');
+        Route::get('/wallets/generate/{ticker}','WalletController@systemwalletgenerator');
 
 });
 

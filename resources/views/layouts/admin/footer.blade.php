@@ -49,7 +49,7 @@
   <script src="{{ asset('v2/js/sb-admin-2.min.js') }}"></script>
   <script src="{{ asset('v2/vendor/chart.js/Chart.min.js') }}"></script>
   <script src="{{ asset('v2/js/demo/chart-area-demo.js') }}"></script>
-  <!-- <script src="{{ asset('v2/js/demo/chart-pie-demo.js') }}"></script> -->
+  {{-- <script src="{{ asset('v2/js/demo/chart-pie-demo.js') }}"></script>  --}}
 
   <!-- Page level plugins -->
   <script src="{{ asset('v2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
@@ -97,6 +97,57 @@ var myPieChart = new Chart(ctx, {
 });
 
   </script>
+
+<script>
+    $(".md_action").click(function(){
+        $operator = $(this).data('opt');
+        $data = $(this).data('stuff');
+        $id = $data[0];
+        $coin = $data[1];
+        $amount = $data[2];
+        if($operator === '+'){
+            $title = "Add "+$coin+" wallet funds";
+            $("#opt").text('add');
+        }else{
+            $title = "Subtract "+$coin+"  wallet funds";
+            $("#opt").text('subtract');
+        }
+        $("#myModalLabel4").text($title);
+        $("#wallet_id").val($id);
+        $("#wallet_act").val($operator);
+        $("#wallet_amount").val(Number($amount).toFixed(7));
+        $("#wallet_balance").val(0.0000000);
+    });
+    $("#amount").keyup(function() {
+        $real_amount = $("#wallet_amount").val();
+        $operator = $("#wallet_act").val();
+        $amount = $("#amount").val();
+        if($operator === '+'){
+            $total = Number($real_amount)+Number($amount)
+        }else{
+            $total = Number($real_amount)-Number($amount)
+        }
+        $("#wallet_balance").val(Number($total).toFixed(7));
+    });
+
+
+    $("#update").click(function(){
+        $balance =  $("#wallet_balance").val();
+        $id =  $("#wallet_id").val();
+        event.preventDefault();
+		$.ajax({
+			type: "POST",
+			url: '/updatewalletamount',
+			data: {
+                id: $id,
+                balance : $balance
+            }, // serializes the form's elements.
+        	success: function(data){
+				$("#msg").html("<span class='alert alert-success'> Wallet amount updated! Refresh browser to see changes </span> ");
+			}
+		});
+    })
+</script>
 </body>
 
 </html>

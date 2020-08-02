@@ -8,11 +8,14 @@ use App\WithdrawalAddress;
 use App\Wallet;
 use App\Token;
 use App\Log;
+use App\SystemWallet;
+use App\TradeSetup;
 use App\WithdrawRequest;
 use App\WalletTransaction;
 use Illuminate\Support\Facades\Http;
 class WalletController extends Controller
 {
+    // withdrawal status 0 => pending, 1 => approved, 3 => rejected
     protected static $url = 'https://api.cryptoapis.io/v1/bc/';
     protected static $network = 'mainnet';
 
@@ -57,9 +60,10 @@ class WalletController extends Controller
 
     public function newAddress()
     {
+        $trade_mode = TradeSetup::first()->trade_mode;
         $coin_type = request()->token_type;
         $coin_base = request()->token_base;
-        $data =  $this->checkAddress($coin_type,$coin_base) ? $this->getAddress($coin_type,$coin_base) : $this->createAddress($coin_type,$coin_base);
+        $data =  $this->checkAddress($coin_type,$coin_base) ? $this->getAddress($coin_type,$coin_base) : $this->createAddress($coin_type,$coin_base,$trade_mode);
         return response()->json($data);
 
 
@@ -77,14 +81,24 @@ class WalletController extends Controller
         return $user_wallet->address;
     }
 
-    private function createAddress($coin_type,$coin_base)
+    private function createAddress($coin_type,$coin_base, $trade_mode)
     {
+        if($coin_type == 'BTC'){
+            $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/'.$trade_mode.'/address';
+
+        }else{
+            if($coin_type == 'ETH' && $trade_mode == 'mainnet'){
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/'.$trade_mode.'/address';
+            }else{
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/ropsten/address';
+            }
+        }
         $response = new Http();
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'X-API-Key' => '1deaf8d383c8f32616180ecea788725e82bc1f5e'
-        ])->post('https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/mainnet/address');
+        ])->post($api);
         $res = json_decode($response, true);
         $user_wallet = Wallet::create([
             'user_id' => auth()->user()->id,
@@ -123,17 +137,15 @@ class WalletController extends Controller
             'amount' => $new_balance
         ]);
 
+        $debit =  WithdrawRequest::create([
+                'user_id' => auth()->user()->id,
+                'withdraw_address'=> request()->address,
+                'withdraw_amount' => request()->amount,
+                'withdraw_fee' =>  $withdrawal_fee,
+                'ticker' => request()->coin,
+                'status' => 1
 
-       $debit =  WalletTransaction::create([
-            'user_id' => auth()->user()->id,
-            'withdraw_address' => request()->address,
-            'withdraw_amount' => request()->amount,
-            'withdraw_fee' => $withdrawal_fee,
-            'ticker' => request()->coin,
-            'status' => 1,
-            'type' => 'withdrawal'
-        ]);
-
+            ]);
         Log::create(
             [
                 'user_id' => auth()->user()->id,
@@ -143,8 +155,91 @@ class WalletController extends Controller
         return redirect('/user/history');
     }
 
-    public function listRequest(){
+    public function listRequest()
+    {
         $data = WalletTransaction::with('trans_type')->whereUserId(auth()->user()->id)->orderBy('created_at','DESC')->get();
         return view('user.history', compact('data'));
+    }
+
+    public function saveWalletTransaction(Request $request)
+    {
+        WalletTransaction::create([
+                    'user_id' => $request->id,
+                    'withdraw_address' => $request->address,
+                    'withdraw_amount' => $request->amount,
+                    'withdraw_fee' => $request->withdrawal_fee,
+                    'ticker' => $request->coin,
+                    'status' => $request->status,
+                    'type' => $request->type
+                    ]);
+    }
+
+
+
+    public function withdrawaction(WithdrawRequest $id, $status)
+    {
+        $id->update(
+            [
+                'status' => $status
+            ]
+        );
+        return redirect('/block/wallets/withdrawals');
+    }
+
+
+    public function systemwalletgenerator($ticker)
+    {
+        $coin =  SystemWallet::whereTicker($ticker)->first();
+        SystemWallet::whereTicker($ticker)->update([
+            'status'=> 0
+            ]);
+        $trade_mode = TradeSetup::first()->trade_mode;
+        $response = $this->newSystemAddress($ticker, $trade_mode);
+
+            SystemWallet::create([
+                'ticker' => $ticker,
+                'name' => $coin->name,
+                'address' => $response['address'],
+                'public_key' => $response['public_key'],
+                'private_key' => $response['private_key'],
+                'amount' => 0.000000000,
+                'url' => $response['url'],
+                'status' => 1
+            ]);
+            return redirect('/block/wallets/viewwallets');
+    }
+
+    private function newSystemAddress($ticker, $trade_mode)
+    {
+        if($ticker == 'BTC'){
+            $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($ticker).'/'.$trade_mode.'/address';
+            if($ticker === 'BTC' && $trade_mode === 'mainnet'){
+                $url = 'https://www.blockchain.com/'.strtolower($ticker).'/address/';
+            }else{
+                $url = 'https://www.blockchain.com/'.strtolower($ticker).'-'.$trade_mode.'/address/';
+            }
+        }else{
+            if($ticker == 'ETH' && $trade_mode == 'mainnet'){
+                $url = 'https://ethplorer.io/address/';
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($ticker).'/'.$trade_mode.'/address';
+            }else{
+                $url = 'https://kovan.ethplorer.io/address/';
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($ticker).'/ropsten/address';
+            }
+        }
+
+        $response = new Http();
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'X-API-Key' => '1deaf8d383c8f32616180ecea788725e82bc1f5e'
+        ])->post($api);
+       $res = json_decode($response, true);
+        return [
+            'address' => $res['payload']['address'],
+            'private_key' => $res['payload']['privateKey'],
+            'public_key' => $res['payload']['publicKey'],
+            'url' => $url.$res['payload']['address'],
+        ];
     }
 }
