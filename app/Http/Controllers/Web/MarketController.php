@@ -21,9 +21,10 @@ class MarketController extends Controller
             return redirect('/block/markets/addpair')->withErrors([$error]);
         }
             $isValid = CoinPair::whereTargetId(request()->target_coin)->whereBaseId(request()->base_coin)->exists();
-            if($isValid)
+            if($isValid){
                 $error = 'Market pair for '.request()->target_coin.' and '.request()->base_coin.' already captured';
                 return redirect('/block/markets/addpair')->withErrors([$error]);
+            }
 
                 $pair = request()->target_coin.'_'.request()->base_coin;
                 CoinPair::create([
