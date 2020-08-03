@@ -1,6 +1,7 @@
 <?php
 
 use App\CoinPair;
+use App\CustomerVerification;
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\WithdrawRequest;
@@ -81,6 +82,7 @@ Route::group(['prefix' => 'block'], function () {
     // KYC Views
     Route::get('kyc/pendingverification',function() {return view('admin.kyc.pendingverification');});
     Route::get('kyc/verifiedaccounts',function() {return view('admin.kyc.verifiedaccounts');});
+    Route::get('kyc/viewkyc/{id}', function() { return view('admin.kyc.viewkyc');});
 
     //Voting Views
     Route::get('voting/newvoting',function() {return view('admin.voting.newvoting');});
@@ -157,6 +159,9 @@ Route::namespace('Web')->group(function () {
 
         Route::get('withdrawaction/{id}/{status}','WalletController@withdrawaction');
         Route::get('/wallets/generate/{ticker}','WalletController@systemwalletgenerator');
+
+
+        Route::get('/approvekyc/{id}','VerificationController@approve');
 
 });
 

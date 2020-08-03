@@ -76,4 +76,12 @@ class VerificationController extends Controller
             );
         }
     }
+
+    public function approve(CustomerVerification $id)
+    {
+        $id->update([
+            'stat' => 2
+        ]);
+        return redirect('/block/kyc/verifiedaccounts');
+    }
 }

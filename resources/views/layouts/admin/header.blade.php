@@ -136,12 +136,12 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
-      <li class="nav-item {{ is_active(array('/block/kyc/pendingverification','/block/kyc/verifiedaccounts','/block/kyc/viewkyc')) }}">
+      <li class="nav-item {{is_token_active_nav('block/kyc/viewkyc')}} {{ is_active(array('/block/kyc/pendingverification','/block/kyc/verifiedaccounts','/block/kyc/viewkyc')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kyc" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-user-check"></i>
           <span>KYC</span>
         </a>
-        <div id="kyc" class="collapse {{ nav_active(array('/block/kyc/pendingverification','/block/kyc/verifiedaccounts','/block/kyc/viewkyc')) }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="kyc" class="collapse {{is_token_active('block/kyc/viewkyc')}} {{ nav_active(array('/block/kyc/pendingverification','/block/kyc/verifiedaccounts','/block/kyc/viewkyc')) }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">KYC Components:</h6>
             <a class="collapse-item" href="/block/kyc/pendingverification">Pending Verification</a>
