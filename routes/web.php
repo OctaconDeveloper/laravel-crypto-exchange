@@ -1,10 +1,7 @@
 <?php
 
-use App\CoinPair;
-use App\CustomerVerification;
+use App\Ballot;
 use Illuminate\Support\Facades\Route;
-use App\User;
-use App\WithdrawRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +20,7 @@ Route::get('/403', function () {return view('errors.403');});
 
 
 Route::get('/user-list', function(){
-    return  CoinPair::with(['cointarget','coinbase'])->get();
+    return  Ballot::with(['firstcount','secondcount','thirdcount','fourthcount'])->get();
 });
 
 Route::get('signout', function () {return 'hello';});
@@ -163,9 +160,9 @@ Route::namespace('Web')->group(function () {
 
         Route::get('/approvekyc/{id}','VerificationController@approve');
 
+        Route::post('addvote', 'BallotController@store');
+        Route::get('deletevoting/{vote}', 'BallotController@delete');
+
 });
 
-Route::get('/users', function () {
-    return User::with('user_type')->get();
-});
 
