@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Token;
+use App\Log;
 use Illuminate\Support\Facades\Storage;
 
 use Config;
@@ -58,6 +59,12 @@ class TokenController extends Controller
                     'image' => $image
                 ]
             );
+            Log::create(
+                [
+                    'user_id' => auth()->user()->id,
+                    'log' => ' Added new token'
+                ]
+            );
             $msg = "Token added successfully";
             return redirect('/block/tokens/addtoken/'.request()->token_type)->with('msg',$msg);
         }
@@ -80,6 +87,12 @@ class TokenController extends Controller
     {
         $type = $token->type;
         $token->delete();
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' Delete token '
+            ]
+        );
         return redirect('/block/tokens/modifytoken/'.$type);
 
     }
@@ -102,6 +115,12 @@ class TokenController extends Controller
             "withdraw_stat" =>  request()->withdraw_stat,
             "deposit_stat" =>  request()->deposit_stat,
         ]);
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' Updated token'
+            ]
+        );
         return redirect('/block/tokens/modifytoken/'.$token->type);
     }
 }

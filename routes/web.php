@@ -1,6 +1,8 @@
 <?php
 
 use App\Ballot;
+use App\ChatSetup;
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,7 @@ Route::get('/403', function () {return view('errors.403');});
 
 
 Route::get('/user-list', function(){
-    return  Ballot::with(['firstcount','secondcount','thirdcount','fourthcount'])->get();
+    return  response()->json(ChatSetup::with('user')->whereUserId(4)->first());
 });
 
 Route::get('signout', function () {return 'hello';});
@@ -162,6 +164,13 @@ Route::namespace('Web')->group(function () {
 
         Route::post('addvote', 'BallotController@store');
         Route::get('deletevoting/{vote}', 'BallotController@delete');
+
+        Route::post('savestake', 'StakingController@store');
+        Route::get('deletestake/{stake}', 'StakingController@delete');
+
+        Route::post('getchatuser', 'ChatController@getUser');
+        Route::get('/chatblock/{chat}/{status}','ChatController@blockUser');
+
 
 });
 

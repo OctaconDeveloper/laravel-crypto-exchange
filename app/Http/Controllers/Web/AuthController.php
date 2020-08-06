@@ -100,7 +100,7 @@ class AuthController extends Controller
             $user_detail = User::whereEmail(request()->email)->first();
             if($user_detail->is_active == 1){
                 if($user_detail->user_type_id == 1){
-                    return redirect('/control/dashboard');
+                    return redirect('/block/home');
                 }else if($user_detail->user_type_id == 2){
                     return redirect('/admin/dashboard');
                 }else if($user_detail->user_type_id == 3){

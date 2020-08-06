@@ -6,6 +6,7 @@ use App\CoinPair;
 use App\Http\Controllers\Controller;
 use App\Market;
 use App\TradeSetup;
+use App\Log;
 use Illuminate\Http\Request;
 
 class MarketController extends Controller
@@ -33,6 +34,12 @@ class MarketController extends Controller
                     'base_id' => request()->base_coin,
                     'stat' => 0
                 ]);
+                Log::create(
+                    [
+                        'user_id' => auth()->user()->id,
+                        'log' => ' Added new coin market pair'
+                    ]
+                );
                 $msg = "Pair added successfully";
                 return redirect('/block/markets/addpair')->with('msg',$msg);
     }
@@ -43,6 +50,12 @@ class MarketController extends Controller
         CoinPair::where('stat', 1)
        ->update(['stat' => 0]);
        $pair->update(['stat' => 1]);
+       Log::create(
+        [
+            'user_id' => auth()->user()->id,
+            'log' => ' Make new coin market pair default'
+        ]
+    );
        return redirect('/block/markets/allpair');
 
     }
@@ -50,6 +63,12 @@ class MarketController extends Controller
     public function deletepair(CoinPair $pair)
     {
        $pair->delete();
+       Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' Delete coin market pair'
+            ]
+        );
        return redirect('/block/markets/allpair');
 
     }
@@ -66,6 +85,12 @@ class MarketController extends Controller
             [
                 'trade_fee' => request()->trade_fee,
                 'trade_mode' => request()->trade_mode
+            ]
+        );
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' Updated trade setting'
             ]
         );
         $msg = "Trade Settings Updated";

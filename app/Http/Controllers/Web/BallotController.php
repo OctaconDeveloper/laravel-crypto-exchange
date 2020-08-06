@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Ballot;
 use App\Http\Controllers\Controller;
 use App\Vote;
+use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -77,6 +78,12 @@ class BallotController extends Controller
                     'end_date' => request()->end_date,
                 ]
             );
+            Log::create(
+                [
+                    'user_id' => auth()->user()->id,
+                    'log' => ' Create coin vote details'
+                ]
+            );
             return redirect('/block/voting/modifyvoting');
         }
     }
@@ -101,6 +108,12 @@ class BallotController extends Controller
     {
         Vote::whereBallotId($vote->id)->delete();
         $vote->delete();
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' Delete coin vote details'
+            ]
+        );
         return redirect('/block/voting/modifyvoting');
     }
 }

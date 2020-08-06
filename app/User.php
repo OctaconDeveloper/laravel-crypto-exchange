@@ -39,7 +39,13 @@ class User extends Authenticatable
     public function user_type(){
         return $this->belongsTo(UserType::class, );
     }
+
     public function kyc(){
         return $this->belongsTo(CustomerVerification::class, 'id','user_id');
+    }
+
+
+    public function chatsetup(){
+        return $this->belongsTo(ChatSetup::class, 'id', 'user_id');
     }
 }

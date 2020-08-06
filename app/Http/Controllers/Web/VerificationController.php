@@ -82,6 +82,12 @@ class VerificationController extends Controller
         $id->update([
             'stat' => 2
         ]);
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' Approve KYC '.$id->email
+            ]
+        );
         return redirect('/block/kyc/verifiedaccounts');
     }
 }

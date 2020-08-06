@@ -174,7 +174,7 @@ is_token_active('block/tokens/edit');
             <h6 class="collapse-header">Staking Components:</h6>
             <a class="collapse-item" href="/block/staking/addstakes">Add</a>
             <a class="collapse-item" href="/block/staking/allstakes">View</a>
-            <a class="collapse-item" href="/block/staking/request">Requests</a>
+            {{-- <a class="collapse-item" href="/block/staking/request">Requests</a> --}}
           </div>
         </div>
       </li>
