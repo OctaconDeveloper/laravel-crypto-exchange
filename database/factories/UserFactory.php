@@ -32,7 +32,7 @@ $factory->define(User::class, function (Faker $faker) {
         'is_active' => 1,
         'tfa_stat' => 0,
         'secret' => null,
-        'location' => null,
+        'location' => '/my-wallets',
         'qrcode_url' => $faker->url,
         'wallet_id' => 'SUW-'.sprintf("%0.6s", str_shuffle(rand(40,5000)*time())),
         'activation_code'=> 'ACT-'.sprintf("%0.6s", str_shuffle(rand(40,5000)*time())),

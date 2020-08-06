@@ -23,6 +23,7 @@ use PragmaRX\Google2FA\Google2FA;
 
 class AuthController extends Controller
 {
+
     public function verify()
     {
         $this->loginVerify();
@@ -61,6 +62,7 @@ class AuthController extends Controller
             'qrcode_url' => $qrcode_url,
             'tfa_stat' => 0,
             'wallet_id' => $wallet_id,
+            'location' => '/my-wallets',
             'activation_code' => $activation_code
         ]);
         ReferalBalance::create([
@@ -99,15 +101,8 @@ class AuthController extends Controller
 		if(Auth::attempt($user)){
             $user_detail = User::whereEmail(request()->email)->first();
             if($user_detail->is_active == 1){
-                if($user_detail->user_type_id == 1){
-                    return redirect('/block/home');
-                }else if($user_detail->user_type_id == 2){
-                    return redirect('/admin/dashboard');
-                }else if($user_detail->user_type_id == 3){
-                    return redirect('/my-wallets');
-                }else{
-                    return redirect('/');
-                }
+                $page = $user_detail->location;
+                    return redirect($page);
                 Log::create(
                     [
                         'user_id' => $user_detail->id,
@@ -221,6 +216,25 @@ class AuthController extends Controller
 		return redirect('/user/profile')->with('msg', $msg);
     }
 
+    public function resetPasswordAdmin()
+    {
+        $this->verifyPass();
+        $user = User::find(auth()->user()->id);
+        $user->update([
+            'password' => Hash::make(request()->password),
+        ]);
+
+        Log::create(
+            [
+                'user_id' => $user->id,
+                'log' => 'reset account password'
+            ]
+        );
+        Mail::to(auth()->user()->email)->send(new PasswordChange($user));
+        $msg = "Password update message to ".auth()->user()->email;
+		return redirect('/block/setup/password')->with('msg', $msg);
+    }
+
     private function verifyPass()
     {
         return request()->validate([
@@ -257,5 +271,11 @@ class AuthController extends Controller
         return request()->validate([
             'tfa_code' => 'required|numeric'
         ]);
+    }
+
+    public function signout()
+    {
+        Auth::logout();
+        return redirect('/user/signin');
     }
 }

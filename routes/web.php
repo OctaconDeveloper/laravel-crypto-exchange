@@ -25,7 +25,7 @@ Route::get('/user-list', function(){
     return  response()->json(ChatSetup::with('user')->whereUserId(4)->first());
 });
 
-Route::get('signout', function () {return 'hello';});
+
 
 Route::get('user/signup', function () {return view('auth.signup');});
 Route::get('user/signin', function () {return view('auth.signin');});
@@ -49,7 +49,7 @@ Route::group(['middleware' => ['customer']], function () {
 
 });
 
-Route::group(['prefix' => 'block'], function () {
+Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
     //Home
     Route::get('home',function() {return view('admin.home');});
 
@@ -105,7 +105,7 @@ Route::group(['prefix' => 'block'], function () {
     Route::get('setup/password',function() {return view('admin.setup.password');});
     Route::get('setup/socialmedia',function() {return view('admin.setup.socialmedia');});
     Route::get('setup/myactivitylog',function() {return view('admin.setup.myactivitylog');});
-    Route::get('setup/activitylogs',function() {return view('admin.markets.activitylogs');});
+    Route::get('setup/activitylogs',function() {return view('admin.setup.activitylogs');});
 
 
 });
@@ -118,6 +118,7 @@ Route::namespace('Web')->group(function () {
     Route::post('verify-sigin','AuthController@verify');
     Route::post('activate-user','AuthController@activateUser');
     Route::post('reset-user','AuthController@resetUser');
+    Route::get('signout','AuthController@signout');
 
     //User Restricted Link
     Route::middleware('customer')->group(function () {
@@ -133,7 +134,8 @@ Route::namespace('Web')->group(function () {
     });
 
 
-    //Admin Restricted Link
+    //Admin Restricted Link 'middleware' => ''
+    Route::middleware('superAdmin')->group(function () {
         Route::post('newuser','AccountController@newaccount');
         Route::post('searchaccount','AccountController@searchaccount');
         Route::post('checkZeroTrade','AccountController@checkZeroTrade');
@@ -143,34 +145,28 @@ Route::namespace('Web')->group(function () {
         Route::get('account/zerotrading/{user_id}/{id}','AccountController@changeZeroTradeStatus');
         Route::get('account/blocked/{user_id}/{status}','AccountController@changeBlockStatus');
         Route::post('updatewalletamount','AccountController@updatewalletamount');
-
-
         Route::post('addtoken','TokenController@addToken');
         Route::get('delete-token/{token}','TokenController@removeToken');
         Route::post('updatetoken/{token}','TokenController@updatetoken');
-
         Route::post('newpair','MarketController@newpair');
         Route::get('defaultmarkets/{pair}','MarketController@makedefault');
         Route::get('deletemarkets/{pair}','MarketController@deletepair');
         Route::post('updatetradefee','MarketController@updatetradefee');
         Route::post('checkmarket','MarketController@checkmarket');
-
-
         Route::get('withdrawaction/{id}/{status}','WalletController@withdrawaction');
         Route::get('/wallets/generate/{ticker}','WalletController@systemwalletgenerator');
-
-
         Route::get('/approvekyc/{id}','VerificationController@approve');
-
         Route::post('addvote', 'BallotController@store');
         Route::get('deletevoting/{vote}', 'BallotController@delete');
-
         Route::post('savestake', 'StakingController@store');
         Route::get('deletestake/{stake}', 'StakingController@delete');
-
         Route::post('getchatuser', 'ChatController@getUser');
         Route::get('/chatblock/{chat}/{status}','ChatController@blockUser');
-
+        Route::post('singlenotification', 'NotificationController@single');
+        Route::post('multiplenotification', 'NotificationController@multiple');
+        Route::post('savemedia', 'NotificationController@savemedia');
+        Route::post('password-reset','AuthController@resetPasswordAdmin');
+    });
 
 });
 

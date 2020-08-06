@@ -17,6 +17,7 @@ use PragmaRX\Google2FA\Google2FA;
 
 class AccountController extends Controller
 {
+
     public function newaccount()
     {
         $this->newaccountValidator();
@@ -35,6 +36,12 @@ class AccountController extends Controller
             $secret
         );
         $password = Str::random(10);
+        $location = [
+            1 => '/block/home',
+            2 => '/sys/dashboard',
+            3 => '/my-wallets',
+            4 => '/',
+        ];
         $user = User::create([
             'user_type_id' => request()->account_type,
             'email' => request()->email,
@@ -45,6 +52,7 @@ class AccountController extends Controller
             'qrcode_url' => $qrcode_url,
             'tfa_stat' => 0,
             'wallet_id' => $wallet_id,
+            'location' => $location[request()->account_type],
             'activation_code' => $activation_code
         ]);
         if(request()->account_type === 3){
@@ -98,6 +106,12 @@ class AccountController extends Controller
             ]
         );
         $zeros = User::whereEmail(request()->email)->first();
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' change zero trading status for '.$user_id->email
+            ]
+        );
         return redirect('/block/account/zerotrading')->with('zeros',$user_id);
     }
 
@@ -120,6 +134,12 @@ class AccountController extends Controller
         $user_id->update([
             'is_active' => $id
         ]);
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' change user block status '.$user_id->email
+            ]
+        );
         return redirect('/block/account/blockaccount')->with('blocked',$user_id);
     }
 
@@ -141,5 +161,11 @@ class AccountController extends Controller
         $account->update([
             'amount' => $balance
         ]);
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' update wallet amount'
+            ]
+        );
     }
 }
