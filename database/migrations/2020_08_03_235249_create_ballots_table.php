@@ -15,14 +15,10 @@ class CreateBallotsTable extends Migration
     {
         Schema::create('ballots', function (Blueprint $table) {
             $table->id();
-            $table->string('first_token');
-            $table->string('second_token');
-            $table->string('third_token');
-            $table->string('fourth_token');
-            $table->string('first_file');
-            $table->string('second_file');
-            $table->string('third_file');
-            $table->string('fourth_file');
+            $table->string('ballot_hash');
+            $table->string('token_name');
+            $table->string('token_ticker');
+            $table->string('token_image');
             $table->string('start_date');
             $table->string('end_date');
             $table->timestamps();

@@ -8,7 +8,7 @@ class Vote extends Model
 {
     protected $fillable = [
        'user_id',
-       'ballot_id',
-        'name'
+       'ballot_hash',
+        'token_name'
     ];
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStakesTable extends Migration
+class CreateTradeLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateStakesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stakes', function (Blueprint $table) {
+        Schema::create('trade_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('token_id');
-            $table->string('minimum_deposit');
-            $table->string('minimum_annual');
-            $table->string('maximum_annual');
-            $table->string('duration');
-            $table->text('keywords')->nullable();
+            $table->integer('user_id');
+            $table->string('coin_pair');
+            $table->string('amount');
+            $table->string('price');
+            $table->string('quantity');
+            $table->enum('type',['buy','sell','stake']);
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateStakesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stakes');
+        Schema::dropIfExists('trade_logs');
     }
 }

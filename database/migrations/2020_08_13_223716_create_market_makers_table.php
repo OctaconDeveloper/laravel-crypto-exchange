@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStakesTable extends Migration
+class CreateMarketMakersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateStakesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stakes', function (Blueprint $table) {
+        Schema::create('market_makers', function (Blueprint $table) {
             $table->id();
-            $table->integer('token_id');
-            $table->string('minimum_deposit');
-            $table->string('minimum_annual');
-            $table->string('maximum_annual');
-            $table->string('duration');
-            $table->text('keywords')->nullable();
+            $table->string('pair');
+            $table->string('maximum_volume');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateStakesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stakes');
+        Schema::dropIfExists('market_makers');
     }
 }

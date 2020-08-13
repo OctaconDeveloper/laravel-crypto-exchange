@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/user/address-generate',
         '/updatewalletamount',
+        '/addfaq',
+        '/addmaker'
     ];
 }

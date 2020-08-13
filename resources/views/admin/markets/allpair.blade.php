@@ -86,18 +86,6 @@
                     		</td>
                     	</tr>
                     @endforelse
-                  	{{-- if(!empty($coin_pair->all())){
-                  		$sn=1;
-                  		foreach ($coin_pair->all() as $logs) {
-                            switch($logs['stat']){
-                                case 0: $gh = " ";
-                                break;
-                                case 1: $gh = "<i class='fa fa-check green'></i>";
-                                break;
-                                default : $gh = "";
-                              }
-                 --}}
-
                   </tbody>
                 </table>
               </div>

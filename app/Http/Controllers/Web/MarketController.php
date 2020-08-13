@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Market;
 use App\TradeSetup;
 use App\Log;
+use App\MarketMaker;
 use Illuminate\Http\Request;
 
 class MarketController extends Controller
@@ -55,7 +56,7 @@ class MarketController extends Controller
             'user_id' => auth()->user()->id,
             'log' => ' Make new coin market pair default'
         ]
-    );
+        );
        return redirect('/block/markets/allpair');
 
     }
@@ -105,5 +106,20 @@ class MarketController extends Controller
 
         $markets = Market::with('user')->wherePair(request()->market_ticker)->get();
         return redirect('/block/markets/market')->with('markets',$markets);
+    }
+
+    public function storemaker()
+    {
+        request()->validate([
+            'pair' => 'numeric|required|exists:coin_pairs,id',
+            'max_volume' => 'string|required'
+        ]);
+        MarketMaker::updateOrCreate(['pair' => request()->pair],['maximum_volume' => request()->max_volume]);
+    }
+
+    public function deleteMarker(MarketMaker $id)
+    {
+        $id->delete();
+        return redirect('/block/markets/settings');
     }
 }

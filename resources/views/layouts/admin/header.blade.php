@@ -74,6 +74,20 @@ is_token_active('block/tokens/edit');
       <!-- Divider -->
       <hr class="sidebar-divider">
       <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item {{ is_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Admin</span>
+        </a>
+        <div id="account" class="collapse {{ nav_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">User Components:</h6>
+            <a class="collapse-item" href="/block/admin/createaccount">Create Account  </a>
+            <a class="collapse-item" href="/block/admin/viewaccount">Accounts</a>
+            <a class="collapse-item" href="/block/admin/accountslog">Accounts Log</a>
+          </div>
+        </div>
+      </li>
       <li class="nav-item {{ is_active(array('/block/account/createaccount','/block/account/accountslog','/block/account/accountwallet','/block/account/zerotrading','/block/account/blockaccount','/block/account/viewaccount')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-users"></i>
@@ -106,17 +120,18 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
-      <li class="nav-item {{ is_active(array('/block/markets/addpair','/block/markets/allpair','/block/markets/settings','/block/markets/market')) }}">
+      <li class="nav-item {{ is_active(array('/block/markets/history','/block/markets/addpair','/block/markets/allpair','/block/markets/settings','/block/markets/market')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#market" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-shopping-cart"></i>
           <span>Market</span>
         </a>
-        <div id="market" class="collapse {{ nav_active(array('/block/markets/addpair','/block/markets/allpair','/block/markets/settings','/block/markets/market')) }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="market" class="collapse {{ nav_active(array('/block/markets/history','/block/markets/addpair','/block/markets/allpair','/block/markets/settings','/block/markets/market')) }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Coin Market Components:</h6>
             <a class="collapse-item" href="/block/markets/addpair">Add Market Pair</a>
             <a class="collapse-item" href="/block/markets/allpair">View Market Pair</a>
             <a class="collapse-item" href="/block/markets/market">Search Market</a>
+            <a class="collapse-item" href="/block/markets/history">Market History</a>
             <a class="collapse-item" href="/block/markets/settings">Trade Settings</a>
           </div>
         </div>
@@ -179,7 +194,7 @@ is_token_active('block/tokens/edit');
         </div>
       </li>
 
-      <li class="nav-item {{ is_active(array('/block/chat/chatroom','/block/chat/blockuser')) }}">
+      {{-- <li class="nav-item {{ is_active(array('/block/chat/chatroom','/block/chat/blockuser')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#chat" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-comments"></i>
           <span>Chat</span>
@@ -191,7 +206,7 @@ is_token_active('block/tokens/edit');
             <a class="collapse-item" href="/block/chat/blockuser">Block User</a>
           </div>
         </div>
-      </li>
+      </li> --}}
 
       <li class="nav-item {{ is_active(array('/block/notifications/single','/block/notifications/multiple','/block/notifications/logs')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#notifications" aria-expanded="true" aria-controls="collapsePages">
@@ -208,16 +223,17 @@ is_token_active('block/tokens/edit');
         </div>
       </li>
 
-      <li class="nav-item {{ is_active(array('/setup/password','/setup/socialmedia','/setup/activitylogs','/setup/myactivitylog')) }}">
+      <li class="nav-item {{ is_active(array('/block/setup/faq','/setup/password','/setup/socialmedia','/setup/activitylogs','/setup/myactivitylog')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#setup" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-cog"></i>
           <span>Setup</span>
         </a>
-        <div id="setup" class="collapse {{ nav_active(array('/setup/password','/setup/socialmedia','/setup/activitylogs','/setup/myactivitylog')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="setup" class="collapse {{ nav_active(array('/block/setup/faq','/setup/password','/setup/socialmedia','/setup/activitylogs','/setup/myactivitylog')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Notification Components:</h6>
             <a class="collapse-item" href="/block/setup/password">Password</a>
             <a class="collapse-item" href="/block/setup/socialmedia">Social Media</a>
+            <a class="collapse-item" href="/block/setup/faq">FAQs</a>
             <a class="collapse-item" href="/block/setup/myactivitylog">My Activity Logs</a>
             <a class="collapse-item" href="/block/setup/activitylogs">All Activity Logs</a>
           </div>

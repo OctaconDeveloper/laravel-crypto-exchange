@@ -53,7 +53,19 @@
                     </div>
                 </div>
                 <dv class="row">
-                    <div class="form-group  col-md-12">
+                    <div class="form-group col-md-6">
+                        <label>Duration</label>
+                        <select class="form-control" name="duration">
+                            <option value="7">7 days</option>
+                            <option value="15">15 days</option>
+                            <option value="30">30 days</option>
+                            <option value="60">60 days</option>
+                            <option value="90">90 days</option>
+                            <option value="120">120 days</option>
+                            <option value="365">365 days</option>
+                        </select>
+                    </div>
+                    <div class="form-group  col-md-6">
                         <label>Keywords</label>
                         <small>Seperate multiple keyword with comma (,)</small>
                         <textarea class="form-control" name="keywords" placeholder="Keywords (eg., initial staking, ICO, etc)" rows="4" style="resize: none"></textarea>

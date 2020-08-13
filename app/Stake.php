@@ -11,7 +11,8 @@ class Stake extends Model
         'minimum_deposit',
         'minimum_annual',
         'maximum_annual',
-        'keywords'
+        'keywords',
+        'duration'
     ];
 
     public function token(){

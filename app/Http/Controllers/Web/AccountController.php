@@ -39,8 +39,9 @@ class AccountController extends Controller
         $location = [
             1 => '/block/home',
             2 => '/sys/dashboard',
-            3 => '/my-wallets',
-            4 => '/',
+            3 => '/org/dashboard',
+            4 => '/my-wallets',
+            5 => '/'
         ];
         $user = User::create([
             'user_type_id' => request()->account_type,
@@ -55,7 +56,7 @@ class AccountController extends Controller
             'location' => $location[request()->account_type],
             'activation_code' => $activation_code
         ]);
-        if(request()->account_type === 3){
+        if(request()->account_type === 4){
             ReferalBalance::create([
                 'user_id' => $user->id,
                 'amount' => '0',
@@ -66,6 +67,50 @@ class AccountController extends Controller
         Mail::to(request()->email)->send(new NewAccount($user,$password));
         $msg = "New  Account Details Sent to ".request()->email;
         return redirect('/block/account/createaccount')->with('msg', $msg);
+    }
+    public function newadmin()
+    {
+        $this->newaccountValidator();
+        $referal = null;
+
+        $google2fa = new Google2FA();
+        $rt = rand(40,5000) * time();
+        $tr = str_shuffle('ABCDEFGHIJK');
+        $refCode = sprintf("%0.7s", str_shuffle($rt.$tr));
+        $activation_code = sprintf("%0.6s", str_shuffle($rt));
+        $wallet_id = 'ADM-'.sprintf("%0.6s", str_shuffle($rt));
+        $secret = $google2fa->generateSecretKey();
+        $qrcode_url = $google2fa->getQRCodeUrl(
+            config('app.name'),
+            request()->email,
+            $secret
+        );
+        $password = Str::random(10);
+        $location = [
+            1 => '/block/home',
+            2 => '/sys/dashboard',
+            3 => '/org/dashboard',
+            4 => '/my-wallets',
+            5 => '/'
+        ];
+        $user = User::create([
+            'user_type_id' => request()->account_type,
+            'email' => request()->email,
+            'password' => Hash::make($password),
+            'referral' => $referal,
+            'refCode' => $refCode,
+            'secret' => $secret,
+            'qrcode_url' => $qrcode_url,
+            'tfa_stat' => 0,
+            'wallet_id' => $wallet_id,
+            'location' => $location[request()->account_type],
+            'activation_code' => $activation_code,
+            'is_active' => 1
+        ]);
+        // Send Activation Mail
+        Mail::to(request()->email)->send(new NewAccount($user,$password));
+        $msg = "New  Account Details Sent to ".request()->email;
+        return redirect('/block/admin/createaccount')->with('msg', $msg);
     }
 
     private function newaccountValidator()
@@ -83,9 +128,15 @@ class AccountController extends Controller
         request()->validate([
             'email' => 'required|email|exists:users,email'
         ]);
-        $user = User::whereEmail(request()->email)->first();
-        $accounts =  Wallet::with('user')->whereUserId($user->id)->get();
-        return redirect('/block/account/accountwallet')->with('accounts',$accounts);
+        $usr = User::whereEmail(request()->email)->where('user_type_id','>','3')->exists();
+        if($usr){
+            $user = User::whereEmail(request()->email)->where('user_type_id','>','3')->first();
+            $accounts =  Wallet::with('user')->whereUserId($user->id)->get();
+            return redirect('/block/account/accountwallet')->with('accounts',$accounts);
+        }else{
+            $error = "No user account found";
+            return redirect('/block/account/accountwallet')->withErrors([$error]);
+        }
     }
 
     public function checkZeroTrade()
@@ -93,8 +144,14 @@ class AccountController extends Controller
         request()->validate([
             'email' => 'required|email|exists:users,email'
         ]);
-        $zeros = User::whereEmail(request()->email)->first();
-        return redirect('/block/account/zerotrading')->with('zeros',$zeros);
+        $usr = User::whereEmail(request()->email)->where('user_type_id','>','3')->exists();
+        if($usr){
+            $zeros = User::whereEmail(request()->email)->first();
+            return redirect('/block/account/zerotrading')->with('zeros',$zeros);
+        }else{
+            $error = "No user account found";
+            return redirect('/block/account/zerotrading')->withErrors([$error]);
+        }
 
     }
 
@@ -120,8 +177,14 @@ class AccountController extends Controller
         request()->validate([
             'email' => 'required|email|exists:users,email'
         ]);
-        $blocked = User::where('is_active','!=','0')->whereEmail(request()->email)->first();
-        return redirect('/block/account/blockaccount')->with('blocked',$blocked);
+        $usr = User::whereEmail(request()->email)->where('user_type_id','>','3')->exists();
+        if($usr){
+            $blocked = User::where('is_active','!=','0')->whereEmail(request()->email)->where('user_type_id', '>' ,' 3')->first();
+            return redirect('/block/account/blockaccount')->with('blocked',$blocked);
+        }else{
+            $error = "No user account found";
+            return redirect('/block/account/blockaccount')->withErrors([$error]);
+        }
     }
 
     public function changeBlockStatus(User $user_id, $status)
@@ -142,15 +205,55 @@ class AccountController extends Controller
         );
         return redirect('/block/account/blockaccount')->with('blocked',$user_id);
     }
+    public function changeAdminBlockStatus(User $user_id, $status)
+    {
+        $array = [
+            'open' => 1,
+            'close' => 2
+        ];
+        $id = $array[$status];
+        $user_id->update([
+            'is_active' => $id
+        ]);
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' change user block status '.$user_id->email
+            ]
+        );
+        return redirect('/block/admin/viewaccount')->with('msg','Success');
+    }
 
     public function accountlogs()
     {
         request()->validate([
             'email' => 'required|email|exists:users,email'
         ]);
-        $user = User::whereEmail(request()->email)->first();
-        $logs = Log::with('user')->whereUserId($user->id)->get();
-        return redirect('/block/account/accountslog')->with('logs',$logs);
+        $usr = User::whereEmail(request()->email)->where('user_type_id','>','3')->exists();
+        if($usr){
+            $user = User::whereEmail(request()->email)->first();
+            $logs = Log::with('user')->whereUserId($user->id)->get();
+            return redirect('/block/account/accountslog')->with('logs',$logs);
+        }else{
+            $error = "No user account found";
+            return redirect('/block/account/accountslog')->withErrors([$error]);
+        }
+    }
+
+    public function adminaccountlogs()
+    {
+        request()->validate([
+            'email' => 'required|email|exists:users,email'
+        ]);
+        $usr = User::whereEmail(request()->email)->where('user_type_id','<','4')->exists();
+        if($usr){
+            $user = User::whereEmail(request()->email)->first();
+            $logs = Log::with('user')->whereUserId($user->id)->get();
+            return redirect('/block/admin/accountslog')->with('logs',$logs);
+        }else{
+            $error = "No admin account found";
+            return redirect('/block/admin/accountslog')->withErrors([$error]);
+        }
     }
 
     public function updatewalletamount()

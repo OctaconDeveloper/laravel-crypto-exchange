@@ -22,7 +22,7 @@ Route::get('/403', function () {return view('errors.403');});
 
 
 Route::get('/user-list', function(){
-    return  response()->json(ChatSetup::with('user')->whereUserId(4)->first());
+    return  \App\Ballot::distinct()->get('ballot_hash');
 });
 
 
@@ -55,11 +55,16 @@ Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
 
     //Account Views
     Route::get('account/createaccount',function() {return view('admin.account.createaccount');});
-    Route::get('account/viewaccount',function() { $accounts = User::with(['user_type','kyc'])->Where('user_type_id','3')->orWhere('user_type_id','4')->get(); return view('admin.account.viewaccount')->with('accounts', $accounts);});
+    Route::get('account/viewaccount',function() { $accounts = User::with(['user_type','kyc'])->Where('user_type_id', '>','3')->get(); return view('admin.account.viewaccount')->with('accounts', $accounts);});
     Route::get('account/accountwallet',function() {return view('admin.account.accountwallet');});
     Route::get('account/zerotrading',function() {return view('admin.account.zerotrading');});
     Route::get('account/blockaccount',function() {return view('admin.account.blockaccount');});
     Route::get('account/accountslog',function() {return view('admin.account.accountslog');});
+
+    //Admin User Views
+    Route::get('admin/createaccount',function() {return view('admin.user.createaccount');});
+    Route::get('admin/viewaccount',function() { $accounts = User::with(['user_type','kyc'])->Where('user_type_id', '<','4')->get(); return view('admin.user.viewaccount')->with('accounts', $accounts);});
+    Route::get('admin/accountslog',function() {return view('admin.user.accountslog');});
 
     //Token Views
     Route::get('tokens/addtoken/{type}',function() {return view('admin.tokens.addtoken');});
@@ -70,6 +75,7 @@ Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
     Route::get('markets/addpair',function() {return view('admin.markets.addpair');});
     Route::get('markets/allpair',function() {return view('admin.markets.allpair');});
     Route::get('markets/market',function() {return view('admin.markets.market');});
+    Route::get('markets/history',function() {return view('admin.markets.history');});
     Route::get('markets/settings',function() {return view('admin.markets.settings');});
 
     //Wallet Views
@@ -106,6 +112,7 @@ Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
     Route::get('setup/socialmedia',function() {return view('admin.setup.socialmedia');});
     Route::get('setup/myactivitylog',function() {return view('admin.setup.myactivitylog');});
     Route::get('setup/activitylogs',function() {return view('admin.setup.activitylogs');});
+    Route::get('setup/faq',function() {return view('admin.setup.faq');});
 
 
 });
@@ -137,13 +144,16 @@ Route::namespace('Web')->group(function () {
     //Admin Restricted Link 'middleware' => ''
     Route::middleware('superAdmin')->group(function () {
         Route::post('newuser','AccountController@newaccount');
+        Route::post('newadmin','AccountController@newadmin');
         Route::post('searchaccount','AccountController@searchaccount');
         Route::post('checkZeroTrade','AccountController@checkZeroTrade');
         Route::post('checkBlocked','AccountController@checkBlocked');
         Route::post('accountlogs','AccountController@accountlogs');
+        Route::post('adminaccountlogs','AccountController@adminaccountlogs');
         Route::get('account/zerotrading/{user_id}/{id}','AccountController@changeZeroTradeStatus');
         Route::get('account/zerotrading/{user_id}/{id}','AccountController@changeZeroTradeStatus');
         Route::get('account/blocked/{user_id}/{status}','AccountController@changeBlockStatus');
+        Route::get('admin/blocked/{user_id}/{status}','AccountController@changeAdminBlockStatus');
         Route::post('updatewalletamount','AccountController@updatewalletamount');
         Route::post('addtoken','TokenController@addToken');
         Route::get('delete-token/{token}','TokenController@removeToken');
@@ -166,6 +176,12 @@ Route::namespace('Web')->group(function () {
         Route::post('multiplenotification', 'NotificationController@multiple');
         Route::post('savemedia', 'NotificationController@savemedia');
         Route::post('password-reset','AuthController@resetPasswordAdmin');
+
+
+        Route::get('deletefaq/{faq}','FAQController@deleteFAQ');
+        Route::post('addfaq','FAQController@addfaq');
+        Route::post('addmaker','MarketController@storemaker');
+        Route::get('deletemark/{id}','MarketController@deleteMarker');
     });
 
 });

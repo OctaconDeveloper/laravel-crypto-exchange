@@ -19,14 +19,15 @@
               <thead>
                 <tr>
                    <th>#</th>
-                  <th>Token Name</th>
-                  <th>Icon</th>
-                  <th>Minimum Deposit</th>
-                  <th>Minimum Annual ROI (%)</th>
-                  <th>Maximum Annual ROI (%)</th>
-                  <th>Keywords</th>
-                  <th>Date</th>
-                  <th></th>
+                   <th>Token Name</th>
+                   <th>Icon</th>
+                   <th>Duration</th>
+                   <th>Min. Deposit</th>
+                   <th>Min. ROI (%)</th>
+                   <th>Max. ROI (%)</th>
+                   <th>Keywords</th>
+                   <th>Date</th>
+                   <th></th>
                 </tr>
               </thead>
               <tfoot>
@@ -34,9 +35,10 @@
                    <th>#</th>
                   <th>Token Name</th>
                   <th>Icon</th>
-                  <th>Minimum Deposit</th>
-                  <th>Minimum Annual ROI (%)</th>
-                  <th>Maximum Annual ROI (%)</th>
+                  <th>Duration</th>
+                  <th>Min. Deposit</th>
+                  <th>Min. ROI (%)</th>
+                  <th>Max. ROI (%)</th>
                   <th>Keywords</th>
                   <th>Date</th>
                   <th></th>
@@ -47,10 +49,11 @@
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{ ucwords($item->token->name) }} {{ strtoupper($item->token->ticker) }}</td>
-                    <td><img src="{{$item->token->image}}" width="25px" height="25"/></td>
-                        <td>{{ $item->minimum_deposit }}</td>
-                        <td>{{ $item->minimum_annual }}</td>
-                        <td>{{ $item->maximum_annual }}</td>
+                        <td><img src="{{$item->token->image}}" width="25px" height="25"/></td>
+                        <td>{{ $item->duration }} days</td>
+                        <td>{{ $item->minimum_deposit }} {{ strtoupper($item->token->ticker) }}</td>
+                        <td>{{ $item->minimum_annual }} %</td>
+                        <td>{{ $item->maximum_annual }} % </td>
                         <td>{{ $item->keywords }}</td>
                         <td>{{ explode(" ", $item->created_at)[0] }} </td>
 
@@ -58,7 +61,7 @@
                     </tr>
                   @empty
                     <tr>
-                        <td colspan="8">
+                        <td colspan="9">
                             No Data Available
                         </td>
                     </tr>

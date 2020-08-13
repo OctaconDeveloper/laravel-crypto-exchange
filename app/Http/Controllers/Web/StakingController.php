@@ -23,6 +23,7 @@ class StakingController extends Controller
                 'minimum_annual' => request()->minimum_annual,
                 'maximum_annual' => request()->maximum_annual,
                 'keywords' => request()->keywords,
+                'duration' => request()->duration
             ]);
             Log::create(
                 [
@@ -42,7 +43,8 @@ class StakingController extends Controller
             'minimum_deposit' => 'required|string',
             'minimum_annual' => 'required|string',
             'maximum_annual' => 'required|string',
-            'keywords' => 'nullable|string'
+            'keywords' => 'nullable|string',
+            'duration' => 'required|string'
         ]);
     }
 

@@ -23,6 +23,11 @@ class UserTypeTableSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'name' => 'Chat Admin',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'name' => 'Customer',
                 'created_at' => now(),
                 'updated_at' => now()
@@ -31,7 +36,7 @@ class UserTypeTableSeeder extends Seeder
                 'name' => 'Api',
                 'created_at' => now(),
                 'updated_at' => now()
-            ],
+            ]
         ]);
     }
 }
