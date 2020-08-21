@@ -73,6 +73,7 @@ is_token_active('block/tokens/edit');
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
+    @if (auth()->user()->user_type_id !== 3)
       @if (auth()->user()->user_type_id == 1)
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ is_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}">
@@ -202,8 +203,9 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
-
-      {{-- <li class="nav-item {{ is_active(array('/block/chat/chatroom','/block/chat/blockuser')) }}">
+    @endif
+      @if (auth()->user()->user_type_id == 3 || auth()->user()->user_type_id == 1)
+      <li class="nav-item {{ is_active(array('/block/chat/chatroom','/block/chat/blockuser')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#chat" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-comments"></i>
           <span>Chat</span>
@@ -215,8 +217,9 @@ is_token_active('block/tokens/edit');
             <a class="collapse-item" href="/block/chat/blockuser">Block User</a>
           </div>
         </div>
-      </li> --}}
-
+      </li>
+      @endif
+      @if (auth()->user()->user_type_id !== 3)
       <li class="nav-item {{ is_active(array('/block/notifications/single','/block/notifications/broadcast','/block/notifications/multiple','/block/notifications/logs')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#notifications" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-bell"></i>
@@ -232,6 +235,7 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
+      @endif
 
       <li class="nav-item {{ is_active(array('/block/setup/faq','/setup/password','/setup/socialmedia','/setup/activitylogs','/setup/myactivitylog')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#setup" aria-expanded="true" aria-controls="collapsePages">
