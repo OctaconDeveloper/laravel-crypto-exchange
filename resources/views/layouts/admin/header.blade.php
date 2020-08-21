@@ -73,6 +73,7 @@ is_token_active('block/tokens/edit');
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
+      @if (auth()->user()->user_type_id == 1)
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ is_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="collapseTwo">
@@ -88,6 +89,7 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
+      @endif
       <li class="nav-item {{ is_active(array('/block/account/createaccount','/block/account/accountslog','/block/account/accountwallet','/block/account/zerotrading','/block/account/blockaccount','/block/account/viewaccount')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-users"></i>
@@ -136,6 +138,8 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
+
+      @if (auth()->user()->user_type_id == 1)
       <li class="nav-item {{ is_active(array('/block/wallets/viewwallets','/block/wallets/refreshwallets','/block/wallets/withdrawals','/block/wallets/deposits')) }}">
         <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#wallet" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wallet"></i>
@@ -151,6 +155,7 @@ is_token_active('block/tokens/edit');
           </div>
         </div>
       </li>
+      @endif
       <li class="nav-item {{is_token_active_nav('block/kyc/viewkyc')}} {{ is_active(array('/block/kyc/pendingverification','/block/kyc/verifiedaccounts','/block/kyc/viewkyc')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kyc" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-user-check"></i>
@@ -173,7 +178,10 @@ is_token_active('block/tokens/edit');
         <div id="voting" class="collapse {{ nav_active(array('/block/voting/newvoting','/block/voting/modifyvoting','/block/voting/listing')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Voting Components:</h6>
-            <a class="collapse-item" href="/block/voting/listing">Coin Listing</a>
+
+            @if (auth()->user()->user_type_id == 1)
+                <a class="collapse-item" href="/block/voting/listing">Coin Listing</a>
+            @endif
             <a class="collapse-item" href="/block/voting/newvoting">New Voting</a>
             <a class="collapse-item" href="/block/voting/modifyvoting">Modify Voting</a>
           </div>
@@ -237,7 +245,10 @@ is_token_active('block/tokens/edit');
             <a class="collapse-item" href="/block/setup/socialmedia">Social Media</a>
             <a class="collapse-item" href="/block/setup/faq">FAQs</a>
             <a class="collapse-item" href="/block/setup/myactivitylog">My Activity Logs</a>
+
+            @if (auth()->user()->user_type_id == 1)
             <a class="collapse-item" href="/block/setup/activitylogs">All Activity Logs</a>
+            @endif
           </div>
         </div>
       </li>

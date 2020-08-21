@@ -38,8 +38,8 @@ class AccountController extends Controller
         $password = Str::random(10);
         $location = [
             1 => '/block/home',
-            2 => '/sys/dashboard',
-            3 => '/org/dashboard',
+            2 => '/block/home',
+            3 => '/block/home',
             4 => '/my-wallets',
             5 => '/'
         ];
@@ -89,8 +89,8 @@ class AccountController extends Controller
         $password = Str::random(10);
         $location = [
             1 => '/block/home',
-            2 => '/sys/dashboard',
-            3 => '/org/dashboard',
+            2 => '/block/home',
+            3 => '/block/home',
             4 => '/my-wallets',
             5 => '/'
         ];

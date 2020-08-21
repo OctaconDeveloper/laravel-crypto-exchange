@@ -51,9 +51,11 @@
                     </div>
                     <hr/>
 
+                    @if (auth()->user()->user_type_id == 1)
                     <button class="btn btn-success" name="update">
                         <i class="fa fa-cog"></i> Update Settings
                     </button>
+                    @endif
                 </div>
             </form>
         </div>

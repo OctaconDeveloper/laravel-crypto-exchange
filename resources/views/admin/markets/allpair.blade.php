@@ -32,18 +32,22 @@
                       <th>Pairing Code</th>
                       <th>Target Coin</th>
                       <th>Base Coin</th>
-                      <th></th>
-                      <th></th>
+                      @if (auth()->user()->user_type_id == 1)
+                          <th></th>
+                          <th></th>
+                      @endif
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>#</th>
-                      <th>Pairing Code</th>
-                      <th>Target Coin</th>
-                      <th>Base Coin</th>
-                      <th></th>
-                      <th></th>
+                        <th>#</th>
+                        <th>Pairing Code</th>
+                        <th>Target Coin</th>
+                        <th>Base Coin</th>
+                        @if (auth()->user()->user_type_id == 1)
+                            <th></th>
+                            <th></th>
+                        @endif
                     </tr>
                   </tfoot>
                   <tbody>
@@ -67,16 +71,19 @@
                             {{$item->coinbase['name']}}
                             <img width="25" height="25" src="{{$item->coinbase['name']}}" />
                         </td>
-                        <td>
-                            <a href="/defaultmarkets/{{$item->id}}">
-                                <i class="fa fa-cog blue" title="Make Default Ticker"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="/deletemarkets/{{$item->id}}">
-                                <i title="Delete {{$item->pair}}" class="fa fa-trash red"></i>
-                            </a>
-                        </td>
+
+                        @if (auth()->user()->user_type_id == 1)
+                            <td>
+                                <a href="/defaultmarkets/{{$item->id}}">
+                                    <i class="fa fa-cog blue" title="Make Default Ticker"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/deletemarkets/{{$item->id}}">
+                                    <i title="Delete {{$item->pair}}" class="fa fa-trash red"></i>
+                                </a>
+                            </td>
+                        @endif
                     </tr>
 
                     @empty

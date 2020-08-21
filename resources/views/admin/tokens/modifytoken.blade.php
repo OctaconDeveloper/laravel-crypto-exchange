@@ -45,7 +45,7 @@
                   <th>Withdraw</th>
                   <th>Deposit</th>
                   <th></th>
-                  <th></th>
+                  @if (auth()->user()->user_type_id == 1)<th></th>@endif
                 </tr>
               </thead>
               <tfoot>
@@ -58,7 +58,7 @@
                   <th>Withdraw</th>
                   <th>Deposit</th>
                   <th></th>
-                  <th></th>
+                  @if (auth()->user()->user_type_id == 1)<th></th>@endif
                 </tr>
               </tfoot>
               <tbody>
@@ -76,11 +76,13 @@
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>
-                        <td>
-                            <a href="/delete-token/{{$item->id}}" class="btn btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                        </td>
+                        @if (auth()->user()->user_type_id == 1)
+                            <td>
+                                <a href="/delete-token/{{$item->id}}" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        @endif
                     </tr>
                   @empty
                     <tr>
