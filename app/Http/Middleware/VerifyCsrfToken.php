@@ -15,6 +15,8 @@ class VerifyCsrfToken extends Middleware
         '/user/address-generate',
         '/updatewalletamount',
         '/addfaq',
-        '/addmaker'
+        '/addmaker',
+        '/addcoinlisting',
+        '/updatecoinlisting/{id}'
     ];
 }

@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Broadcast;
 use App\Http\Controllers\Controller;
+use App\Jobs\MultipleBroadcastJob;
+use App\Jobs\MultipleNotification;
 use App\Notification;
 use App\User;
 use App\Log;
 use App\Jobs\MultipleNotificationJob;
 use App\SocialMedia;
 use Illuminate\Http\Request;
+use App\Mail\NotificationMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class NotificationController extends Controller
 {
@@ -18,13 +25,14 @@ class NotificationController extends Controller
             'email' => 'required|email|exists:users,email',
             'message' => 'required|string'
         ]);
-       $user = \App\User::whereEmail('jeanne.muller@example.net')->first();
+       $user = \App\User::whereEmail(request()->email)->first();
 
         Notification::create([
             'user_id'=> $user->id,
             'message' => request()->message,
             'stat' => '0'
         ]);
+        Mail::to(request()->email)->send(new NotificationMail($user,request()->message));
         Log::create(
             [
                 'user_id' => auth()->user()->id,
@@ -32,7 +40,7 @@ class NotificationController extends Controller
             ]
         );
         $msg = "Notification sent successfully";
-        return redirect('/block/notifications/single')->with('msg',$msg);
+        return redirect()->back()->with('msg',$msg);
     }
 
     public function multiple()
@@ -40,11 +48,10 @@ class NotificationController extends Controller
         request()->validate([
             'message' => 'required|string'
         ]);
-            $messaage = request()->message;
-        MultipleNotificationJob::dispatch($messaage);
+        MultipleNotification::dispatch(request()->message);
 
         $msg = "Notifications added to queue";
-        return redirect('/block/notifications/multiple')->with('msg',$msg);
+        return redirect()->back()->with('msg',$msg);
     }
 
     public function savemedia()
@@ -73,6 +80,42 @@ class NotificationController extends Controller
             ]
         );
         $msg = "Updated successfully";
-        return redirect('/block/setup/socialmedia')->with('msg',$msg);
+        return redirect()->back()->with('msg',$msg);
+    }
+
+
+    public function sendBroadcast()
+    {
+        request()->validate([
+            'broadcast_title' => 'required|string',
+            'broadcast_message' => 'required|string',
+            'broadcast_image' => 'file|mimes:png,jpg,jpeg,svg',
+        ]);
+        if ($file = request()->file('broadcast_image')) {
+            $fileContent = $file->get();
+            $ext = $file->getClientOriginalExtension();
+            $file_name = Str::slug(request()->broadcast_title).'.' . $ext;
+             Storage::disk('public')->put('broadcast/'.$file_name, $fileContent);
+            $image = config('filesystems.disks.public.url').'/broadcast/'.$file_name;
+
+        }else{
+            $error = "Broadcast image is required";
+            return redirect()->back()->withErrors([$error]);
+        }
+
+       $broadcast =  Broadcast::create([
+            'title'=> request()->broadcast_title,
+            'message' => request()->broadcast_message,
+            'image' => $image
+        ]);
+        MultipleBroadcastJob::dispatch($broadcast);
+        Log::create(
+            [
+                'user_id' => auth()->user()->id,
+                'log' => ' new broadcast'
+            ]
+        );
+        $msg = "Broadcast sent";
+        return redirect()->back()->with('msg', $msg);
     }
 }

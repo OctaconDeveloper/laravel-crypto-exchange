@@ -92,6 +92,7 @@ Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
     //Voting Views
     Route::get('voting/newvoting',function() {return view('admin.voting.newvoting');});
     Route::get('voting/modifyvoting',function() {return view('admin.voting.modifyvoting');});
+    Route::get('voting/listing',function() {return view('admin.voting.listing');});
 
     //Staking views
     Route::get('staking/addstakes',function() {return view('admin.staking.addstakes');});
@@ -106,6 +107,7 @@ Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
     Route::get('notifications/single',function() {return view('admin.notifications.single');});
     Route::get('notifications/multiple',function() {return view('admin.notifications.multiple');});
     Route::get('notifications/logs',function() {return view('admin.notifications.logs');});
+    Route::get('notifications/broadcast',function() {return view('admin.notifications.broadcast');});
 
     // Setup Views
     Route::get('setup/password',function() {return view('admin.setup.password');});
@@ -176,12 +178,14 @@ Route::namespace('Web')->group(function () {
         Route::post('multiplenotification', 'NotificationController@multiple');
         Route::post('savemedia', 'NotificationController@savemedia');
         Route::post('password-reset','AuthController@resetPasswordAdmin');
-
-
         Route::get('deletefaq/{faq}','FAQController@deleteFAQ');
         Route::post('addfaq','FAQController@addfaq');
         Route::post('addmaker','MarketController@storemaker');
         Route::get('deletemark/{id}','MarketController@deleteMarker');
+        Route::post('addcoinlisting','BallotController@addtoken');
+        Route::get('deletecoinlist/{id}','BallotController@deletetoken');
+        Route::post('updatecoinlisting/{id}', 'BallotController@updatetoken');
+        Route::post('broadcastnotification','NotificationController@sendBroadcast');
     });
 
 });

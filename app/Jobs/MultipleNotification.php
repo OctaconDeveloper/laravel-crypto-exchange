@@ -2,27 +2,30 @@
 
 namespace App\Jobs;
 
-use App\User;
-use App\Log;
+use App\Mail\NotificationMail;
 use App\Notification;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
-class MultipleNotificationJob implements ShouldQueue
+class MultipleNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $messaage;
+
+    public $notification;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($messaage)
+    public function __construct($notification)
     {
-        $this->messaage = $messaage;
+        $this->notification = $notification;
     }
 
     /**
@@ -32,19 +35,15 @@ class MultipleNotificationJob implements ShouldQueue
      */
     public function handle()
     {
-        $users = User::whereUserTypeId(3)->get();
+        $users = User::where('user_type_id',4)->get();
         foreach($users as $user){
             Notification::create([
                 'user_id'=> $user['id'],
-                'message' => $this->messaage,
+                'message' => $this->notification,
                 'stat' => '0'
             ]);
-            Log::create(
-                [
-                    'user_id' => auth()->user()->id,
-                    'log' => ' sent notification to '.$user['email']
-                ]
-            );
+            Mail::to($user['email'])->send(new NotificationMail($user,$this->notification));
         }
+        // return $this->notification;
     }
 }

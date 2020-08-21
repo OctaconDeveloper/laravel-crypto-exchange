@@ -44,25 +44,36 @@
                   <input type="text" class="form-control" name="token_name" placeholder="Enter Token Name">
                 </div>
             </div>
-
             <div class="row">
                 <div class="form-group col-md-6">
-                  <label>Token Ticker</label>
-                  <input type="text" class="form-control" name="token_ticker" placeholder="Enter Token Ticker">
+                    <label>Token Ticker</label>
+                    <input type="text" class="form-control" name="token_ticker" placeholder="Enter Token Ticker">
                 </div>
                 <div class="form-group col-md-6">
-                  <label>Token Address</label>
-                  <input type="text" class="form-control" name="token_address" placeholder="Enter Token Address">
+                    <label>Token Address</label>
+                     <input type="text" class="form-control" name="token_address" placeholder="Enter Token Address">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
+                  <label>Token Circulation</label>
+                  <input type="text" class="form-control" name="token_circulation" placeholder="Enter Token Circulation">
+                  <br/>
+                  <label>Official Website</label>
+                  <input type="text" class="form-control" name="token_url" placeholder="Enter Token Official Website">
+                  <br/>
+                  <label>Token WhitePaper</label>
+                  <input type="text" class="form-control" name="token_white_paper" placeholder="Enter Token WhitePaper">
+                  <br/>
                   <label>Withdrawal Fee</label>
                   <input type="text" class="form-control" name="withdrawal_fee" placeholder="Withdrawal Fee (0.003)">
-                </div>
-                <div class="form-group col-md-6">
+                  <br/>
                   <label>Token Icon <small>(icon should be 25x25, png,jpg,jpeg,svg)</small></label>
                   <input type="file" class="form-control" name="token_file" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Token Description</label>
+                  <textarea  class="form-control" name="token_description" placeholder="Enter Token Description" rows="16" style="resize: none"></textarea>
                 </div>
             </div>
                 <hr>

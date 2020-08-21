@@ -48,22 +48,31 @@
                     @include('errors.errors')
                 </span>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                     <input type="hidden" class="form-control"  name="token_type" value="{{$token->type}}">
                         <label>Token Name</label>
                         <input type="text" class="form-control" name="token_name" value="{{$token->name}}" readonly>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label>Token Address</label>
                         <input type="text" class="form-control" name="token_address" value="{{$token->address}}">
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-4">
                         <label>Withdrawal Fee</label>
                         <input type="text" class="form-control" name="withdrawal_fee" value="{{$token->withdrawal_fee}}">
                     </div>
+                </div>
+                <div class="row">
                     <div class="form-group col-md-4">
+                        <label>Token Circulation</label>
+                        <input type="text" class="form-control" name="token_circulation" value="{{$token->circulation}}">
+                        <br/>
+                        <label>Official Website</label>
+                        <input type="text" class="form-control" name="token_url" value="{{$token->url}}">
+                        <br/>
+                        <label>Token WhitePaper</label>
+                        <input type="text" class="form-control" name="token_white_paper"  value="{{$token->white_paper}}">
+                        <br/>
                         <label>Withdrawal Status</label>
                         <select name="withdraw_stat" class="form-control">
                             <option value="{{$token->withdraw_stat}}">
@@ -73,8 +82,7 @@
                             <option value="1">Unavailable</option>
                             <option value="2">Under Maintenance</option>
                         </select>
-                    </div>
-                    <div class="form-group col-md-4">
+                        <br/>
                         <label>Deposit Status</label>
                         <select name="deposit_stat" class="form-control">
                             <option value="{{$token->deposit_stat}}">
@@ -84,6 +92,10 @@
                             <option value="1">Unavailable</option>
                             <option value="2">Under Maintenance</option>
                         </select>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label>Token Description</label>
+                        <textarea  class="form-control" name="token_description" placeholder="Enter Token Description" rows="16" style="resize: none">{{$token->description}}</textarea>
                     </div>
                 </div>
                 <hr>

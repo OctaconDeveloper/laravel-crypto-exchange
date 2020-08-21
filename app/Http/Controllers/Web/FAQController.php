@@ -11,7 +11,7 @@ class FAQController extends Controller
     public function deleteFAQ(FAQ $faq)
     {
         $faq->delete();
-        return redirect('/block/setup/faq')->with('msg','Delete Successful');
+        return redirect()->back()->with('msg','Delete Successful');
     }
 
     public function addfaq()
@@ -30,6 +30,6 @@ class FAQController extends Controller
                 'answer' => request()->answer
             ]
         );
-        return redirect('/block/setup/faq')->with('msg','Operation successful');
+        return redirect()->back()->with('msg','Operation successful');
     }
 }

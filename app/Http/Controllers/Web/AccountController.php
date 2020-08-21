@@ -66,8 +66,9 @@ class AccountController extends Controller
         // Send Activation Mail
         Mail::to(request()->email)->send(new NewAccount($user,$password));
         $msg = "New  Account Details Sent to ".request()->email;
-        return redirect('/block/account/createaccount')->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
     }
+
     public function newadmin()
     {
         $this->newaccountValidator();
@@ -110,7 +111,7 @@ class AccountController extends Controller
         // Send Activation Mail
         Mail::to(request()->email)->send(new NewAccount($user,$password));
         $msg = "New  Account Details Sent to ".request()->email;
-        return redirect('/block/admin/createaccount')->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
     }
 
     private function newaccountValidator()
@@ -132,10 +133,10 @@ class AccountController extends Controller
         if($usr){
             $user = User::whereEmail(request()->email)->where('user_type_id','>','3')->first();
             $accounts =  Wallet::with('user')->whereUserId($user->id)->get();
-            return redirect('/block/account/accountwallet')->with('accounts',$accounts);
+            return redirect()->back()->with('accounts',$accounts);
         }else{
             $error = "No user account found";
-            return redirect('/block/account/accountwallet')->withErrors([$error]);
+            return redirect()->back()->withErrors([$error]);
         }
     }
 
@@ -147,10 +148,10 @@ class AccountController extends Controller
         $usr = User::whereEmail(request()->email)->where('user_type_id','>','3')->exists();
         if($usr){
             $zeros = User::whereEmail(request()->email)->first();
-            return redirect('/block/account/zerotrading')->with('zeros',$zeros);
+            return redirect()->back()->with('zeros',$zeros);
         }else{
             $error = "No user account found";
-            return redirect('/block/account/zerotrading')->withErrors([$error]);
+            return redirect()->back()->withErrors([$error]);
         }
 
     }
@@ -169,7 +170,7 @@ class AccountController extends Controller
                 'log' => ' change zero trading status for '.$user_id->email
             ]
         );
-        return redirect('/block/account/zerotrading')->with('zeros',$user_id);
+        return redirect()->back()->with('zeros',$user_id);
     }
 
     public function checkBlocked()
@@ -180,10 +181,10 @@ class AccountController extends Controller
         $usr = User::whereEmail(request()->email)->where('user_type_id','>','3')->exists();
         if($usr){
             $blocked = User::where('is_active','!=','0')->whereEmail(request()->email)->where('user_type_id', '>' ,' 3')->first();
-            return redirect('/block/account/blockaccount')->with('blocked',$blocked);
+            return redirect()->back()->with('blocked',$blocked);
         }else{
             $error = "No user account found";
-            return redirect('/block/account/blockaccount')->withErrors([$error]);
+            return redirect()->back()->withErrors([$error]);
         }
     }
 
@@ -203,8 +204,9 @@ class AccountController extends Controller
                 'log' => ' change user block status '.$user_id->email
             ]
         );
-        return redirect('/block/account/blockaccount')->with('blocked',$user_id);
+        return redirect()->back()->with('blocked',$user_id);
     }
+
     public function changeAdminBlockStatus(User $user_id, $status)
     {
         $array = [
@@ -221,7 +223,7 @@ class AccountController extends Controller
                 'log' => ' change user block status '.$user_id->email
             ]
         );
-        return redirect('/block/admin/viewaccount')->with('msg','Success');
+        return redirect()->back()->with('msg','Success');
     }
 
     public function accountlogs()
@@ -233,10 +235,10 @@ class AccountController extends Controller
         if($usr){
             $user = User::whereEmail(request()->email)->first();
             $logs = Log::with('user')->whereUserId($user->id)->get();
-            return redirect('/block/account/accountslog')->with('logs',$logs);
+            return redirect()->back()->with('logs',$logs);
         }else{
             $error = "No user account found";
-            return redirect('/block/account/accountslog')->withErrors([$error]);
+            return redirect()->back()->withErrors([$error]);
         }
     }
 
@@ -249,10 +251,10 @@ class AccountController extends Controller
         if($usr){
             $user = User::whereEmail(request()->email)->first();
             $logs = Log::with('user')->whereUserId($user->id)->get();
-            return redirect('/block/admin/accountslog')->with('logs',$logs);
+            return redirect()->back()->with('logs',$logs);
         }else{
             $error = "No admin account found";
-            return redirect('/block/admin/accountslog')->withErrors([$error]);
+            return redirect()->back()->withErrors([$error]);
         }
     }
 
@@ -271,4 +273,5 @@ class AccountController extends Controller
             ]
         );
     }
+
 }

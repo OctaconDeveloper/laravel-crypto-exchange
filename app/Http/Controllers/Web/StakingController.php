@@ -15,7 +15,7 @@ class StakingController extends Controller
         $is_exist = Stake::whereTokenId(request()->token)->exists();
         if($is_exist){
             $error = "Stake alreay exist for this coin";
-            return redirect('/block/staking/addstakes')->withErrors([$error]);
+            return redirect()->back()->withErrors([$error]);
         }else{
             Stake::create([
                 'token_id' => request()->token,
@@ -32,7 +32,7 @@ class StakingController extends Controller
                 ]
             );
             $msg = "Stake added successfully";
-            return redirect('/block/staking/addstakes')->with('msg',$msg);
+            return redirect()->back()->with('msg',$msg);
         }
     }
 
@@ -57,6 +57,6 @@ class StakingController extends Controller
                 'log' => ' Delete coin stake'
             ]
         );
-        return redirect('/block/staking/allstakes');
+        return redirect()->back();
     }
 }

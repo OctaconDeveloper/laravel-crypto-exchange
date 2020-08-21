@@ -21,9 +21,13 @@ class TokenSeeder extends Seeder
                 'withdrawal_fee' => '0.002',
                 'withdraw_stat' => '1',
                 'deposit_stat' => '1',
-                'image' => config('app.url').'token/bitcoin.svg',
+                'image' => config('app.url').'storage/token/bitcoin.svg',
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
+                'circulation'=> null,
+                'description'=> null,
+                'url'=> null,
+                'white_paper'=> null,
             ],
             [
                 'name' => 'Ethereum',
@@ -34,9 +38,11 @@ class TokenSeeder extends Seeder
                 'withdrawal_fee' => '0.002',
                 'withdraw_stat' => '1',
                 'deposit_stat' => '1',
-                'image' => config('app.url').'token/ethereum.svg',
-                'created_at' => now(),
-                'updated_at' => now()
+                'image' => config('app.url').'storage/token/ethereum.svg',
+                'circulation'=> null,
+                'description'=> null,
+                'url'=> null,
+                'white_paper'=> null,
             ],
         ]);
     }

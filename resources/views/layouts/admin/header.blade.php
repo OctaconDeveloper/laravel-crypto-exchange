@@ -165,14 +165,15 @@ is_token_active('block/tokens/edit');
         </div>
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item {{ is_active(array('/block/voting/newvoting','/block/voting/modifyvoting')) }}">
+      <li class="nav-item {{ is_active(array('/block/voting/newvoting','/block/voting/modifyvoting','/block/voting/listing')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#voting" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-vote-yea"></i>
           <span>Voting</span>
         </a>
-        <div id="voting" class="collapse {{ nav_active(array('/block/voting/newvoting','/block/voting/modifyvoting')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="voting" class="collapse {{ nav_active(array('/block/voting/newvoting','/block/voting/modifyvoting','/block/voting/listing')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Voting Components:</h6>
+            <a class="collapse-item" href="/block/voting/listing">Coin Listing</a>
             <a class="collapse-item" href="/block/voting/newvoting">New Voting</a>
             <a class="collapse-item" href="/block/voting/modifyvoting">Modify Voting</a>
           </div>
@@ -208,16 +209,17 @@ is_token_active('block/tokens/edit');
         </div>
       </li> --}}
 
-      <li class="nav-item {{ is_active(array('/block/notifications/single','/block/notifications/multiple','/block/notifications/logs')) }}">
+      <li class="nav-item {{ is_active(array('/block/notifications/single','/block/notifications/broadcast','/block/notifications/multiple','/block/notifications/logs')) }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#notifications" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-bell"></i>
           <span>Notification</span>
         </a>
-        <div id="notifications" class="collapse {{ nav_active(array('/block/notifications/single','/block/notifications/multiple','/block/notifications/logs')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="notifications" class="collapse {{ nav_active(array('/block/notifications/single','/block/notifications/multiple','/block/notifications/logs','/block/notifications/broadcast')) }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Notification Components:</h6>
             <a class="collapse-item" href="/block/notifications/single">Single Notification</a>
             <a class="collapse-item" href="/block/notifications/multiple">Multiple Notification</a>
+            <a class="collapse-item" href="/block/notifications/broadcast">Broadcast</a>
             <a class="collapse-item" href="/block/notifications/logs">Notification Logs</a>
           </div>
         </div>

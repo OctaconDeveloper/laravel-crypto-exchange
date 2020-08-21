@@ -18,7 +18,7 @@ class ChatController extends Controller
         $user = User::whereEmail(request()->email)->first();
         $log = ChatSetup::with('user')->whereUserId($user->id)->first();
         $logs = $log ? $log :  [];
-        return redirect('/block/chat/blockuser')->with('logs',$logs);
+        return redirect()->back()->with('logs',$logs);
     }
 
     public function blockUser(ChatSetup $chat, $status)
@@ -32,6 +32,6 @@ class ChatController extends Controller
                 'log' => ' Update user chat status'
             ]
         );
-        return redirect('/block/chat/blockuser')->with('logs',$logs);
+        return redirect()->back()->with('logs',$logs);
     }
 }

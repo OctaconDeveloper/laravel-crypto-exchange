@@ -25,7 +25,7 @@ class MarketController extends Controller
             $isValid = CoinPair::whereTargetId(request()->target_coin)->whereBaseId(request()->base_coin)->exists();
             if($isValid){
                 $error = 'Market pair for '.request()->target_coin.' and '.request()->base_coin.' already captured';
-                return redirect('/block/markets/addpair')->withErrors([$error]);
+                return redirect()->back()->withErrors([$error]);
             }
 
                 $pair = request()->target_coin.'_'.request()->base_coin;
@@ -42,7 +42,7 @@ class MarketController extends Controller
                     ]
                 );
                 $msg = "Pair added successfully";
-                return redirect('/block/markets/addpair')->with('msg',$msg);
+                return redirect()->back()->with('msg',$msg);
     }
 
 
@@ -57,7 +57,7 @@ class MarketController extends Controller
             'log' => ' Make new coin market pair default'
         ]
         );
-       return redirect('/block/markets/allpair');
+       return redirect()->back();
 
     }
 
@@ -70,7 +70,7 @@ class MarketController extends Controller
                 'log' => ' Delete coin market pair'
             ]
         );
-       return redirect('/block/markets/allpair');
+       return redirect()->back();
 
     }
 
@@ -95,7 +95,7 @@ class MarketController extends Controller
             ]
         );
         $msg = "Trade Settings Updated";
-        return redirect('/block/markets/settings')->with('msg',$msg);
+        return redirect()->back()->with('msg',$msg);
     }
 
     public function checkmarket()
@@ -105,7 +105,7 @@ class MarketController extends Controller
         ]);
 
         $markets = Market::with('user')->wherePair(request()->market_ticker)->get();
-        return redirect('/block/markets/market')->with('markets',$markets);
+        return redirect()->back()->with('markets',$markets);
     }
 
     public function storemaker()
@@ -120,6 +120,6 @@ class MarketController extends Controller
     public function deleteMarker(MarketMaker $id)
     {
         $id->delete();
-        return redirect('/block/markets/settings');
+        return redirect()->back();
     }
 }
