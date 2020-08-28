@@ -20,7 +20,7 @@ class Customer
         if(!auth()->user()){
             return redirect('/401');
         }else{
-            if(auth()->user()->user_type_id !== 3){
+            if(auth()->user()->user_type_id !== 4){
                 return redirect('/403');
             }else{
                 return $next($request);
