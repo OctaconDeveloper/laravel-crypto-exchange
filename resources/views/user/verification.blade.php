@@ -83,7 +83,7 @@
   							 										<h4>Government-issued ID</h4>
                                                                        <p>(e.g. passport or other photo identification document).</p><!----><!---->
                                                                        <br/>
-                                                                       @if($kyc->idcard)<img src="{{$kyc->idcard}}" style="width:70px; height:70px" />@endif
+                                                                       @if($kyc)<img src="{{$kyc->idcard}}" style="width:70px; height:70px" />@endif
                                                                 </div>
 
                                                             </div>
@@ -112,7 +112,7 @@
                                                                         <li>Paper with the current date and {{ config('app.full_name')}} KYC” handwritten on it.</li>
                                                                     </p><!----><!---->
                                                                     <br/>
-                                                                    @if($kyc->passport)<img src="{{$kyc->passport}}" style="width:70px; height:70px" />@endif
+                                                                    @if($kyc)<img src="{{$kyc->passport}}" style="width:70px; height:70px" />@endif
                                                                 </div>
                                                             </div>
                                                             <div class="if-verified">
@@ -135,7 +135,7 @@
   							 										<h4>Proof of Residence</h4>
   							 										<p>(e.g. Government issued document in area of residence).</p><!----><!---->
                                                                        <br/>
-                                                                       @if($kyc->residence)<img src="{{$kyc->residence}}" style="width:70px; height:70px" />@endif
+                                                                       @if($kyc)<img src="{{$kyc->residence}}" style="width:70px; height:70px" />@endif
                                                                     </div>
                                                                 </div>
                                                                 <div>
