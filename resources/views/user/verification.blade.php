@@ -59,8 +59,8 @@
   							 									</div>
   							 									<div class="description-space">
   							 										<h4>Phone number</h4>
-                                                                       <br/>
-                                                                       @if($kyc->phone){{$kyc->phone}}@endif
+                                     <br/>
+                                      @if($kyc) {{$kyc->phone}} @endif
   							 									</div>
   							 								</div><!----><!---->
                                                             @if(auth()->user()->email_verified_at == null)
