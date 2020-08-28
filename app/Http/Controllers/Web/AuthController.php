@@ -35,8 +35,8 @@ class AuthController extends Controller
 
     public function register()
     {
-        $this->registerVerify();
-        $user_type_id = 3;
+        $this->registerVerify(); 
+        $user_type_id = 4;
 
         $referal = request()->referral ? request()->referral : null;
 
