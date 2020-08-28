@@ -12,7 +12,7 @@ class StakingController extends Controller
     public function store()
     {
         $this->validateStore();
-        $is_exist = Stake::whereTokenId(request()->token)->exists();
+        $is_exist = Stake::whereTokenId(request()->token)->whereDuration(request()->duration)->exists();
         if($is_exist){
             $error = "Stake alreay exist for this coin";
             return redirect()->back()->withErrors([$error]);
