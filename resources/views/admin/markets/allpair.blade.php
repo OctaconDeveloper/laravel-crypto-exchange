@@ -69,7 +69,7 @@
                         </td>
                         <td>
                             {{$item->coinbase['name']}}
-                            <img width="25" height="25" src="{{$item->coinbase['name']}}" />
+                            <img width="25" height="25" src="{{$item->coinbase['image']}}" />
                         </td>
 
                         @if (auth()->user()->user_type_id == 1)
