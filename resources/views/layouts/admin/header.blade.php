@@ -77,11 +77,11 @@ is_token_active('block/tokens/edit');
       @if (auth()->user()->user_type_id == 1)
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ is_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-users"></i>
           <span>Admin</span>
         </a>
-        <div id="account" class="collapse {{ nav_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="admin" class="collapse {{ nav_active(array('/block/admin/createaccount','/block/admin/viewaccount','/block/admin/accountslog')) }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">User Components:</h6>
             <a class="collapse-item" href="/block/admin/createaccount">Create Account  </a>

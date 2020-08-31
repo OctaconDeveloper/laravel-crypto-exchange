@@ -119,7 +119,9 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
 <script charset="utf-8" src="{{ asset('v3/10-es2015.eead97acaefee61f1da0.js') }}"></script>
 
 </head>
-
+@php
+ $base = \App\CoinPair::whereStat(1)->first();
+@endphp
 <body class="egret-indigo otranslate pace-done pace-done">
   <div class="pace  pace-inactive pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
@@ -143,7 +145,7 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
             <nav _ngcontent-hwe-c0="" class="hidden-xs mat-tab-nav-bar mat-primary" disableripple="" mat-tab-nav-bar="" style="margin-left: 4px;">
               <div class="mat-tab-links">
               <!---->
-              <a class="mat-tab-link  {{ request()->is('market/*') ? ' mat-tab-label-active active-bar' : '' }}" aria-current="false" aria-disabled="false" tabindex="0">
+              <a href="/market/{{$base->pair}}" class="mat-tab-link  {{ request()->is('market/*') ? ' mat-tab-label-active active-bar' : '' }}" aria-current="false" aria-disabled="false" tabindex="0">
                Trade
              </a>
              @if (auth()->user())

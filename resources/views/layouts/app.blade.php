@@ -119,7 +119,9 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
 <script charset="utf-8" src="{{ asset('v3/10-es2015.eead97acaefee61f1da0.js') }}"></script>
 
 </head>
-
+@php
+ $base = \App\CoinPair::whereStat(1)->first();
+@endphp
 <body class="egret-indigo otranslate pace-done pace-done">
   <div class="pace  pace-inactive pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
@@ -143,17 +145,17 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
             <nav _ngcontent-hwe-c0="" class="hidden-xs mat-tab-nav-bar mat-primary" disableripple="" mat-tab-nav-bar="" style="margin-left: 4px;">
               <div class="mat-tab-links">
               <!---->
-              <a class="mat-tab-link  {{ request()->is('market/*') ? ' mat-tab-label-active active-bar' : '' }}" aria-current="false" aria-disabled="false" tabindex="0">
+              <a  href="/market/{{$base->pair}}" class="mat-tab-link  {{ request()->is('market/*') ? ' mat-tab-label-active active-bar' : '' }}" aria-current="false" aria-disabled="false" tabindex="0">
                Trade
              </a>
              @if (auth()->user())
-              <a  class="mat-tab-link  {{ request()->is('my-orders') ? ' mat-tab-label-active active-bar' : '' }}" href="my-orders" aria-current="false" aria-disabled="false" tabindex="0">
+              <a  class="mat-tab-link  {{ request()->is('my-orders') ? ' mat-tab-label-active active-bar' : '' }}" href="/my-orders" aria-current="false" aria-disabled="false" tabindex="0">
                 Orders
               </a>
-              <a class="mat-tab-link  {{ request()->is('staking') ? ' mat-tab-label-active active-bar' : '' }}" href="staking" aria-current="false" aria-disabled="false" tabindex="0">
+              <a class="mat-tab-link  {{ request()->is('staking') ? ' mat-tab-label-active active-bar' : '' }}" href="/staking" aria-current="false" aria-disabled="false" tabindex="0">
                 Staking
               </a>
-              <a class="mat-tab-link {{ request()->is('my-wallets') ? ' mat-tab-label-active active-bar' : '' }}" href="my-wallets" aria-current="true" aria-disabled="false" tabindex="0">   Wallet
+              <a class="mat-tab-link {{ request()->is('my-wallets') ? ' mat-tab-label-active active-bar' : '' }}" href="/my-wallets" aria-current="true" aria-disabled="false" tabindex="0">   Wallet
               </a>
              @endif
 
@@ -163,9 +165,9 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
           <!---->
           <div _ngcontent-hwe-c0="" style="margin-left: auto">
             @if (!auth()->user())
-               <a class="mat-tab-link {{ request()->is('user/signin') ? ' mat-tab-label-active active-bar' : '' }}" href="user/signin" aria-current="true" aria-disabled="false" tabindex="0">   Signin
+               <a class="mat-tab-link {{ request()->is('user/signin') ? ' mat-tab-label-active active-bar' : '' }}" href="/user/signin" aria-current="true" aria-disabled="false" tabindex="0">   Signin
                 </a>
-               <a class="mat-tab-link {{ request()->is('user/signup') ? ' mat-tab-label-active active-bar' : '' }}" href="user/signup" aria-current="true" aria-disabled="false" tabindex="0">   Signup
+               <a class="mat-tab-link {{ request()->is('user/signup') ? ' mat-tab-label-active active-bar' : '' }}" href="/user/signup" aria-current="true" aria-disabled="false" tabindex="0">   Signup
                 </a>
               @endif
 
@@ -174,19 +176,19 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
               <!----><!---->
               <img _ngcontent-hwe-c0="" class="dashboard-thumbnail" id="imgProfileSel" src="{{ asset('v3/ic_profile.svg') }}">
               <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu main hidden-xs"><!---->
-                <a href="user/profile">
+                <a href="/user/profile">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> Settings </div>
                 </a>
                 <!---->
-                <a href="user/verification">
+                <a href="/user/verification">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> Verification </div>
                 </a>
                 <!---->
-                <a href="user/referral">
+                <a href="/user/referral">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> Invite Friends </div>
                 </a>
                 <!---->
-                <a href="user/wallet-addresses">
+                <a href="/user/wallet-addresses">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> Withdrawal Addresses </div>
                 </a>
                 <a href="signout">
@@ -203,7 +205,10 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
           <!----><!---->
         </header>
 
-        @yield('section')
+
+        @yield('mainbody')
+
+
 
 
 <footer _ngcontent-hwe-c0="" class="">
@@ -214,7 +219,7 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
 				<ul _ngcontent-hwe-c0="">
 					<li _ngcontent-hwe-c0="">{{env('APP_FULL_NAME')}}</li>
 					<li _ngcontent-hwe-c0="">
-						<a _ngcontent-hwe-c0="" routerlink="/" routerlinkactive="footer-active" href="{{env('APP_URL')}}" class="footer-active">Trade
+						<a _ngcontent-hwe-c0="" routerlink="/" routerlinkactive="footer-active" href="/market/{{$base->pair}}" class="footer-active">Trade
 						</a>
 					</li>
 					<li _ngcontent-hwe-c0="">

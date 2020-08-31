@@ -4,6 +4,8 @@ use App\Ballot;
 use App\ChatSetup;
 use App\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\ExchangeController;
+use App\Http\Controllers\Web\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,28 +18,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-Route::get('/401', function () {return view('errors.401');});
-Route::get('/403', function () {return view('errors.403');});
-
 
 Route::get('/user-list', function(){
     return  \App\Ballot::distinct()->get('ballot_hash');
 });
 
 
+    /**
+     * Exchange URLs
+     */
+    Route::namespace('Web')->group(function () {
+        Route::get('market/{pair}', [ExchangeController::class, 'index']);
 
-Route::get('user/signup', function () {return view('auth.signup');});
-Route::get('user/signin', function () {return view('auth.signin');});
-Route::get('user/activation', function () {return view('auth.activation');});
-Route::get('user/password-reset', function () {return view('auth.password-reset');});
-Route::get('r/{refCode}', function () {return view('auth.signup', ['refCode' => request()->refCode ]);});
-Route::get('alltoken/{token}', function () {return view('alltoken');});
-Route::get('alltoken', function () {return view('alltoken');});
+        Route::get('user/signup', [ExchangeController::class, 'signup']);
+        Route::get('user/signin', [ExchangeController::class, 'signin']);
+        Route::get('user/activation', [ExchangeController::class, 'activation']);
+        Route::get('user/password-reset', [ExchangeController::class, 'passwordReset']);
+        Route::get('r/{refCode}', [ExchangeController::class, 'signup']);
+        Route::get('alltoken/{token}', [ExchangeController::class, 'alltoken']);
+        Route::get('alltoken', [ExchangeController::class, 'alltoken']);
+        Route::get('/', [ExchangeController::class, 'welcome']);
+        Route::get('/401', [ExchangeController::class, 'error401']);
+        Route::get('/403', [ExchangeController::class, 'error403']);
+
+
+        Route::get('/coin_balance/{pair}', [ExchangeController::class, 'coinBalance']);
+        Route::get('/order/panel/{pair}/{type}', [ExchangeController::class, 'orderList']);
+        Route::get('/coinstat/{pair}', [ExchangeController::class, 'coinStat']);
+        Route::get('/coin_search/{pair}', [ExchangeController::class, 'coinSearch']);
+
+        Route::post('/sell_logic', [OrderController::class, 'sellLogic']);
+        Route::post('/buy_logic', [OrderController::class, 'buyLogic']);
+    });
+
+
+
+
+
 
 //User Restricted link
 
-Route::group(['middleware' => ['customer']], function () {
+Route::group(['middleware' => ['customer']], function ()
+{
     Route::get('my-wallets', function() {return view('user.mywallets');});
     Route::get('user/profile', function () {return view('user.profile');});
     Route::get('user/referral', function () {return view('user.referral');});
@@ -49,7 +71,8 @@ Route::group(['middleware' => ['customer']], function () {
 
 });
 
-Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function () {
+Route::group(['prefix' => 'block', 'middleware' => 'superAdmin'], function ()
+{
     //Home
     Route::get('home',function() {return view('admin.home');});
 
