@@ -2,6 +2,7 @@
 
 use App\Ballot;
 use App\ChatSetup;
+use App\Http\Controllers\Web\ChatController;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ExchangeController;
@@ -55,6 +56,12 @@ Route::get('/user-list', function(){
 
 
         Route::get('/orders/list/{pair}/{type}', [ExchangeController::class, 'orderPanel']);
+        Route::get('/chats/chat', [ExchangeController::class, 'chat']);
+        Route::get('/chats/room', [ExchangeController::class, 'chatRoom']);
+        Route::get('/chats/send', [ExchangeController::class, 'chatSend']);
+        Route::post('/save-chat', [ChatController::class, 'saveChat']);
+        Route::post('/save-chat-name', [ChatController::class, 'saveChatName']);
+
     });
 
 

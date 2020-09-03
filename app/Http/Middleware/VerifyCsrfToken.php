@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
         '/addcoinlisting',
         '/updatecoinlisting/{id}',
         '/sell_logic',
-        '/buy_logic'
+        '/buy_logic',
+        '/save-chat'
     ];
 }

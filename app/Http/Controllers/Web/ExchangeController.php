@@ -97,6 +97,21 @@ class ExchangeController extends Controller
         return view('exchange.subs.order_list', compact('pair','type'));
     }
 
+    public function chat()
+    {
+        return view('exchange.subs.chats.chat_main');
+    }
+
+    public function chatRoom()
+    {
+        return view('exchange.subs.chats.chat_body');
+    }
+
+    public function chatSend()
+    {
+        return view('exchange.subs.chats.chat_footer');
+    }
+
 
 }
 

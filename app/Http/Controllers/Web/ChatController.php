@@ -10,6 +10,8 @@ use App\ChatSetup;
 use App\User;
 class ChatController extends Controller
 {
+    //1 active
+    // 0 block
     public function getUser()
     {
         request()->validate([
@@ -34,4 +36,45 @@ class ChatController extends Controller
         );
         return redirect()->back()->with('logs',$logs);
     }
+
+    public function is_chat()
+    {
+        return  (auth()->user()) ? ChatSetup::whereUserId(auth()->user()->id)->count() : null;
+    }
+
+    public function chat_details()
+    {
+        return (auth()->user()) ? ChatSetup::whereUserId(auth()->user()->id)->first() : null;
+    }
+
+    public function saveChat()
+    {
+        $chatDetails = ChatSetup::whereUserId(auth()->user()->id)->first();
+        if(request()->chat_message){
+            return Chat::create([
+                'user_id' => 1,
+                'name' => $chatDetails->name,
+                'stat' => '1',
+                'message' => request()->chat_message
+            ]);
+        }
+    }
+
+    public function all_chats()
+    {
+        return Chat::orderBy('id','ASC')->get();
+    }
+
+    public function saveChatName()
+    {
+        if(request()->chat_name){
+            return ChatSetup::create([
+                'user_id' => auth()->user()->id,
+                'stat' => '1',
+                'name' => request()->chat_name
+            ]);
+        }
+
+    }
+
 }
