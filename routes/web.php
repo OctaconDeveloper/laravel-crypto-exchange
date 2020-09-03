@@ -49,6 +49,9 @@ Route::get('/user-list', function(){
 
         Route::post('/sell_logic', [OrderController::class, 'sellLogic']);
         Route::post('/buy_logic', [OrderController::class, 'buyLogic']);
+
+        Route::get('/orderlog/general/{pair}', [ExchangeController::class, 'orderGeneral']);
+        Route::get('/orderlog/single/{pair}', [ExchangeController::class, 'singleGeneral']);
     });
 
 

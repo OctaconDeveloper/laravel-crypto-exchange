@@ -79,6 +79,18 @@ class ExchangeController extends Controller
         return view('exchange.subs.coin_search', compact('pair'));
     }
 
+    public function orderGeneral($pair)
+    {
+        $pair = CoinPair::wherePair($pair)->first();
+        return view('exchange.subs.all_trade_history', compact('pair'));
+    }
+
+    public function singleGeneral($pair)
+    {
+        $pair = CoinPair::wherePair($pair)->first();
+        return view('exchange.subs.my_history', compact('pair'));
+    }
+
 
 }
 
