@@ -109,20 +109,24 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
             </div>
           <div class="submit-order">
             <!---->
-            @if($token_type=='ieo' && $type=='sell')
-              <button class="button button-green ng-star-inserted" disabled="disabled">
-                <span> IEO COIN </span>
-              </button>
-            @else
+
+              @if($token_type=='ieo' && $type=='sell')
+                <button class="button button-green ng-star-inserted" disabled="disabled">
+                  <span> IEO COIN </span>
+                </button>
+              @else
               @php $color = ($type=='sell')? 'pink' : 'green'; @endphp
-              <button class="button button-{{ $color }} ng-star-inserted pay">
-                <span> {{ ucfirst($type) }}</span>
-              </button>
 
                 @if(auth()->user())
+                    <button class="button button-{{ $color }} ng-star-inserted pay">
+                      <span> {{ ucfirst($type) }}</span>
+                    </button>
                     <input type="hidden" class="target_balance" value="{{(new OrderController())->sumToken($target_coin)}}">
                     <input type="hidden" class="base_balance" value=" {{(new OrderController())->sumToken($base_coin)}} ">
                 @else
+                    <button class="button button-{{ $color }} ng-star-inserted" disabled="disabled">
+                      <span> {{ ucfirst($type) }}</span>
+                    </button>
                     <input type="hidden" class="target_balance" value="0.00000">
                   <input type="hidden" class="base_balance" value="0.00000">
                 @endif
