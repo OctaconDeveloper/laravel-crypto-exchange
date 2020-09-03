@@ -91,6 +91,12 @@ class ExchangeController extends Controller
         return view('exchange.subs.my_history', compact('pair'));
     }
 
+    public function orderPanel($pair, $type)
+    {
+        $pair = CoinPair::wherePair($pair)->first();
+        return view('exchange.subs.order_list', compact('pair','type'));
+    }
+
 
 }
 

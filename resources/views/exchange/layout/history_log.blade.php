@@ -43,7 +43,7 @@
 
 <script src="{{ asset('v3/jquery-3.4.1.min.js') }}"></script>
 <script>
-
+    $url = window.location.href.substring(window.location.href.lastIndexOf('/') +1);
     $(".toke").click(function(){
         $clax = $(this).data('id');
         $(".alltrans").hide();

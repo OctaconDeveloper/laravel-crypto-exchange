@@ -52,6 +52,9 @@ Route::get('/user-list', function(){
 
         Route::get('/orderlog/general/{pair}', [ExchangeController::class, 'orderGeneral']);
         Route::get('/orderlog/single/{pair}', [ExchangeController::class, 'singleGeneral']);
+
+
+        Route::get('/orders/list/{pair}/{type}', [ExchangeController::class, 'orderPanel']);
     });
 
 

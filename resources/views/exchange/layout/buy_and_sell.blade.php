@@ -10,7 +10,7 @@
                             <!-- <mat-tab-body class="mat-tab-body ng-tns-c15-26 ng-star-inserted" role="tabpanel" id="mat-tab-content-9-1" aria-labelledby="mat-tab-label-9-1">
                                <div class="mat-tab-body-content ng-trigger ng-trigger-translateTab" style="transform: translate3d(100%, 0px, 0px); min-height: 1px;">
                             </mat-tab-body> -->
-                            <div id="buy_panel" style="height:400px;">
+                            <div id="buy_panel" class="show" style="height:400px;">
                                 <div class="Load_overlay" style="margin-top: 50%">
                                     <img src="{{ asset('img/loader.gif') }}" alt="Loading" />
                                </div>

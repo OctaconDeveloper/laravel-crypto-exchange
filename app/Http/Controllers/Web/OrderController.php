@@ -552,6 +552,38 @@ class OrderController extends Controller
     public function get_search($pair)
 	{
         return CoinPair::where('pair', 'like', '%' .$pair . '%')->get();
+    }
+
+    public function get_list($pair,$type)
+    {
+       return  Market::select('price','type','amount','total')
+                ->wherePair($pair)
+                ->whereType($type)
+                ->orderBy('price','ASC')
+                ->distinct()
+                ->get('price');
+    }
+
+    function get_volume($pair,$type)
+    {
+        return  Market::wherePair($pair)
+                ->whereType($type)
+                ->sum('amount');
+    }
+
+    function get_market_total($price,$type)
+    {
+        return  Market::wherePrice($price)
+                    ->whereType($type)
+                    ->sum('total');
+    }
+
+    function get_total_amount($price,$type)
+    {
+        return  Market::wherePrice($price)
+                    ->whereType($type)
+                    ->sum('amount');
 	}
+
 
 }

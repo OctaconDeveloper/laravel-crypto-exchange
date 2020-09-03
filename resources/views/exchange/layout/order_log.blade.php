@@ -20,3 +20,30 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('v3/jquery-3.4.1.min.js') }}"></script>
+<script>
+    $url = window.location.href.substring(window.location.href.lastIndexOf('/') +1);
+
+    $("#buy_orders").load('/orders/list/'+$url+'/buy');
+    $("#sell_orders").load('/orders/list/'+$url+'/sell');
+
+    setInterval(function(){
+        $("#buy_orders").load('/orders/list/'+$url+'/buy');
+        $("#sell_orders").load('/orders/list/'+$url+'/sell');
+    }, 2000);
+
+
+    $(window).bind('hashchange', function(){
+        $hash = window.location.hash.slice(1);
+        $url = window.location.href.substring(window.location.href.lastIndexOf('/') +1);
+
+        $("#buy_orders").load('/orders/list/'+$url+'/buy');
+        $("#sell_orders").load('/orders/list/'+$url+'/sell');
+
+        setInterval(function(){
+        $("#buy_orders").load('/orders/list/'+$url+'/buy');
+        $("#sell_orders").load('/orders/list/'+$url+'/sell');
+        }, 2000);
+    });
+</script>
