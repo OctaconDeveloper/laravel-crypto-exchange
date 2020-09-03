@@ -11,7 +11,7 @@ if(auth()->user()){
     $zero_trade = 0;
 }
 
-if(auth()->user()->tradeStat === 1){
+if(auth()->user() && auth()->user()->tradeStat === 1){
   $trans_fee = 0;
 }else{
   $trans_fee = ( new OrderController())->get_trans_fee();
