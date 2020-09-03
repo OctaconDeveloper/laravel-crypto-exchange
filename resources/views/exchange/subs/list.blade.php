@@ -124,7 +124,7 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
                     <input type="hidden" class="target_balance" value="{{(new OrderController())->sumToken($target_coin)}}">
                     <input type="hidden" class="base_balance" value=" {{(new OrderController())->sumToken($base_coin)}} ">
                 @else
-                    <button class="button button-{{ $color }} ng-star-inserted" disabled="disabled">
+                    <button class="button button-{{ $color }} ng-star-inserted" title="You have to login first" disabled="disabled" style="cursor: not-allowed;">
                       <span> {{ ucfirst($type) }}</span>
                     </button>
                     <input type="hidden" class="target_balance" value="0.00000">
