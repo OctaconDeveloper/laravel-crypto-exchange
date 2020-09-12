@@ -236,6 +236,11 @@ class OrderController extends Controller
 		$base_mount = $request->base_mount;
         $trade_type = ($type == 'buy') ? 'sell' : 'buy';
 
+        if($trans_total > $base_balance){
+            $log['type'] = 'danger';
+            $log['msg'] =  "Insufficient ".$base_coin." balance";
+            return json_encode($log);
+        }
         $status = $this->check($base_mount,$pair_coin,$trade_type);
 
         $fee = TradeSetup::first()->trade_fee;
@@ -406,6 +411,12 @@ class OrderController extends Controller
 		$trade_type = ($type == 'buy') ? 'sell' : 'buy';
         $status = $this->check($base_mount,$pair_coin,$trade_type);
 
+        if($trans_total > $base_balance){
+            $log['type'] = 'danger';
+            $log['msg'] =  "Insufficient ".$base_coin." balance";
+            return json_encode($log);
+        }
+        
         if($status > 0){
             //Get Buyer target_coin balance
 			$sell_target_balance = $this->sumToken($target_coin);
@@ -556,32 +567,33 @@ class OrderController extends Controller
 
     public function get_list($pair,$type)
     {
-       return  Market::select('price','type','amount','total')
-                ->wherePair($pair)
+       return  Market::wherePair($pair)
                 ->whereType($type)
                 ->orderBy('price','ASC')
                 ->distinct()
-                ->get('price');
+                ->get('price','type');
     }
 
     function get_volume($pair,$type)
     {
-        return  Market::wherePair($pair)
+        return  Market::wherePair($pair->pair)
                 ->whereType($type)
                 ->sum('amount');
     }
 
-    function get_market_total($price,$type)
+    function get_market_total($price,$type,$pair)
     {
         return  Market::wherePrice($price)
                     ->whereType($type)
+                    ->wherePair($pair)
                     ->sum('total');
     }
 
-    function get_total_amount($price,$type)
+    function get_total_amount($price,$type,$pair)
     {
         return  Market::wherePrice($price)
                     ->whereType($type)
+                    ->wherePair($pair)
                     ->sum('amount');
 	}
 

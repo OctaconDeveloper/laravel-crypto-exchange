@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SystemWalletTableSeeder::class);
         $this->call(SocialMediaTableSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(CoinPairSeeder::class);
 
     }
 }

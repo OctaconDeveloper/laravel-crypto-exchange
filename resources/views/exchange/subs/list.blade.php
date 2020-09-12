@@ -107,7 +107,7 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
                 </div>
               </mat-tab-group></div>
             </div>
-          <div class="submit-order">
+          <div class="submit-order" style="margin-bottom: 5px;"> 
             <!---->
 
               @if($token_type=='ieo' && $type=='sell')
@@ -131,7 +131,7 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
                   <input type="hidden" class="base_balance" value="0.00000">
                 @endif
             @endif
-
+ 
           </div>
 
 
@@ -215,7 +215,8 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
               $(".fee").html('0.00');
               $dt = JSON.parse(data);
               ($dt.type=='success')? _success($dt.msg) : _danger($dt.msg);
-              // alert(data);
+              $("#buy_panel").load('/order/panel/'+$url+'/buy');
+              $("#sell_panel").load('/order/panel/'+$url+'/sell'); 
             }
           });
         }
@@ -251,7 +252,8 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
               $(".fee").html('0.00');
               $dt = JSON.parse(data);
               ($dt.type=='success')? _success($dt.msg) : _danger($dt.msg);
-              // alert(data);
+              $("#buy_panel").load('/order/panel/'+$url+'/buy');
+              $("#sell_panel").load('/order/panel/'+$url+'/sell'); 
             }
           });
         }

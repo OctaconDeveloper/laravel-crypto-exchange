@@ -12,6 +12,11 @@
                                 Market history
                             </div>
                         </div>
+                        <div cdkmonitorelementfocus="" class="dmyorders mat-tab-label mat-ripple ng-star-inserted" mat-ripple="" mattablabelwrapper="" role="tab" id="mat-tab-label-10-0" tabindex="0" aria-posinset="1" aria-setsize="2" aria-controls="mat-tab-content-10-0" aria-selected="true" aria-disabled="false">
+                            <div class="mat-tab-label-content toke" data-id="myorders">
+                                My Orders
+                            </div>
+                        </div>
                         <div cdkmonitorelementfocus="" class="dmytrans mat-tab-label mat-ripple ng-star-inserted" mat-ripple="" mattablabelwrapper="" role="tab" id="mat-tab-label-10-1" tabindex="-1" aria-posinset="2" aria-setsize="2" aria-controls="mat-tab-content-10-1" aria-selected="false" aria-disabled="false">
                             <div class="mat-tab-label-content toke" data-id="mytrans">
                                 My trading history
@@ -19,7 +24,8 @@
                         </div>
                     </div>
                     <mat-ink-bar class="mat-ink-bar alltrans" style="visibility: visible; left: 0px; width: 171px;"></mat-ink-bar>
-                    <mat-ink-bar class="mat-ink-bar mytrans" style="visibility: visible; left: 172px; width: 171px; display: none;"></mat-ink-bar>
+                    <mat-ink-bar class="mat-ink-bar myorders" style="visibility: visible; left: 172px; width: 171px; display: none;"></mat-ink-bar>
+                    <mat-ink-bar class="mat-ink-bar mytrans" style="visibility: visible; left: 342px; width: 171px; display: none;"></mat-ink-bar>
                 </div>
             </div>
             <div aria-hidden="true" class="mat-tab-header-pagination mat-tab-header-pagination-after mat-elevation-z4 mat-ripple" mat-ripple="">
@@ -47,23 +53,29 @@
     $(".toke").click(function(){
         $clax = $(this).data('id');
         $(".alltrans").hide();
+        $(".myorders").hide();
         $(".mytrans").hide();
         $("."+$clax).show();
-
-        $(".dalltrans").toggleClass('mat-tab-label-active');
-        $(".dmytrans").toggleClass('mat-tab-label-active');
+        $clx = '.d'+$(this).data('id');
+        $(".dalltrans").removeClass('mat-tab-label-active');
+        $(".dmytrans").removeClass('mat-tab-label-active');
+        $(".dmyorders").removeClass('mat-tab-label-active');
+        $($clx).addClass('mat-tab-label-active');
 
         $("#alltrans").hide();
         $("#mytrans").hide();
+        $("#myorders").hide();
         $("#"+$clax).show();
     });
 
     $("#alltrans").load('/orderlog/general/'+$url);
     $("#mytrans").load('/orderlog/single/'+$url);
+    $("#myorders").load('/orderlog/my/'+$url);
 
     setInterval(function(){
         $("#alltrans").load('/orderlog/general/'+$url);
         $("#mytrans").load('/orderlog/single/'+$url);
+        $("#myorders").load('/orderlog/my/'+$url);  
     }, 2000);
 
 

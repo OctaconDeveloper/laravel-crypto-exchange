@@ -4,14 +4,15 @@
     $base_coin = $pair->base_id;
     $logs = (new OrderController())->get_list($pair->pair,$type);
 @endphp
-
-
+ 
+ 
 	<app-loader _ngcontent-xmu-c11="" _nghost-xmu-c9="">
 		<!----><!---->
 		<div _ngcontent-xmu-c11="" class="main ng-star-inserted"><div _ngcontent-xmu-c11="" class="buy-orders-title">
 			{{ ucfirst($type) }} orders
 			<b _ngcontent-xmu-c11="">Volume: <span _ngcontent-xmu-c11="">
-                {{ sprintf("%0.9f",(new OrderController())->get_volume($pair,$type)) }}</span>
+				{{ sprintf("%0.7f",(new OrderController())->get_volume($pair,$type)) }}
+			</span>
 				{{ strtoupper($target_coin) }}
 			</b>
 		</div>
@@ -32,13 +33,14 @@
                         <tr _ngcontent-xmu-c11=""
                             class="bid-tr ng-star-inserted ord"
                             data-type = "{{ $type }}"
-                            data-total="{{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$log->type)) }}" data-price="{{ sprintf("%0.9f",$log->price) }}"
-                            data-amount=" {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log['price'],$log['type'])) }}"
+                            data-total="{{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$type,$pair->pair)) }}" data-price="{{ sprintf("%0.9f",$log->price) }}"
+                            data-amount=" {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log->price,$type,$pair->pair)) }}"
                             >
-                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$log->type)) }} </td>
-                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log['price'],$log['type'])) }} </td>
+                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$type,$pair->pair)) }} </td>
+                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log->price,$type,$pair->pair)) }} </td>
                             <!----><!---->
-                            <td _ngcontent-xmu-c11="" class="ng-star-inserted"> {{ sprintf("%0.9f",$log->price) }} </td>
+							<td _ngcontent-xmu-c11="" class="ng-star-inserted"> {{ sprintf("%0.9f",$log->price) }} </td>
+							
                         </tr>
                         @empty
 

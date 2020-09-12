@@ -120,11 +120,12 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
 
 </head>
 @php
- if(\App\CoinPair::whereStat(1)->count() > 0){
-     $base = \App\CoinPair::whereStat(1)->first();
- }else{
-     $base = \App\CoinPair::first();
-  }
+  if(\App\CoinPair::whereStat(1)->count() > 0){
+      $base = \App\CoinPair::whereStat(1)->first();
+  }else{
+      $base = \App\CoinPair::first();
+    }
+
 @endphp
 <body class="egret-indigo otranslate pace-done pace-done">
   <div class="pace  pace-inactive pace-inactive">

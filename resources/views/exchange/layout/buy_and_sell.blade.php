@@ -10,12 +10,12 @@
                             <!-- <mat-tab-body class="mat-tab-body ng-tns-c15-26 ng-star-inserted" role="tabpanel" id="mat-tab-content-9-1" aria-labelledby="mat-tab-label-9-1">
                                <div class="mat-tab-body-content ng-trigger ng-trigger-translateTab" style="transform: translate3d(100%, 0px, 0px); min-height: 1px;">
                             </mat-tab-body> -->
-                            <div id="buy_panel" class="show" style="height:400px;">
+                            <div id="buy_panel" class="show" style="height:450px;">
                                 <div class="Load_overlay" style="margin-top: 50%">
                                     <img src="{{ asset('img/loader.gif') }}" alt="Loading" />
                                </div>
                             </div>
-                            <div id="sell_panel" class="hide" style="height:400px">
+                            <div id="sell_panel" class="hide" style="height:450px">
                                 <div class="Load_overlay"  style="margin-top: 50%">
                                     <img src="{{ asset('img/loader.gif') }}" alt="Loading" />
                                </div>
@@ -53,9 +53,11 @@
     $(".order-type").toggleClass('mat-ink-side');
   });
 
-  $("#coin_balance").load('/coin_balance/'+$url);
-  $("#buy_panel").load('/order/panel/'+$url+'/buy');
-  $("#sell_panel").load('/order/panel/'+$url+'/sell');
+  setInterval(function(){
+    $("#coin_balance").load('/coin_balance/'+$url);
+  }, 2000);
+    $("#buy_panel").load('/order/panel/'+$url+'/buy');
+    $("#sell_panel").load('/order/panel/'+$url+'/sell'); 
 
 
   /**
