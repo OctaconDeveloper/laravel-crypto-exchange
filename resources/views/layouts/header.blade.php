@@ -153,9 +153,6 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
                Trade
              </a>
              @if (auth()->user())
-              <a  class="mat-tab-link  {{ request()->is('my-orders') ? ' mat-tab-label-active active-bar' : '' }}" href="/my-orders" aria-current="false" aria-disabled="false" tabindex="0">
-                Orders
-              </a>
               <a class="mat-tab-link  {{ request()->is('staking') ? ' mat-tab-label-active active-bar' : '' }}" href="/staking" aria-current="false" aria-disabled="false" tabindex="0">
                 Staking
               </a>

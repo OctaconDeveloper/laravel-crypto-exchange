@@ -7,9 +7,9 @@
 </div>
 <div class="trading-history">
     @if (auth()->user())
-        $chat_count = (new ChatController())->is_chat();
+        @php $chat_count = (new ChatController())->is_chat(); @endphp
         @if(!$chat_count)
-            <div id="" class="config_chat" style="height: 85%">
+            <div id="cfg" class="config_chat" style="height: 85%">
                 <div class="col-md-12" style="margin-top: 20px;">
                     <p>Hi! We noticed that this is your first time chatting here, kindly set up your chat username</p>
                     <br/><br/>
@@ -65,6 +65,7 @@
     }
 </style>
 
+<script src="{{ asset('v3/jquery-3.4.1.min.js') }}"></script>
 <script type="text/javascript">
     function updateScroll(){
       var element = document.getElementById("chat-body");
@@ -117,12 +118,13 @@
           data: {
             chat_name : $chat_name,
           },
-          success: function(data){
+          success: function(data){ 
             $dt = JSON.parse(data);
             if($dt.type=='success'){
               $(".config_chat").hide();
               $(".room_chat").show();
               $("#chat-body").show();
+              $("#chat-foot").show();
               _success($dt.msg);
             }else{
               _danger($dt.msg);

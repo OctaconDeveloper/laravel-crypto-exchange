@@ -51,12 +51,15 @@ class ChatController extends Controller
     {
         $chatDetails = ChatSetup::whereUserId(auth()->user()->id)->first();
         if(request()->chat_message){
-            return Chat::create([
+            $data =  Chat::create([
                 'user_id' => 1,
                 'name' => $chatDetails->name,
                 'stat' => '1',
                 'message' => request()->chat_message
             ]);
+            $log['type'] = 'success';
+            $log['data'] = $data;
+            return json_encode($log);
         }
     }
 
@@ -68,11 +71,19 @@ class ChatController extends Controller
     public function saveChatName()
     {
         if(request()->chat_name){
-            return ChatSetup::create([
+            $data = ChatSetup::create([
                 'user_id' => auth()->user()->id,
                 'stat' => '1',
                 'name' => request()->chat_name
             ]);
+            if($data){
+                $log['type'] = 'success';
+                $log['msg'] = 'Chat Name setup' ;
+            }else{
+                $log['type'] = 'danger';
+                $log['msg'] = 'Error setting up chat name' ;
+            }
+            return json_encode($log);
         }
 
     }
