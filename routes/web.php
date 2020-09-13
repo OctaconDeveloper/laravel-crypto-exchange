@@ -53,6 +53,7 @@ Route::get('/user-list', function(){
 
         Route::get('/orderlog/general/{pair}', [ExchangeController::class, 'orderGeneral']);
         Route::get('/orderlog/single/{pair}', [ExchangeController::class, 'singleGeneral']);
+        Route::get('/orderlog/open/{pair}', [ExchangeController::class, 'myGeneral']);
 
 
         Route::get('/orders/list/{pair}/{type}', [ExchangeController::class, 'orderPanel']);
@@ -61,6 +62,7 @@ Route::get('/user-list', function(){
         Route::get('/chats/send', [ExchangeController::class, 'chatSend']);
         Route::post('/save-chat', [ChatController::class, 'saveChat']);
         Route::post('/save-chat-name', [ChatController::class, 'saveChatName']);
+        Route::post('/delete-order-id', [OrderController::class, 'deleteOrder']);
 
     });
 

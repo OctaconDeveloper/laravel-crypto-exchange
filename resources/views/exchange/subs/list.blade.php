@@ -18,7 +18,7 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
 }
 
 @endphp
-    <div class="order-info">
+    <div class="order-info" >
         <div class="{{ ucfirst($type)}}-checkbox">
             <mat-tab-group class="mat-tab-group mat-primary ng-animate-disabled">
                 <mat-tab-header class="mat-tab-header">

@@ -23,11 +23,12 @@
                                                                 </thead>
                 <tbody _ngcontent-xmu-c12="">
                     @forelse ($logs as $log)
+                    
                         <tr _ngcontent-xmu-c12="" class="bid-tr table-row ng-star-inserted" style="">
                             <td _ngcontent-xmu-c12="">
                                     <span _ngcontent-xmu-c12="" class="sell ng-star-inserted">
                                             <span _ngcontent-xmu-c12="">{{ strtoupper($log->type) }}</span>
-                                            <img _ngcontent-xmu-c12="" alt="{{ strtoupper($log->type) }}" src="{{ env('APP_URL').'/'.$log->image }}">
+                                            <img _ngcontent-xmu-c12="" alt="{{ strtoupper($log->type) }}" src="{{ $log->image }}">
                                     </span>
                             </td>
                             <td _ngcontent-xmu-c12="">{{ sprintf("%0.9f",$log->price) }} </td>

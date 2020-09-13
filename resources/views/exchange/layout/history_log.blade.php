@@ -14,7 +14,7 @@
                         </div>
                         <div cdkmonitorelementfocus="" class="dmyorders mat-tab-label mat-ripple ng-star-inserted" mat-ripple="" mattablabelwrapper="" role="tab" id="mat-tab-label-10-0" tabindex="0" aria-posinset="1" aria-setsize="2" aria-controls="mat-tab-content-10-0" aria-selected="true" aria-disabled="false">
                             <div class="mat-tab-label-content toke" data-id="myorders">
-                                My Orders
+                                Open Orders
                             </div>
                         </div>
                         <div cdkmonitorelementfocus="" class="dmytrans mat-tab-label mat-ripple ng-star-inserted" mat-ripple="" mattablabelwrapper="" role="tab" id="mat-tab-label-10-1" tabindex="-1" aria-posinset="2" aria-setsize="2" aria-controls="mat-tab-content-10-1" aria-selected="false" aria-disabled="false">
@@ -40,6 +40,8 @@
                 <div class="Load_overlay" align="center" >
                     <img src="{{ asset('img/loader.gif') }}" width="400px" height="350px" alt="Loading" />
                </div>
+            </div>
+            <div id="myorders" style="display: none;">
             </div>
             <div id="mytrans" style="display: none;">
             </div>
@@ -70,12 +72,12 @@
 
     $("#alltrans").load('/orderlog/general/'+$url);
     $("#mytrans").load('/orderlog/single/'+$url);
-    $("#myorders").load('/orderlog/my/'+$url);
+    $("#myorders").load('/orderlog/open/'+$url);
 
     setInterval(function(){
         $("#alltrans").load('/orderlog/general/'+$url);
         $("#mytrans").load('/orderlog/single/'+$url);
-        $("#myorders").load('/orderlog/my/'+$url);  
+        $("#myorders").load('/orderlog/open/'+$url);  
     }, 2000);
 
 
@@ -86,10 +88,12 @@
 
         $("#alltrans").load('/orderlog/general/'+$url);
         $("#mytrans").load('/orderlog/single/'+$url);
+        $("#myorders").load('/orderlog/open/'+$url); 
 
         setInterval(function(){
         $("#alltrans").load('/orderlog/general/'+$url);
         $("#mytrans").load('/orderlog/single/'+$url);
+        $("#myorders").load('/orderlog/open/'+$url); 
         }, 2000);
     });
 

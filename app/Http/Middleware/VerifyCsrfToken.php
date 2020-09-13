@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
         '/sell_logic',
         '/buy_logic',
         '/save-chat',
-        '/save-chat-name'
+        '/save-chat-name',
+        '/delete-order-id',
     ];
 }

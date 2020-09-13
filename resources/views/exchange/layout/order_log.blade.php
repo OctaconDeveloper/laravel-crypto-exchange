@@ -3,7 +3,7 @@
         <div class="buy-container" style="position: relative">
             <app-market-orders _nghost-xmu-c11="">
                 <div _ngcontent-xmu-c11="" class="main-app-container buy-sell buyContainer" style="position: relative">
-                    <div _ngcontent-xmu-c11="" id="buy_orders" class="main-open-orders orders-general-box">
+                    <div _ngcontent-xmu-c11="" id="buy_orders" class="main-open-orders orders-general-box" style="height: 500px;">
 
                     </div>
                 </div>
@@ -12,7 +12,7 @@
         <div class="sell-container" style="position: relative">
             <app-market-orders _nghost-xmu-c11="">
                 <div _ngcontent-xmu-c11="" class="main-app-container buy-sell sellContainer" style="position: relative">
-                    <div _ngcontent-xmu-c11="" id="sell_orders" class=" main-open-orders orders-general-box">
+                    <div _ngcontent-xmu-c11="" id="sell_orders" class=" main-open-orders orders-general-box" style="height: 500px;">
 
                     </div>
                 </div>

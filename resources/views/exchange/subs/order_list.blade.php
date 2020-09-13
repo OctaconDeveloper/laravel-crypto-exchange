@@ -16,7 +16,7 @@
 				{{ strtoupper($target_coin) }}
 			</b>
 		</div>
-		<div _ngcontent-xmu-c11="" class="buy-orders-table">
+		<div _ngcontent-xmu-c11="" class="buy-orders-table" style="height: 450px;">
 			<!---->
 			<table _ngcontent-xmu-c11="" class="no-upper-padding ng-star-inserted" clipboard="no-upper-padding" width="100%">
 				<tr _ngcontent-xmu-c11="" class="table-head">

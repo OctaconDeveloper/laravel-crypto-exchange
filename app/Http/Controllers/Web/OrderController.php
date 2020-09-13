@@ -162,9 +162,10 @@ class OrderController extends Controller
 
     private function updateToken($amount,$ticker)
     {
-        $wallet = Wallet::whereUserId(auth()->user()->id)->first();
+        $wallet = Wallet::whereUserId(auth()->user()->id)
+                            ->whereTicker($ticker)
+                            ->first();
         return  $wallet->update([
-            'ticker' => $ticker,
             'amount' => $amount
         ]);
     }
@@ -172,9 +173,10 @@ class OrderController extends Controller
     private function updateThirdPartyToken($amount,$ticker,$wallet_id)
     {
         $user = User::whereWalletId($wallet_id)->first();
-        $wallet = Wallet::whereUserId($user->id)->first();
+        $wallet = Wallet::whereUserId($user->id)
+                            ->whereTicker($ticker)
+                            ->first();
         return  $wallet->update([
-            'ticker' => $ticker,
             'amount' => $amount
         ]);
     }
@@ -574,14 +576,14 @@ class OrderController extends Controller
                 ->get('price','type');
     }
 
-    function get_volume($pair,$type)
+    public function get_volume($pair,$type)
     {
         return  Market::wherePair($pair->pair)
                 ->whereType($type)
                 ->sum('amount');
     }
 
-    function get_market_total($price,$type,$pair)
+    public function get_market_total($price,$type,$pair)
     {
         return  Market::wherePrice($price)
                     ->whereType($type)
@@ -589,13 +591,59 @@ class OrderController extends Controller
                     ->sum('total');
     }
 
-    function get_total_amount($price,$type,$pair)
+    public function get_total_amount($price,$type,$pair)
     {
         return  Market::wherePrice($price)
                     ->whereType($type)
                     ->wherePair($pair)
                     ->sum('amount');
+    }
+
+    public function get_my_orders()
+    {
+        $id = auth()->user() ? User::find(auth()->user()->id)  : null;
+        return Market::whereWalletId($id->wallet_id)
+                        ->orderBy('id','DESC')
+                        ->get(); 
+    }
+
+
+    public function market_info($id)
+    {
+        return Market::find($id);
 	}
+
+    
+    public function deleteOrder()
+    {
+        $log = $this->market_info(request()->id);
+        $type = $log['type'];
+		$base_coin = $log['base_coin'];
+		$target_coin = $log['target_coin'];
+		$base_amount = $log['total'];
+        $target_amount = $log['amount'];
+        $wallet_id = $log['wallet_id'];
+		$base_balance =  $this->sumThirdPartyToken($base_coin,$wallet_id);
+        $target_balance =  $this->sumThirdPartyToken($target_coin,$wallet_id);
+		if($type == 'buy'){
+			$new_base_balance = ($base_balance + $base_amount);
+            $this->updateThirdPartyToken($new_base_balance,$base_coin,$wallet_id);
+
+		}else if($type == 'sell'){
+            $new_target_balance = ($target_balance + $target_amount);
+            $this->updateThirdPartyToken($new_target_balance,$target_coin,$wallet_id);
+            
+		}
+        Market::find(request()->id)->delete();
+        $this->logEntry("Deleted ".strtoupper($type)." ".$log['pair']." order");
+		$loog['type'] = 'success';
+		$loog['msg'] = strtoupper($type)." Order Deleted";
+        echo json_encode($loog);
+        
+    }
+    
+
+
 
 
 }
