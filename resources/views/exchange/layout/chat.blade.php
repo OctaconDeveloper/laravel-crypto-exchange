@@ -1,8 +1,8 @@
 <div class="col-lg-3 col-md-8 col-sm-12 col-xs-12">
     <div class="main-app-container order-container orders-seen" id="chat"  style="height: 430px" >
-      <!-- <div class="Load_overlay" align="center" >
+      <div class="Load_overlay" align="center" >
          <img src="{{ asset('img/loader.gif') }}" width="400px" height="350px" alt="Loading" />
-      </div> -->
+      </div>
     </div>
 </div>
 

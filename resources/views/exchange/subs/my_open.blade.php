@@ -16,12 +16,12 @@
                             <thead _ngcontent-xmu-c12="">
                                 <tr _ngcontent-xmu-c12="" class="table-head">
                                     <!-- <th _ngcontent-xmu-c12="">#</th> -->
-                                    <th _ngcontent-xmu-c12="">Type</th>
-                                    <th _ngcontent-xmu-c12="">Pair</th>
-                                    <th _ngcontent-xmu-c12="">Amount </th>
-                                    <th _ngcontent-xmu-c12="">Price</th>
-                                    <th _ngcontent-xmu-c12="">Total </th>
-                                    <th _ngcontent-xmu-c12=""></th>
+                                    <th _ngcontent-xmu-c12="" style="width: 10px;">Type</th>
+                                    <th _ngcontent-xmu-c12="" style="width:10px">Pair</th>
+                                    <th _ngcontent-xmu-c12="" style="width:20px">Amount </th>
+                                    <th _ngcontent-xmu-c12="" style="width:20px">Price</th>
+                                    <th _ngcontent-xmu-c12="" style="width:20px">Total </th>
+                                    <th _ngcontent-xmu-c12="" style="width: 5px;"></th>
                                 </tr>
                             </thead>  
                             <tbody _ngcontent-xmu-c12="">
@@ -37,40 +37,30 @@
                                                 $img = "v3/ic_sell.svg";
                                             }
                                         @endphp 
-                                        <td _ngcontent-xmu-c12="">
+                                        <td _ngcontent-xmu-c12="" style="width: 10px;">
                                             <span _ngcontent-xmu-c12="" class="sell ng-star-inserted">
                                                 <span _ngcontent-xmu-c12="">{{ strtoupper($log->type) }}</span>
                                                 <img _ngcontent-xmu-c12="" alt="{{ strtoupper($log->type) }}" src="{{ asset($img) }}">
                                             </span>
                                         </td>
-                                        <td _ngcontent-xmu-c12="">{{ implode("/",explode("_",$log->pair)) }} </td>
-                                        <td _ngcontent-xmu-c12="">{{ sprintf("%0.6f",$log->amount).' '.$log->target_coin }} </td>
-                                        <td _ngcontent-xmu-c12="">{{ sprintf("%0.6f",$log->price).' '.$log->base_coin }}</td>
-                                        <td _ngcontent-xmu-c12="">{{ sprintf("%0.6f",$log->total).' '.$log->base_coin }}</td>
-                                        <td _ngcontent-xmu-c12="">
+                                        <td _ngcontent-xmu-c12="" style="width:10px">{{ implode("/",explode("_",$log->pair)) }} </td>
+                                        <td _ngcontent-xmu-c12="" style="width:20px">{{ sprintf("%0.4f",$log->amount).' '.$log->target_coin }} </td>
+                                        <td _ngcontent-xmu-c12="" style="width:20px">{{ sprintf("%0.4f",$log->price).' '.$log->base_coin }}</td>
+                                        <td _ngcontent-xmu-c12="" style="width:20px">{{ sprintf("%0.4f",$log->total).' '.$log->base_coin }}</td>
+                                        <td _ngcontent-xmu-c12="" style="width: 5px;">
                                             <i class="fa fa-trash del-order" style="color:red" data-id="{{ $log->id }}">
                                             </i>
                                         </td>
                                     </tr>
-
-    @empty
-        <div class="mat-tab-body-content ng-trigger ng-trigger-translateTab" style="transform: none;">
-            <!---->
-            <app-orders-transactions _ngcontent-bil-c19="" class="ng-star-inserted" style="">
-                <div class="table font-normal main-page-table">
-                    <div class="orders-big-table">
-                        <!----><!---->
-                        <div class="no-market-info ng-star-inserted">
-                            <img alt="no-order" src="{{ asset('v3/ic_empty_order.svg') }}"> 
-                            No Order
-                        </div>
-                    </div>
-                    <!---->
-                </div>
-            </app-orders-transactions>
-            <!---->
-        </div> 
-    @endforelse
+                                    @empty
+                                    <tr _ngcontent-xmu-c12="" class="bid-tr table-row ng-star-inserted" style="">
+                                        <td _ngcontent-xmu-c12="" colspan="5">
+                                            <img class="prt" src="{{ asset('v3/ic_empty_order.svg') }}">
+                                            <br/>
+                                            <span class="prt"> No Order </span>
+                                        </td>
+                                    </tr>
+                                    @endforelse
                             </tbody>
                         </table>
                     </app-loader>

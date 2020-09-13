@@ -118,4 +118,9 @@ class NotificationController extends Controller
         $msg = "Broadcast sent";
         return redirect()->back()->with('msg', $msg);
     }
+
+    public function fetchBroadcast()
+    {
+        return Broadcast::orderBy('id','DESC')->get();
+    }
 }

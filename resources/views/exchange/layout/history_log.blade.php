@@ -1,4 +1,4 @@
-<div class="col-lg-9 col-lg-offset-3 col-md-8 col-md-offset-4 col-sm-12 col-xs-12 tab-space">
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-4 col-sm-12 col-xs-12 tab-space">
     <mat-tab-group class="mat-tab-group mat-primary ng-animate-disabled">
         <mat-tab-header class="mat-tab-header">
             <div aria-hidden="true" class="mat-tab-header-pagination mat-tab-header-pagination-before mat-elevation-z4 mat-ripple mat-tab-header-pagination-disabled" mat-ripple="">

@@ -43,7 +43,7 @@
                                     </tr>
                                 @empty
                                     <tr _ngcontent-xmu-c12="" class="bid-tr table-row ng-star-inserted" style="">
-                                        <td _ngcontent-xmu-c12="" colspan="5">
+                                        <td _ngcontent-xmu-c12="" >
                                                 <img class="prt" src="{{ asset('v3/ic_empty_order.svg') }}">
                                                 <br/>
                                                 <span class="prt"> You have no trading history </span>
@@ -68,7 +68,7 @@
 
 <style type="text/css">
         .prt{
-                margin-left:350px;
+                margin-left:250px;
                 margin-top: 60px;
                 padding: 10px;
         }

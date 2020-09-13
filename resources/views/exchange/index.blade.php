@@ -14,7 +14,8 @@
                         @include('exchange.layout.chart_graph',['ticker' => $ticker])
                         @include('exchange.layout.chat')
                         @include('exchange.layout.order_log',['ticker' => $ticker])
-                        @include('exchange.layout.history_log',['ticker' => $ticker])
+                        @include('exchange.layout.history_log',['ticker' => $ticker]) 
+                        @include('exchange.layout.news')
                     </div>
                 </div>
                 <div class="sidenav-overlay"></div>
