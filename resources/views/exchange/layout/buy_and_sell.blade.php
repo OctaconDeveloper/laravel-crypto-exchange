@@ -21,7 +21,7 @@
                                </div>
                             </div>
 
-
+ 
                           </div>
                           <div class="balances">
                             <span class="span-title">Available balance</span>
@@ -42,15 +42,14 @@
     $type = $(this).data("id");
     $(this).toggleClass("active");
     if($type=='sell'){
+        $(".order-type").removeClass('mat-ink-side');
         $("#buy_panel").removeClass( "show" ).addClass( "hide" );
         $("#sell_panel").removeClass( "hide" ).addClass( "show" );
     }else{
+        $(".order-type").addClass('mat-ink-side');
         $("#sell_panel").removeClass( "show" ).addClass( "hide" );
         $("#buy_panel").removeClass( "hide" ).addClass( "show" );
     }
-
-
-    $(".order-type").toggleClass('mat-ink-side');
   });
 
   setInterval(function(){
