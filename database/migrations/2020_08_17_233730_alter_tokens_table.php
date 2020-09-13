@@ -31,7 +31,7 @@ class AlterTokensTable extends Migration
         Schema::table('tokens', function (Blueprint $table) {
             $table->dropColumn('circulation');
             $table->dropColumn('description');
-            $table->dropColumn('ur');
+            $table->dropColumn('url');
             $table->dropColumn('white_paper');
         });
     }

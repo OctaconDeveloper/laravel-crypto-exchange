@@ -74,7 +74,7 @@ class OrderController extends Controller
                         ->max('amount');
         return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
-
+ 
     public function get_24_low($pair)
     {
         $log = Order::wherePair($pair)

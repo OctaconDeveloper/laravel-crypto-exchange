@@ -13,7 +13,7 @@ class CoinPairSeeder extends Seeder
     {
         App\CoinPair::insert([
             [
-                'pair' => 'BTC_ETH',
+                'pair' => 'ETH_BTC',
                 'target_id' => 'ETH',
                 'base_id' => 'BTC',
                 'stat' => 1,

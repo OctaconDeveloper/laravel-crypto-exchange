@@ -36,7 +36,7 @@
 <div class="{{ str_replace(' ', '',$pair->base_id) }}_pair @if($key!==0) hide @endif clk"><!---->
 @php
   $token_pairs = \App\CoinPair::whereBaseId($pair->base_id)->orderBy('target_id','ASC')->get();
-@endphp
+@endphp 
 @forelse ($token_pairs as $tk)
   <div data-id="{{$tk->pair}}" class="secondary-pair-item ng-star-inserted all_{{$tk->pair}}">
     <div class="secondary-pair-item-header">

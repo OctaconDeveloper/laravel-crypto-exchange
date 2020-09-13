@@ -1,6 +1,10 @@
+@php
+  use \App\Http\Controllers\Web\NotificationController;
+  $media = (new NotificationController())->getMedia();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!--<base href="/">--><base href=".">
 
@@ -222,53 +226,42 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
 		<div _ngcontent-hwe-c0="" class="footer-section row">
 			<div _ngcontent-hwe-c0="" class="col-sm-2">
 				<ul _ngcontent-hwe-c0="">
-					<li _ngcontent-hwe-c0="">{{env('APP_FULL_NAME')}}</li>
-					<li _ngcontent-hwe-c0="">
-						<a _ngcontent-hwe-c0="" routerlink="/" routerlinkactive="footer-active" href="/market/{{$base->pair}}" class="footer-active">Trade
-						</a>
-					</li>
-					<li _ngcontent-hwe-c0="">
-						<a _ngcontent-hwe-c0="" target="_blank" href="market">Market
-						</a>
-					</li>
-					<li _ngcontent-hwe-c0="">
-						<a _ngcontent-hwe-c0="" target="_blank" href="fees">Fees</a>
-					</li>
-					<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="exchange">Exchange</a></li>
-					<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="otc">OTC</a></li>
+          <li></li>
+					<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/market/{{$base->pair}}">Market</a></li>
+					<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/fees">Fees</a></li>
+				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/voting">Voting</a></li>
+				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="listing">Listing</a></li>
 				</ul>
 			</div>
 		<div _ngcontent-hwe-c0="" class="col-sm-2">
 			<ul _ngcontent-hwe-c0="">
-				<li _ngcontent-hwe-c0="">Discover</li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="voting">Voting</a></li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="listing">Listing</a></li>
+        <li></li>
 				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="ieo">IEO</a></li>
 				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="widgets">Widget</a></li>
 				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="api-docs">API</a></li>
+			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="news-blog">News</a></li>
 			</ul>
 		</div>
 	<div _ngcontent-hwe-c0="" class="col-sm-2">
 		<ul _ngcontent-hwe-c0="">
-			<li _ngcontent-hwe-c0="">Learn</li>
-			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="news-blog">News</a></li>
-			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="faq">Support</a></li>
-			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="legal-security">Legal</a></li>
-			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="legal/privacy-policy">Privacy</a></li>
-			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="legal/tos">Terms</a></li>
+      <li></li>
+			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/faq">FAQ</a></li>
+			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/legal-security">Legal</a></li>
+			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/privacy-policy">Privacy</a></li>
+			<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" target="_blank" href="/tos">Terms</a></li>
 		</ul>
 	</div>
 	<div _ngcontent-hwe-c0="" class="col-sm-6 operate">
 		<div _ngcontent-hwe-c0="" class="socials">
 			<div _ngcontent-hwe-c0="" class="stores">
-				<a _ngcontent-hwe-c0="" href="https://apps.apple.com/gb/app/{{env('APP_FULL_NAME')}}-crypto-exchange/id1467867553" target="_blank">
+				<a _ngcontent-hwe-c0="" href="#" target="_blank">
 					<img _ngcontent-hwe-c0="" alt="app store" src="{{ asset('v3/appstore.png') }}">
 				</a>
-				<a _ngcontent-hwe-c0="" href="https://play.google.com/store/apps/details?id=com.{{env('APP_FULL_NAME')}}.exchange" target="_blank">
+				<a _ngcontent-hwe-c0="" href="#" target="_blank">
 					<img _ngcontent-hwe-c0="" alt="google play" src="{{ asset('v3/playstore.png') }}">
 				</a>
 			</div>
-			<a _ngcontent-hwe-c0="" class="need-help" target="_blank" href="support">Need help?
+			<a _ngcontent-hwe-c0="" class="need-help" target="_blank" href="/support">Need help?
 				<span _ngcontent-hwe-c0="">Contact us</span>
 			</a>
 		</div>
@@ -284,19 +277,19 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
 		<div _ngcontent-hwe-c0="" class="footer-container container-fluid">
 			<p _ngcontent-hwe-c0="">&copy; {{date('Y')}} {{env('APP_FULL_NAME')}} </p>
 			<ul _ngcontent-hwe-c0="" class="social-share">
-				<li _ngcontent-hwe-c0="">
+				<!-- <li _ngcontent-hwe-c0="">
 					<a _ngcontent-hwe-c0="" href="https://t.me/{{env('APP_NAME')}}com" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_telegram.svg') }}" style="    width: 40px;">
 					</a>
-				</li>
+				</li> -->
 				<li _ngcontent-hwe-c0="">
-					<a _ngcontent-hwe-c0="" href="https://discordapp.com/invite/mFeVWX3" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_discord.svg') }}" style="    width: 40px;"></a>
+					<a _ngcontent-hwe-c0="" href="{{ $media->discord_handle }}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_discord.svg') }}" style="    width: 40px;"></a>
 				</li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://twitter.com/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_twitter.svg') }}"></a></li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.reddit.com/r/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_reddit.svg') }}"></a></li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.facebook.com/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_facebook.svg') }}"></a></li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.instagram.com/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_instagram.svg') }}" style="    width: 40px;"></a></li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.linkedin.com/company/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_linkedin.svg') }}"></a></li>
-				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.youtube.com/channel/UCCJFI_g-_nyELlSxBSH3HrQ" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_youtube.svg') }}"></a></li>
+				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="{{ $media->twitter_handle }} " rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_twitter.svg') }}"></a></li>
+				<!-- <li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.reddit.com/r/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_reddit.svg') }}"></a></li> -->
+				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="{{ $media->facebook_handle }}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_facebook.svg') }}"></a></li>
+				<li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="{{ $media->instagram_handle }}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_instagram.svg') }}" style="    width: 40px;"></a></li>
+				<!-- <li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.linkedin.com/company/{{ env('APP_NAME')}}" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_linkedin.svg') }}"></a></li> -->
+				<!-- <li _ngcontent-hwe-c0=""><a _ngcontent-hwe-c0="" href="https://www.youtube.com/channel/UCCJFI_g-_nyELlSxBSH3HrQ" rel="noopener" target="_blank"><img _ngcontent-hwe-c0="" alt="Socilas icons" src="{{ asset('v3/ic_youtube.svg') }}"></a></li> -->
 			</ul>
 
 			<div _ngcontent-hwe-c0="" class=" profile-bar footer-lang" id="language_bar">

@@ -13,10 +13,10 @@ class SocialMediaTableSeeder extends Seeder
     {
         App\SocialMedia::create(
             [
-                'facebook_handle' => 'facebook_handle',
-                'twitter_handle' => 'twitter_handle',
-                'instagram_handle' => 'instagram_handle',
-                'discord_handle' => 'discord_handle'
+                'facebook_handle' => 'https://www.facebook_handle.com/'.strtolower(env('APP_NAME')),
+                'twitter_handle' => 'https://www.twitter_handle.com/'.strtolower(env('APP_NAME')),
+                'instagram_handle' => 'https://www.instagram_handle.com/'.strtolower(env('APP_NAME')),
+                'discord_handle' => 'https://www.discord_handle.com/'.strtolower(env('APP_NAME')),
             ]
         );
     }

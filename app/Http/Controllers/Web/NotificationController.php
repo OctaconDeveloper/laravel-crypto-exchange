@@ -83,6 +83,11 @@ class NotificationController extends Controller
         return redirect()->back()->with('msg',$msg);
     }
 
+    public function getMedia()
+    {
+        return SocialMedia::first();
+    }
+
 
     public function sendBroadcast()
     {
