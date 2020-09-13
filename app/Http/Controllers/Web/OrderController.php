@@ -49,14 +49,14 @@ class OrderController extends Controller
                         ->orderBy('id','DESC')
                         ->first();
 
-        return $log ? sprintf("%0.9s",$log->price): '0.000000000';
+        return $log ? sprintf("%0.7f",$log->price): '0.000000000';
     }
 
     public function get_avg_price($pair)
     {
         $log =  Order::wherePair($pair)
                         ->avg('price');
-        return $log ? sprintf("%0.9s",$log): '0.000000000';
+        return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
 
     public function get_24_volume($pair)
@@ -64,7 +64,7 @@ class OrderController extends Controller
         $log =  Order::wherePair($pair)
                         ->where('created_at', '>=', Carbon::now()->subDay())
                         ->sum('amount');
-        return $log ? sprintf("%0.9s",$log): '0.000000000';
+        return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
 
     public  function get_24_high($pair)
@@ -72,7 +72,7 @@ class OrderController extends Controller
         $log = Order::wherePair($pair)
                         ->where('created_at', '>=', Carbon::now()->subDay())
                         ->max('amount');
-        return $log ? sprintf("%0.9s",$log): '0.000000000';
+        return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
 
     public function get_24_low($pair)
@@ -80,7 +80,7 @@ class OrderController extends Controller
         $log = Order::wherePair($pair)
                         ->where('created_at', '>=', Carbon::now()->subDay())
                         ->min('amount');
-        return $log ? sprintf("%0.9s",$log): '0.000000000';
+        return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
 
     public function get_24_percent($pair)
@@ -96,7 +96,7 @@ class OrderController extends Controller
             $data['type'] = $float > 0 ? 'positive' : 'negative';
             $data['rate'] = $float > 0 ? 'up' : 'down';
             $data['operator'] = $float > 0 ? '+' : '-';
-            $data['percent'] = sprintf("%0.2s",$perc);
+            $data['percent'] = sprintf("%0.2f",$perc);
             return $data;
     }
 
