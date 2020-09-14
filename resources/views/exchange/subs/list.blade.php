@@ -58,20 +58,22 @@ if(auth()->user() && auth()->user()->tradeStat === 1){
                       <app-loader _nghost-xmu-c9="" class="ng-star-inserted" style="">
                         <!----><!---->
                         <div fxlayout="row wrap parented" style="position: relative;" class="ng-star-inserted">
-                          <label class="input-label" for="amount">
-                            <span>Amount of {{ strtoupper($target_coin) }} to {{ ucfirst($type) }}</span>
-                          </label>
-                          <div class="input-parent">
-                            <input class="ng-pristine ng-valid ng-touched {{$type}}_target_amount" min="0" placeholder="0.00" name="amount" type="text" step="0.00001">
-                            <span class="input-symbol">{{strtoupper($target_coin)}}</span>
-                          </div>
-                          <label class="input-label" for="price" style="position: relative">
+
+                        <label class="input-label" for="price" style="position: relative">
                             <span> Price Per 1 {{ strtoupper($target_coin)}}</span>
                           </label>
                           <div class="input-parent mb-0">
                             <input min="0" placeholder="0.00" name="price"  type="text" step="0.000001" class="{{ $type}}_base_mount ng-untouched ng-pristine ng-valid">
                             <span class="input-symbol">{{ strtoupper($base_coin)}}</span>
                             <input type="hidden" class="{{ $type}}_total" placeholder="0.00" />
+                          </div>
+                          <br/>
+                          <label class="input-label" for="amount">
+                            <span>Amount of {{ strtoupper($target_coin) }} to {{ ucfirst($type) }}</span>
+                          </label>
+                          <div class="input-parent">
+                            <input class="ng-pristine ng-valid ng-touched {{$type}}_target_amount" min="0" placeholder="0.00" name="amount" type="text" step="0.00001">
+                            <span class="input-symbol">{{strtoupper($target_coin)}}</span>
                           </div>
                           <div fxflex="100">
                             <!---->
