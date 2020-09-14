@@ -31,7 +31,7 @@
         <div id="chat-foot" class="row room_chat"></div>
     @else
         <div id="log" align="center" style="margin-top:40%;">
-            <p>Welcome Guest! Kindly login or creat account to enter chat room</p>
+            <p>Welcome Guest! Kindly login or create account to enter chat room</p>
             <div class="row" style="margin:20px">
                 <a href="/user/signin">
                 <span class="btn btn2 btn-primary ng-star-inserted">
