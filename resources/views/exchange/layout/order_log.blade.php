@@ -28,10 +28,10 @@
     $("#buy_orders").load('/orders/list/'+$url+'/buy');
     $("#sell_orders").load('/orders/list/'+$url+'/sell');
 
-    // setInterval(function(){
-    //     $("#buy_orders").load('/orders/list/'+$url+'/buy');
-    //     $("#sell_orders").load('/orders/list/'+$url+'/sell');
-    // }, 2000);
+    setInterval(function(){
+        $("#buy_orders").load('/orders/list/'+$url+'/buy');
+        $("#sell_orders").load('/orders/list/'+$url+'/sell');
+    }, 2000);
 
 
     $(window).bind('hashchange', function(){

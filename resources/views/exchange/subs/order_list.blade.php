@@ -21,9 +21,9 @@
 			<!---->
 			<table _ngcontent-xmu-c11="" class="no-upper-padding ng-star-inserted" clipboard="no-upper-padding" width="100%">
 				<tr _ngcontent-xmu-c11="" class="table-head">
-					<th _ngcontent-xmu-c11="">Total</th>
-					<th _ngcontent-xmu-c11="">Amount</th>
 					<th _ngcontent-xmu-c11="">Price</th>
+					<th _ngcontent-xmu-c11="">Amount</th>
+					<th _ngcontent-xmu-c11="">Total</th>
 				</tr>
 			</table>
 			<div _ngcontent-xmu-c11="" class="sell-buy-bids ">
@@ -37,10 +37,10 @@
                             data-total="{{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$type,$pair->pair)) }}" data-price="{{ sprintf("%0.9f",$log->price) }}"
                             data-amount=" {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log->price,$type,$pair->pair)) }}"
                             >
-                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$type,$pair->pair)) }} </td>
-                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log->price,$type,$pair->pair)) }} </td>
-                            <!----><!---->
 							<td _ngcontent-xmu-c11="" class="ng-star-inserted"> {{ sprintf("%0.9f",$log->price) }} </td>
+                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_total_amount($log->price,$type,$pair->pair)) }} </td>
+                            <td _ngcontent-xmu-c11=""> {{ sprintf("%0.9f",(new OrderController())->get_market_total($log->price,$type,$pair->pair)) }} </td>
+                            <!----><!---->
 							
                         </tr>
                         @empty
