@@ -8,7 +8,8 @@
  
 	<app-loader _ngcontent-xmu-c11="" _nghost-xmu-c9="">
 		<!----><!---->
-		<div _ngcontent-xmu-c11="" class="main ng-star-inserted"><div _ngcontent-xmu-c11="" class="buy-orders-title">
+		<div _ngcontent-xmu-c11="" class="main ng-star-inserted">
+			<div _ngcontent-xmu-c11="" class="buy-orders-title">
 			{{ ucfirst($type) }} orders
 			<b _ngcontent-xmu-c11="">Volume: <span _ngcontent-xmu-c11="">
 				{{ sprintf("%0.7f",(new OrderController())->get_volume($pair,$type)) }}
@@ -46,14 +47,13 @@
 
                         @endforelse
 						</table>
-						<div _ngcontent-xmu-c11="" class="sell-dinamic-element">
-						<!---->
+						<!-- <div _ngcontent-xmu-c11="" class="sell-dinamic-element">
 						<div _ngcontent-xmu-c11="" class="ng-star-inserted" style="width: 2.54558%;"></div>
 						<div _ngcontent-xmu-c11="" class="ng-star-inserted" style="width: 7.36169%;"></div>
 						<div _ngcontent-xmu-c11="" class="ng-star-inserted" style="width: 19.5658%;"></div>
 						<div _ngcontent-xmu-c11="" class="ng-star-inserted" style="width: 35.603%;"></div>
 						<div _ngcontent-xmu-c11="" class="ng-star-inserted" style="width: 100%;"></div>
-					</div>
+					</div> -->
 				</div>
 				<!---->
 			</div>
