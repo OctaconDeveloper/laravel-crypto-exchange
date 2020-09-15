@@ -200,7 +200,7 @@ iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; heig
                 <a href="/user/wallet-addresses">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item" tabindex="0"> Withdrawal Addresses </div>
                 </a>
-                <a href="signout">
+                <a href="/signout">
                   <div _ngcontent-hwe-c0="" class="dashboard-mobile-menu-item"> Sign out </div>
                 </a>
               </div>
