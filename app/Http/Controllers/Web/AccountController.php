@@ -263,13 +263,14 @@ class AccountController extends Controller
         $id = request()->id;
         $balance = request()->balance;
         $account = Wallet::findorFail($id);
+        $user = User::find($account->user_id);
         $account->update([
             'amount' => $balance
         ]);
         Log::create(
             [
                 'user_id' => auth()->user()->id,
-                'log' => ' update wallet amount'
+                'log' => ' update '.$user->email.' '.$account->ticker.' wallet  amount. new balance is '.$balance
             ]
         );
     }
