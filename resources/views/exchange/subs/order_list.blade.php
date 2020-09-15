@@ -1,8 +1,9 @@
 @php
     use \App\Http\Controllers\Web\OrderController;
     $target_coin = $pair->target_id;
-    $base_coin = $pair->base_id;
-    $logs = (new OrderController())->get_list($pair->pair,$type);
+	$base_coin = $pair->base_id;
+	$sort = $type == 'buy' ? 'DESC' : 'ASC';
+    $logs = (new OrderController())->get_list($pair->pair,$type,$sort);
 @endphp
  
  

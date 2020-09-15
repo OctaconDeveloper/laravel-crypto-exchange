@@ -570,11 +570,11 @@ class OrderController extends Controller
         return CoinPair::where('pair', 'like', '%' .$pair . '%')->get();
     }
 
-    public function get_list($pair,$type)
+    public function get_list($pair,$type,$sort)
     {
        return  Market::wherePair($pair)
                 ->whereType($type)
-                ->orderBy('price','ASC')
+                ->orderBy('price',$sort)
                 ->distinct()
                 ->get('price','type');
     }
