@@ -202,9 +202,12 @@ class OrderController extends Controller
 
 	}
 
-    private function delete_order(Order $sellMarketID)
+    private function delete_order($id)
     {
-        $sellMarketID->delete();
+        $order = Order::find($id);
+        if($order){
+            $order->delete();
+        }
     }
 
     private function add_order($pair,$type,$target_coin,$base_coin,$price,$amount,$total)
