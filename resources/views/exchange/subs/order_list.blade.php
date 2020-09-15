@@ -17,7 +17,7 @@
 				{{ strtoupper($target_coin) }}
 			</b>
 		</div>
-		<div _ngcontent-xmu-c11="" class="buy-orders-table" style="height: 450px;">
+		<div _ngcontent-xmu-c11="" class="buy-orders-table">
 			<!---->
 			<table _ngcontent-xmu-c11="" class="no-upper-padding ng-star-inserted" clipboard="no-upper-padding" width="100%">
 				<tr _ngcontent-xmu-c11="" class="table-head">
@@ -26,7 +26,7 @@
 					<th _ngcontent-xmu-c11="">Total</th>
 				</tr>
 			</table>
-			<div _ngcontent-xmu-c11="" class="sell-buy-bids ">
+			<div _ngcontent-xmu-c11="" class="sell-buy-bids " style="height: 450px;">
 				<div _ngcontent-xmu-c11="" class="dinamic-table">
 					<table _ngcontent-xmu-c11="" class="no-upper-padding" width="100%">
                         <!---->
