@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Broadcast;
 use App\CoinPair;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -116,6 +117,18 @@ class ExchangeController extends Controller
     public function chatSend()
     {
         return view('exchange.subs.chats.chat_footer');
+    }
+
+    public function news()
+    {
+        return view('exchange.subs.news');
+    }
+    
+    public function newsSingle($slug)
+    {
+        $name = str_replace("-"," ", $slug);
+        $news = Broadcast::where('title', $name)->first();
+        return view('exchange.subs.single_news', compact('news'));
     }
 
 

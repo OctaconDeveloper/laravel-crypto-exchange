@@ -128,4 +128,9 @@ class NotificationController extends Controller
     {
         return Broadcast::orderBy('id','DESC')->get();
     }
+
+    public function getBroadcast($title)
+    {
+        return Broadcast::where('title',$title)->first();
+    }
 }

@@ -166,9 +166,12 @@ Route::namespace('Web')->group(function () {
     Route::post('activate-user','AuthController@activateUser');
     Route::post('reset-user','AuthController@resetUser');
     Route::get('signout','AuthController@signout');
+    Route::get('news','ExchangeController@news');
+    Route::get('news/{slug}','ExchangeController@newsSingle');
 
     //User Restricted Link
-    Route::middleware('customer')->group(function () {
+    Route::middleware('customer')->group(function () 
+    {
         Route::post('password-reset','AuthController@resetPassword');
         Route::post('activate-tfa','AuthController@activateTfa');
         Route::post('add-wallet','WalletController@addWithdrawalAddress');
@@ -182,7 +185,8 @@ Route::namespace('Web')->group(function () {
 
 
     //Admin Restricted Link 'middleware' => ''
-    Route::middleware('superAdmin')->group(function () {
+    Route::middleware('superAdmin')->group(function () 
+    {
         Route::post('newuser','AccountController@newaccount');
         Route::post('newadmin','AccountController@newadmin');
         Route::post('searchaccount','AccountController@searchaccount');
