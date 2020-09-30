@@ -2,7 +2,6 @@
     use \App\Http\Controllers\Web\OrderController;
     $target_coin = \App\Token::whereTicker($pair->target_id)->first();
     $base_coin = \App\Token::whereTicker($pair->base_id)->first();
-    $graphData = (new OrderController())->graphData($pair->pair);
 @endphp
 <div class="row" >
     <div id="trade_title" class="col-md-4" align="center">
@@ -70,7 +69,6 @@
 <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
 
 <script type="text/javascript">
-    var graphData = JSON.parse('<?php print_r($graphData);?> ');
 
     fetch('/graph-data/{{$pair->pair}}')
     .then(response =>  response.json())
