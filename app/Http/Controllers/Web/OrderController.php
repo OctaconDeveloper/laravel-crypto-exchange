@@ -682,7 +682,7 @@ class OrderController extends Controller
         $log =  Order::wherePair($pair)
                         ->whereCreatedAt($created_at)
                         ->first('price');
-        return $log['price'] ? sprintf("%0.4f",$log['price']): '0.0000';
+        return $log['price'] ? sprintf("%0.7f",$log['price']): '0.0000000';
     }
 
     private function get_graph_24_close($pair,$created_at)
@@ -691,7 +691,7 @@ class OrderController extends Controller
                         ->whereCreatedAt($created_at)
                         ->orderBy('id', 'DESC')
                         ->first();
-        return $log['price'] ? sprintf("%0.4f",$log['price']): '0.0000';
+        return $log['price'] ? sprintf("%0.7f",$log['price']): '0.0000000';
     }
 
     private function get_graph_24_volume($pair,$created_at)
@@ -699,7 +699,7 @@ class OrderController extends Controller
         $log =  Order::wherePair($pair)
                         ->whereCreatedAt($created_at)
                         ->sum('amount');
-        return $log ? sprintf("%0.4f",$log): '0.0000';
+        return $log ? sprintf("%0.7f",$log): '0.0000000';
     }
 
     private  function get_graph_24_high($pair,$created_at)
@@ -707,7 +707,7 @@ class OrderController extends Controller
         $log = Order::wherePair($pair)
                         ->whereCreatedAt($created_at)
                         ->max('price');
-        return $log ? sprintf("%0.4f",$log): '0.0000';
+        return $log ? sprintf("%0.7f",$log): '0.0000000';
     }
  
     private function get_graph_24_low($pair,$created_at)
@@ -715,7 +715,7 @@ class OrderController extends Controller
         $log = Order::wherePair($pair)
                          ->whereCreatedAt($created_at)
                         ->min('price');
-        return $log ? sprintf("%0.4f",$log): '0.0000';
+        return $log ? sprintf("%0.7f",$log): '0.0000000';
     }
 
 
