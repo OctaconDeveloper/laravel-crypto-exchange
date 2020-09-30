@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\CoinPair;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\GraphDataResource;
 use App\Log;
 use App\Market;
 use App\Order;
@@ -659,20 +658,23 @@ class OrderController extends Controller
     public function graphData($pair)
     {  
         $data = Order::wherePair($pair)->select('pair','created_at')->groupBy('created_at','pair')->get();
-        // $payload = [];
-        // $payload[] = ['Date','Open','High','Low','Close','Volume','Adj Close'];
-        foreach($data as $datum)
+        $payload = [];
+        if($data)
         {
-            $payload[] = [
-                "date" => explode(" ", $datum->created_at)[0],
-                "open" => $this->get_graph_24_open($datum->pair,$datum->created_at),
-                "high" =>  $this->get_graph_24_high($datum->pair,$datum->created_at),
-                "low" =>  $this->get_graph_24_low($datum->pair,$datum->created_at),
-                "close" => $this->get_graph_24_close($datum->pair,$datum->created_at)
+            foreach($data as $datum)
+            {
+                $payload[] = [
+                    "date" => explode(" ", $datum->created_at)[0],
+                    "open" => $this->get_graph_24_open($datum->pair,$datum->created_at),
+                    "high" =>  $this->get_graph_24_high($datum->pair,$datum->created_at),
+                    "low" =>  $this->get_graph_24_low($datum->pair,$datum->created_at),
+                    "close" => $this->get_graph_24_close($datum->pair,$datum->created_at)
 
-            ];
+                ];
+            }
         }
-        return $payload;
+        
+        return json_encode($payload);
     }
 
     private function get_graph_24_open($pair,$created_at)

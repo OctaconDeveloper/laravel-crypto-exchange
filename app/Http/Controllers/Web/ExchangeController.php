@@ -58,6 +58,12 @@ class ExchangeController extends Controller
         return view('errors.403');
     }
 
+    public function graphBook($pair)
+    {
+        $pair = CoinPair::wherePair($pair)->first();
+        return view('exchange.subs.graph', compact('pair'));
+    }
+
     public function coinBalance($pair)
     {
         $pair = CoinPair::wherePair($pair)->first();

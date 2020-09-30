@@ -41,8 +41,9 @@ Route::get('/user-list/{pair}', [OrderController::class, 'graphData']);
         Route::get('/', [ExchangeController::class, 'welcome']);
         Route::get('/401', [ExchangeController::class, 'error401']);
         Route::get('/403', [ExchangeController::class, 'error403']);
+ 
 
-
+        Route::get('/graph_book/{pair}', [ExchangeController::class, 'graphBook']);
         Route::get('/coin_balance/{pair}', [ExchangeController::class, 'coinBalance']);
         Route::get('/order/panel/{pair}/{type}', [ExchangeController::class, 'orderList']);
         Route::get('/coinstat/{pair}', [ExchangeController::class, 'coinStat']);
