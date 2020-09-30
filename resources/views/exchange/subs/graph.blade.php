@@ -71,9 +71,10 @@
 
 <script src="{{ asset('v3/jquery-3.4.1.min.js') }}"></script>
 <script type="text/javascript">
-$(document).ready(function() {
     var graphData = JSON.parse('<?php print_r($graphData);?> ');
+
     console.log(graphData);
+    window.addEventListener('load', (event) => {
     AmCharts.makeChart("chartdiv",
         {
             "type": "serial",
@@ -134,4 +135,67 @@ $(document).ready(function() {
     );
 });
 
+
+    // window.addEventListener('load', (event) => {
+        AmCharts.makeChart("chartdiv",
+        {
+            "type": "serial",
+            "categoryField": "date",
+            "dataDateFormat": "YYYY-MM-DD",
+            "angle": 2,
+            "depth3D": 1,
+            "plotAreaBorderAlpha": 0.4,
+            "borderColor": "#0000FF",
+            "color": "#0000FF",
+            "fontFamily": "Arial",
+            "fontSize": 13,
+            "handDrawScatter": 3,
+            "handDrawThickness": 2,
+            "categoryAxis": {
+                "parseDates": true
+            },
+            "chartCursor": {
+                "enabled": true
+            },
+            "chartScrollbar": {
+                "enabled": true,
+                "graph": "g1",
+                "graphType": "line",
+                "scrollbarHeight": 30
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                    "closeField": "close",
+                    "fillAlphas": 0.9,
+                    "fillColors": "#7f8da9",
+                    "highField": "high",
+                    "id": "g1",
+                    "lineColor": "#7f8da9",
+                    "lowField": "low",
+                    "negativeFillColors": "#db4c3c",
+                    "negativeLineColor": "#db4c3c",
+                    "openField": "open",
+                    "title": "Price:",
+                    "type": "candlestick",
+                    "valueField": "close"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1"
+                }
+            ],
+            "allLabels": [],
+            "balloon": {},
+            "titles": [],
+            "dataProvider": graphData
+           
+        }
+    );
+// });
+
+  
 </script>
