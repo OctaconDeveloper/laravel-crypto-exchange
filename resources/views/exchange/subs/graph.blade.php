@@ -69,7 +69,6 @@
 <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
 
-<script src="{{ asset('v3/jquery-3.4.1.min.js') }}"></script>
 <script type="text/javascript">
     var graphData = JSON.parse('<?php print_r($graphData);?> ');
 
