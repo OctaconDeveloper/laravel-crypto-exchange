@@ -1,5 +1,5 @@
 
-<div class="col-lg-6 col-md-8 col-sm-12 main main-app-container" style="height: 600px">
+<div class="col-lg-6 col-md-8 col-sm-12 main main-app-container" style="height: 500px">
    <div id="graph">
     <div class="Load_overlay"  style="margin-top: 8%">
         <img src="{{ asset('img/loader.gif') }}" alt="Loading" />
