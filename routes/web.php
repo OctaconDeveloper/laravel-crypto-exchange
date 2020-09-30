@@ -1,13 +1,10 @@
 <?php
 
-use App\Ballot;
-use App\ChatSetup;
 use App\Http\Controllers\Web\ChatController;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ExchangeController;
 use App\Http\Controllers\Web\OrderController;
-use App\Http\Resources\GraphDataResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -170,6 +167,7 @@ Route::namespace('Web')->group(function () {
     Route::get('news','ExchangeController@news');
     Route::get('news/{slug}','ExchangeController@newsSingle');
 
+    Route::get('graph-data/{pair}', [OrderController::class, 'graphData']);
     //User Restricted Link
     Route::middleware('customer')->group(function () 
     {
