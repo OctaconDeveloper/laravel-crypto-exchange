@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ExchangeController;
 use App\Http\Controllers\Web\OrderController;
+use App\Http\Resources\GraphDataResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,8 @@ use App\Http\Controllers\Web\OrderController;
 */
 
 
-Route::get('/user-list', function(){
-    return  \App\Ballot::distinct()->get('ballot_hash');
-});
+Route::get('/user-list/{pair}', [OrderController::class, 'graphData']);
+
 
 
     /**

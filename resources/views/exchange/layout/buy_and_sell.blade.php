@@ -58,7 +58,7 @@
     $("#buy_panel").load('/order/panel/'+$url+'/buy');
     $("#sell_panel").load('/order/panel/'+$url+'/sell'); 
 
-
+ 
   /**
   * If URL Changes
   **/

@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </app-main>
 
     </div>

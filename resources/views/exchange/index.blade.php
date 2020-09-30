@@ -4,7 +4,7 @@
     <div _ngcontent-xmu-c0="" class="wrapper">
         <!---->
         <router-outlet _ngcontent-xmu-c0=""></router-outlet>
-        <app-main class="ng-star-inserted">
+        <app-main class="ng-star-inserted"> 
             @include('exchange.layout.nav')
 
             <div class="main-exchange">

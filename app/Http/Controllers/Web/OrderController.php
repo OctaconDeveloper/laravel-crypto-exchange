@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\CoinPair;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GraphDataResource;
 use App\Log;
 use App\Market;
 use App\Order;
@@ -13,6 +14,7 @@ use App\User;
 use App\Wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -59,6 +61,14 @@ class OrderController extends Controller
         return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
 
+    public function get_24_Single_volume($pair, $side)
+    {
+        $log =  Market::wherePair($pair)
+                        ->where('created_at', '>=', Carbon::now()->subDay())
+                        ->sum($side);
+        return $log ? sprintf("%0.4f",$log): '0.0000';
+    }
+
     public function get_24_volume($pair)
     {
         $log =  Order::wherePair($pair)
@@ -71,7 +81,7 @@ class OrderController extends Controller
     {
         $log = Order::wherePair($pair)
                         ->where('created_at', '>=', Carbon::now()->subDay())
-                        ->max('amount');
+                        ->max('price');
         return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
  
@@ -79,7 +89,7 @@ class OrderController extends Controller
     {
         $log = Order::wherePair($pair)
                         ->where('created_at', '>=', Carbon::now()->subDay())
-                        ->min('amount');
+                        ->min('price');
         return $log ? sprintf("%0.7f",$log): '0.000000000';
     }
 
@@ -644,6 +654,69 @@ class OrderController extends Controller
         echo json_encode($loog);
         
     }
+    
+
+    public function graphData($pair)
+    {  
+        $data = Order::wherePair($pair)->select('pair','created_at')->groupBy('created_at','pair')->get();
+        // $payload = [];
+        // $payload[] = ['Date','Open','High','Low','Close','Volume','Adj Close'];
+        foreach($data as $datum)
+        {
+            $payload[] = [
+                "date" => explode(" ", $datum->created_at)[0],
+                "open" => $this->get_graph_24_open($datum->pair,$datum->created_at),
+                "high" =>  $this->get_graph_24_high($datum->pair,$datum->created_at),
+                "low" =>  $this->get_graph_24_low($datum->pair,$datum->created_at),
+                "close" => $this->get_graph_24_close($datum->pair,$datum->created_at)
+
+            ];
+        }
+        return $payload;
+    }
+
+    private function get_graph_24_open($pair,$created_at)
+    {
+        $log =  Order::wherePair($pair)
+                        ->whereCreatedAt($created_at)
+                        ->first('price');
+        return $log['price'] ? sprintf("%0.4f",$log['price']): '0.0000';
+    }
+
+    private function get_graph_24_close($pair,$created_at)
+    {
+        $log =  Order::wherePair($pair)
+                        ->whereCreatedAt($created_at)
+                        ->orderBy('id', 'DESC')
+                        ->first();
+        return $log['price'] ? sprintf("%0.4f",$log['price']): '0.0000';
+    }
+
+    private function get_graph_24_volume($pair,$created_at)
+    {
+        $log =  Order::wherePair($pair)
+                        ->whereCreatedAt($created_at)
+                        ->sum('amount');
+        return $log ? sprintf("%0.4f",$log): '0.0000';
+    }
+
+    private  function get_graph_24_high($pair,$created_at)
+    {
+        $log = Order::wherePair($pair)
+                        ->whereCreatedAt($created_at)
+                        ->max('price');
+        return $log ? sprintf("%0.4f",$log): '0.0000';
+    }
+ 
+    private function get_graph_24_low($pair,$created_at)
+    {
+        $log = Order::wherePair($pair)
+                         ->whereCreatedAt($created_at)
+                        ->min('price');
+        return $log ? sprintf("%0.4f",$log): '0.0000';
+    }
+
+
     
 
 
