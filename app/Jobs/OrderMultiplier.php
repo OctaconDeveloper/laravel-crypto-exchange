@@ -32,34 +32,37 @@ class OrderMultiplier implements ShouldQueue
     public function handle()
     {
         $market = MarketMaker::inRandomOrder()->first();
-        $pair = $market->pair;
-        $max = $market->maximum_volume;
-        $min = 0;
-        $value = ($min + lcg_value()*(abs($max - $min)));
-        $currency = explode("_",$pair)[1];
-        $price = sprintf("%0.7f",$value);
-        $amount = sprintf("%0.7f",(0.0005 + lcg_value()*(abs(4.5000 - 0.0005))));
-        $randomType = [
-            'buy',
-            'sell'
-        ];
-        $type = $randomType[array_rand($randomType)];
-        if($type=='buy'){
-			$image = env('APP_URL').'/v3/ic_buy.svg';
-		}else{
-			$image = env('APP_URL').'/v3/ic_sell.svg';
-        }
+        if($market)
+        {
+            $pair = $market->pair;
+            $max = $market->maximum_volume;
+            $min = 0;
+            $value = ($min + lcg_value()*(abs($max - $min)));
+            $currency = explode("_",$pair)[1];
+            $price = sprintf("%0.7f",$value);
+            $amount = sprintf("%0.7f",(0.0005 + lcg_value()*(abs(4.5000 - 0.0005))));
+            $randomType = [
+                'buy',
+                'sell'
+            ];
+            $type = $randomType[array_rand($randomType)];
+            if($type=='buy'){
+                $image = env('APP_URL').'/v3/ic_buy.svg';
+            }else{
+                $image = env('APP_URL').'/v3/ic_sell.svg';
+            }
         
-        Order::create([
-            'user_id' => sprintf("%0.3s",rand(1,40) * time()) ,
-            'pair' => $pair ,
-            'currency' => $currency ,
-            'type' => $type,
-            'image' => $image,
-            'price' => $price ,
-            'amount' => $amount,
-            'stat' => 1 ,
-        ]);
+            Order::create([
+                'user_id' => sprintf("%0.3s",rand(1,40) * time()) ,
+                'pair' => $pair ,
+                'currency' => $currency ,
+                'type' => $type,
+                'image' => $image,
+                'price' => $price ,
+                'amount' => $amount,
+                'stat' => 1 ,
+            ]);
+        }
 
     }
 }

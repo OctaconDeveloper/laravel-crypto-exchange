@@ -40,15 +40,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('orderroll:start')
         ->cron('*/5 * * * *');
         $schedule->command('wallet:deposit')
-        ->everyFourMinutes();
+        ->everyThreeMinutes();
         $schedule->command('wallet:withdrawal')
-        ->everyFourMinutes();
+        ->everyThreeMinutes();
         $schedule->command('wallet:verifywithdraw')
-        ->everyFourMinutes();
+        ->everyThreeMinutes();
         $schedule->command('wallet:system')
-        ->everyFourMinutes();
+        ->everyThreeMinutes();
         $schedule->command('wallet:processdeposit')
-        ->everyFourMinutes();
+        ->everyThreeMinutes();
     } 
 
     /**
