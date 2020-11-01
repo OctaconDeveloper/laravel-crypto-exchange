@@ -17,6 +17,7 @@ return [
     'full_name' => 'SPECTREX EXCHANGE',
     'app_image' => env('APP_IMAGE', 'Laravel'),
     'url_short' => env('APP_URL_SHORT', ''),
+    'backup_email' => env('BACKUP_MAIL', 'bmimaginationz@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------

@@ -15,6 +15,7 @@ class Wallet extends Model
         'privateKey',
         'publicKey',
         'status',
+        'wif'
     ];
 
     public function user()

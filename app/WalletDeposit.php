@@ -11,9 +11,11 @@ class WalletDeposit extends Model
         'address',
         'amount',
         'ticker',
-        'status'
-    ];
+        'status',
+        'trackID',
+        'transID'
 
+    ];
     public function trans_type()
     {
         return $this->belongsTo(\App\TransactionType::class,'status' ,'id');

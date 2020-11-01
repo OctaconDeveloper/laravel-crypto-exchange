@@ -20,8 +20,8 @@ class CreateWalletsTable extends Migration
             $table->string('ticker');
             $table->string('base');
             $table->string('amount');
-            $table->string('privateKey');
-            $table->string('publicKey');
+            $table->text('privateKey');
+            $table->text('publicKey');
             $table->integer('status');
             $table->timestamps();
         });

@@ -19,8 +19,9 @@ class SystemWalletTableSeeder extends Seeder
                 'public_key' => 'default_public_key',
                 'private_key' => 'default_private_key',
                 'amount' => 0.000000,
-                'url' => env('APP_URL'),
+                'url' => env('APP_URL') ?  env('APP_URL')  : 'http://spectrex.test',
                 'status' => '1',
+                'wif' => 'default_wifi'
             ],
             [
                 'ticker' => 'ETH',
@@ -29,8 +30,9 @@ class SystemWalletTableSeeder extends Seeder
                 'public_key' => 'default_public_key',
                 'private_key' => 'default_private_key',
                 'amount' => 0.000000,
-                'url' => env('APP_URL'),
+                'url' => env('APP_URL') ?  env('APP_URL')  : 'http://spectrex.test',
                 'status' => '1',
+                'wif' => 'default_wifi'
             ],
         ]);
     }

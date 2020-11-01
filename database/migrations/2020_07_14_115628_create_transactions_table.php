@@ -24,7 +24,7 @@ class CreateTransactionsTable extends Migration
             $table->string('amount');
             $table->string('fee');
             $table->integer('status');
-            $table->integer('url');
+            $table->string('url');
             $table->timestamps();
         });
     }

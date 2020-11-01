@@ -60,7 +60,7 @@
     				</b>
     			</div>
             </div>
-            @if ( $wallet && $wallet->amount > 0)
+            {{-- @if ( $wallet && $wallet->amount > 0)
                 @php
                     $bal = $wallet->amount;
                     $percent  = $wallet->amount * 0.002;
@@ -75,7 +75,7 @@
                         <span _ngcontent-she-c18="">Reserved</span>
                         <b _ngcontent-she-c18=""> {{ sprintf("%0.5f",$percent) }} </b>
                     </div>
-            @endif
+            @endif --}}
     	</div>
 
         @empty

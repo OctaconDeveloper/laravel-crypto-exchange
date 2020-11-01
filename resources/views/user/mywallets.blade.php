@@ -211,7 +211,7 @@
 									'token_type'   />
 									<input type="hidden" name="token_base" id=
 									'token_base'   />
-									<button class="regen button primary button-green ng-star-inserted" style="" type="submit" > Generate </ button>
+									{{-- <button class="regen button primary button-green ng-star-inserted" style="" type="submit" > Generate </ button> --}}
 								{{-- </form> --}}
  							</div>
  						</div>

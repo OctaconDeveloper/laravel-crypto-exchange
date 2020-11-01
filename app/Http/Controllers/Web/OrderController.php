@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Chat;
 use App\CoinPair;
 use App\Http\Controllers\Controller;
 use App\Log;
 use App\Market;
+use App\MarketMaker;
 use App\Order;
 use App\Token;
 use App\TradeSetup;
@@ -664,7 +666,8 @@ class OrderController extends Controller
             foreach($data as $datum)
             {
                 $payload[] = [
-                    "date" => explode(" ", $datum->created_at)[0],
+                    "pair" => $datum->pair,
+                    "date" => $datum->created_at,
                     "open" => $this->get_graph_24_open($datum->pair,$datum->created_at),
                     "high" =>  $this->get_graph_24_high($datum->pair,$datum->created_at),
                     "low" =>  $this->get_graph_24_low($datum->pair,$datum->created_at),
@@ -717,11 +720,50 @@ class OrderController extends Controller
                         ->min('price');
         return $log ? sprintf("%0.7f",$log): '0.0000000';
     }
+ 
 
+    public function test()
+    {
+       //1. Get the maximum number
+        $market = MarketMaker::inRandomOrder()->first();
+        $pair = $market->pair;
+        $max = $market->maximum_volume;
+        $min = 0;
+        $value = ($min + lcg_value()*(abs($max - $min)));
+        $currency = explode("_",$pair)[1];
+        $price = sprintf("%0.7f",$value);
+        $amount = sprintf("%0.7f",(0.0005 + lcg_value()*(abs(4.5000 - 0.0005))));
+        $randomType = [
+            'buy',
+            'sell'
+        ];
+        $type = $randomType[array_rand($randomType)];
+        if($type=='buy'){
+			$image = env('APP_URL').'/v3/ic_buy.svg';
+		}else{
+			$image = env('APP_URL').'/v3/ic_sell.svg';
+        }
+ 
+       return $order = Order::create([
+            'user_id' => sprintf("%0.3s",rand(1,40) * time()) ,
+            'pair' => $pair ,
+            'currency' => $currency ,
+            'type' => $type,
+            'image' => $image,
+            'price' => $price ,
+            'amount' => $amount,
+            'stat' => 1 ,
+        ]);
 
+        // return [
+        //     'maximum' => sprintf("%0.7f",$max),
+        //     'value' => sprintf("%0.7f",$value)
+        // ];
+    }
+  
     
 
 
-
+ 
 
 }

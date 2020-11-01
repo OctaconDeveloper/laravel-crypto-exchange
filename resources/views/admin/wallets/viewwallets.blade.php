@@ -2,28 +2,43 @@
 <title>{{ config('app.full_name') }} - View Exchange Wallets</title>
 
 @php
+    $trade_mode = \App\TradeSetup::first()->trade_mode;
+
     $wallets = \App\SystemWallet::whereStatus(1)->get();
     $network = \App\TradeSetup::first()->trade_mode;
+    $tokens = \App\Token::all();
+
+    function mainnet($address) 
+    {
+
+        $ethWallet = \App\SystemWallet::whereStatus(1)->whereTicker('ETH')->first();
+        return 'https://etherscan.io/token/'.$address.'?a='.$ethWallet->address;
+    } 
+    function testnet($address)
+    {
+        $ethWallet = \App\SystemWallet::whereStatus(1)->whereTicker('ETH')->first();
+        return 'https://kovan.etherscan.io/token/'.$address.'?a='.$ethWallet->address;
+    }
+    
 @endphp
   <!-- Begin Page Content -->
   <div class="container-fluid">
-
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">View exchange wallets</h1>
     </div>
-    <!-- DataTales Example -->
+   
       <div class="card shadow mb-12">
         <div class="card-body">
           <div class="table-responsive">
-              <div class="m-3" style="font-weight:bold">
-                  NETWORK :
-                  @if ($network === 'mainnet')
-                    <span class="p-2 " style="font-weight: bolder; color:white; background:green"> {{$network}}</span>
-                  @else
-                    <span class="p-2 " style="font-weight: bolder; color:white; background:red"> {{$network}}</span>
-                  @endif
-              </div>
+            <div class="m-3" style="font-weight:bold">
+                NETWORK :
+                @if ($network === 'mainnet')
+                  <span class="p-2 " style="font-weight: bolder; color:white; background:green"> {{$network}}</span>
+                @else
+                  <span class="p-2 " style="font-weight: bolder; color:white; background:red"> {{$network}}</span>
+                @endif
+            </div>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -38,29 +53,44 @@
                 <tr>
                     <th>#</th>
                     <th>Coin</th>
-                    <th>Address</th>
+                    <th>Contract Address</th>
                     <th>Wallet Balance</th>
                     <th></th>
               </tfoot>
               <tbody>
-                @forelse ($wallets as $key => $item)
+                @forelse ($tokens as $key => $item)
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$item->ticker}}</td>
                         <td>{{$item->address}}</td>
-                        <td>{{$item->amount}} </td>
+                            <td>{{$item->balance}} </td>
                         <td>
-                            <span class="ink btn btn-sm btn-danger details" data-stuff='["{{$item->name}}","{{ $item->public_key}}","{{ $item->private_key}}"]' data-toggle="modal" data-backdrop="false" data-target="#private_key">
-                                <i title="Show private key for {{strtolower($item->name)}} wallet " class="fa fa-eye-slash"></i>
-                            </span>
-                            <a target="_blank" href="{{$item->url}}" class="btn btn-sm btn-primary">
-                                <i title="See blockchain" class="fa fa-globe"></i>
-                            </a>
-                            <span class="ink btn btn-sm btn-success generate" data-stuff='["{{$item->name}}","{{ $item->ticker}}"]'>
-                            <i title="Generate new wallet for {{strtolower($item->name)}}" class="fa fa-cog"></i>
-                            </span>
+
+                            @if($item->ticker === 'BTC' || $item->ticker === 'ETH')
+                                @php
+                                    $data = \App\SystemWallet::whereTicker($item->ticker)->whereStatus(1)->first();
+                                    $decrypted_public_key = $data->public_key !== 'default_public_key' ? decrypt_data($data->public_key) : $data->public_key;
+                                    $decrypted_private_key = $data->private_key !== 'default_private_key' ? decrypt_data($data->public_key) : $data->private_key;
+                                @endphp
+                                <span class="ink btn btn-sm btn-danger details" data-stuff='["{{$item->name}}","{{  $decrypted_public_key }}","{{ $decrypted_private_key}}"]' data-toggle="modal" data-backdrop="false" data-target="#private_key">
+                                    <i title="Show private key for {{strtolower($item->name)}} wallet " class="fa fa-eye-slash"></i>
+                                </span>
+                                <a target="_blank" href="{{$data->url}}" class="btn btn-sm btn-primary">
+                                    <i title="See blockchain" class="fa fa-globe"></i>
+                                </a> 
+                                @else
+                                <a target="_blank" href="{{$trade_mode($item->address)}}" class="btn btn-sm btn-primary">
+                                    <i title="See blockchain" class="fa fa-globe"></i>
+                                </a>
+                            @endif
+
+                            @if($item->ticker === 'BTC' || $item->ticker==='ETH')
+                                <span class="ink btn btn-sm btn-success generate" data-stuff='["{{$item->name}}","{{ $item->ticker}}"]'>
+                                    <i title="Generate new wallet for {{strtolower($item->name)}}" class="fa fa-cog"></i>
+                                </span>
+                            @endif
                         </td>
-                    </tr>
+                    </tr> 
                 @empty
                     <tr>
                         <td colspan="9">
@@ -70,7 +100,7 @@
                 @endforelse
               </tbody>
             </table>
-          </div>
+        </div>
         </div>
       </div>
 

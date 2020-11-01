@@ -4,27 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WithdrawRequest extends Model
+class WalletHistory extends Model
 {
+    protected $hidden = ['updated_at'];
     protected $fillable = [
         'user_id',
         'trackID',
-        'withdraw_address',
-        'withdraw_amount',
-        'withdraw_fee',
+        'address',
+        'amount',
+        'fee',
         'ticker',
+        'type',
+        'transID',
         'status'
     ];
 
-    public function trans_type()
-    {
+    public function trans_type(){
         return $this->belongsTo(\App\TransactionType::class,'status' ,'id');
     }
-
-    public function user()
-    {
-        return $this->belongsTo(\App\User::class,);
-    }
-
-
 }

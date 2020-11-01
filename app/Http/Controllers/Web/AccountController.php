@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CreateUserWalletJob;
 use App\Log;
 use App\Mail\NewAccount;
 use App\ReferalBalance;
+use App\Token;
+use App\TradeSetup;
 use App\User;
 use App\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use PragmaRX\Google2FA\Google2FA;
 
@@ -43,6 +47,7 @@ class AccountController extends Controller
             4 => '/my-wallets',
             5 => '/'
         ];
+        //Save User
         $user = User::create([
             'user_type_id' => request()->account_type,
             'email' => request()->email,
@@ -56,13 +61,20 @@ class AccountController extends Controller
             'location' => $location[request()->account_type],
             'activation_code' => $activation_code
         ]);
+ 
+        //Save Referral Detail
         if(request()->account_type === 4){
             ReferalBalance::create([
                 'user_id' => $user->id,
                 'amount' => '0',
                 'currency' => 'BTC'
-            ]);
+            ]); 
         }
+
+        //Generate Wallet Address
+        CreateUserWalletJob::dispatch($user);
+
+
         // Send Activation Mail
         Mail::to(request()->email)->send(new NewAccount($user,$password));
         $msg = "New  Account Details Sent to ".request()->email;
@@ -273,6 +285,45 @@ class AccountController extends Controller
                 'log' => ' update '.$user->email.' '.$account->ticker.' wallet  amount. new balance is '.$balance
             ]
         );
+    }
+
+    private function createAddress($coin_type,$coin_base, $trade_mode, $user)
+    {
+        if($coin_type == 'BTC'){
+            $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/'.$trade_mode.'/address';
+
+        }else{
+            if($coin_type == 'ETH' && $trade_mode == 'mainnet'){
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/'.$trade_mode.'/address';
+            }else{
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/ropsten/address';
+            }
+        }
+        $response = new Http();
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'X-API-Key' => '1deaf8d383c8f32616180ecea788725e82bc1f5e'
+        ])->post($api);
+        $res = json_decode($response, true);
+        $user_wallet = Wallet::create([
+            'user_id' => $user->id,
+            'address' => $res['payload']['address'],
+            'privateKey' => $res['payload']['privateKey'],
+            'publicKey' => $res['payload']['publicKey'],
+            'ticker' => $coin_type,
+            'base' => $coin_base,
+            'amount' => 0,
+            'status' => 0
+        ]);
+
+        Log::create(
+            [
+                'user_id' => $user->id,
+                'log' => 'created new address for '.$coin_type
+            ]
+        );
+        return $user_wallet->address;
     }
 
 }

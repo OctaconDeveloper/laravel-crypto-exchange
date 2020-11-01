@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Jobs\RobotChat;
+use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,13 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        commands\AddChat::class,
+        commands\CoinMultipler::class,
+        commands\ProcessDeposit::class,
+        commands\ProcessWithdrawal::class,
+        commands\ProcessConfirmation::class,
+        commands\UpdateSystemWallet::class,
+        commands\VerifyCoinDeposit::class,
     ];
 
     /**
@@ -25,7 +33,23 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-    }
+        // $schedule->job(new RobotChat)
+        // ->cron('*/5 * * * *');
+        $schedule->command('cryptochat:start')
+        ->cron('*/5 * * * *');
+        $schedule->command('orderroll:start')
+        ->cron('*/5 * * * *');
+        $schedule->command('wallet:deposit')
+        ->everyFourMinutes();
+        $schedule->command('wallet:withdrawal')
+        ->everyFourMinutes();
+        $schedule->command('wallet:verifywithdraw')
+        ->everyFourMinutes();
+        $schedule->command('wallet:system')
+        ->everyFourMinutes();
+        $schedule->command('wallet:processdeposit')
+        ->everyFourMinutes();
+    } 
 
     /**
      * Register the commands for the application.

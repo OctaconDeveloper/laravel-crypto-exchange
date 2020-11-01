@@ -18,7 +18,7 @@ use App\Http\Controllers\Web\OrderController;
 */
 
 
-Route::get('/user-list/{pair}', [OrderController::class, 'graphData']);
+Route::get('/test', [OrderController::class, 'test']);
 
 
 
@@ -27,6 +27,7 @@ Route::get('/user-list/{pair}', [OrderController::class, 'graphData']);
      */
     Route::namespace('Web')->group(function () {
         Route::get('market/{pair}', [ExchangeController::class, 'index']);
+        Route::get('/', [ExchangeController::class, 'welcome']);
 
         Route::get('user/signup', [ExchangeController::class, 'signup']);
         Route::get('user/signin', [ExchangeController::class, 'signin']);
@@ -35,7 +36,6 @@ Route::get('/user-list/{pair}', [OrderController::class, 'graphData']);
         Route::get('r/{refCode}', [ExchangeController::class, 'signup']);
         Route::get('alltoken/{token}', [ExchangeController::class, 'alltoken']);
         Route::get('alltoken', [ExchangeController::class, 'alltoken']);
-        Route::get('/', [ExchangeController::class, 'welcome']);
         Route::get('/401', [ExchangeController::class, 'error401']);
         Route::get('/403', [ExchangeController::class, 'error403']);
  

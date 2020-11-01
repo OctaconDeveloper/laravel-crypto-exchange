@@ -45,7 +45,13 @@ class ExchangeController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        if(CoinPair::whereStat(1)->count() > 0){
+            $base = CoinPair::whereStat(1)->first();
+        }else{
+            $base = CoinPair::first();
+          }
+
+        return redirect('/market/'.$base->pair);
     }
 
     public function error401()

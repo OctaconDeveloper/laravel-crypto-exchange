@@ -1,11 +1,13 @@
 @php
-    $countall = \App\User::whereIsActive(1)->whereUserTypeId(3)->count();
-    $countunverify = \App\User::whereIsActive(0)->whereUserTypeId(3)->count();
-    $countblock = \App\User::whereIsActive(2)->whereUserTypeId(3)->count();
-    $total = $countall + $countunverify + $countblock;
+    $data = [];
+    $countall = \App\User::whereIsActive('1')->whereUserTypeId('4')->count();
+    $countunverify = \App\User::whereIsActive('0')->whereUserTypeId('4')->count();
+    $countblock = \App\User::whereIsActive('2')->whereUserTypeId('4')->count();
+    $total = ($countall + $countunverify + $countblock) ? ($countall + $countunverify + $countblock)  : 1;
+  // dd($countunverify." ". $total);
     $data[] = ($countunverify/$total) * 100;
-    $data[] = ($countall/$total) * 100;
-    $data[] = ($countblock/$total) * 100;
+    $data[] = ($countall / $total) * 100 ;
+    $data[] = ($countblock/$total) * 100 ;
     $data = json_encode($data);
 @endphp
       <!-- Footer -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CreateUserWalletJob;
 use App\User;
 use App\Log;
 use App\ReferalBalance;
@@ -15,7 +16,11 @@ use App\Mail\ActivationMail;
 use App\Mail\PasswordReset;
 use App\Mail\PasswordChange;
 use App\Mail\TFAEnabled;
+use App\Token;
+use App\TradeSetup;
+use App\Wallet;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use PragmaRX\Google2FA\Google2FA;
 
 //is_active => 0-> inactive:: 1->active:: 2-> block
@@ -70,6 +75,22 @@ class AuthController extends Controller
             'amount' => '0',
             'currency' => 'BTC'
         ]);
+        
+        //CreateWallet
+            CreateUserWalletJob::dispatch($user);
+        // $trade_mode = TradeSetup::first()->trade_mode;
+        // $alltokens = Token::all();
+        // $cok = [];
+        // foreach($alltokens as $token)
+        // {
+        //     $coin_type = $token->ticker;
+        //     $coin_base = $token->base; 
+        //     $data = $this->createAddress($coin_type,$coin_base,$trade_mode, $user);
+        //     $cok[] = $data;
+        // }
+
+        // return $cok;
+
         //Send Activation Mail
         Mail::to(request()->email)->send(new ActivationMail($user));
         $msg = "Activation Code sent to ".request()->email;
@@ -278,4 +299,45 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/user/signin');
     }
+
+
+    private function createAddress($coin_type,$coin_base, $trade_mode, $user)
+    {
+        if($coin_type == 'BTC'){
+            $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/'.$trade_mode.'/address';
+
+        }else{
+            if($coin_type == 'ETH' && $trade_mode == 'mainnet'){
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/'.$trade_mode.'/address';
+            }else{
+                $api = 'https://api.cryptoapis.io/v1/bc/'.strtolower($coin_type).'/ropsten/address';
+            }
+        }
+        $response = new Http();
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'X-API-Key' => '1deaf8d383c8f32616180ecea788725e82bc1f5e'
+        ])->post($api);
+       $res = json_decode($response, true);
+        $user_wallet = Wallet::create([
+            'user_id' => $user->id,
+            'address' => $res['payload']['address'],
+            'privateKey' => $res['payload']['privateKey'],
+            'publicKey' => $res['payload']['publicKey'],
+            'ticker' => $coin_type,
+            'base' => $coin_base,
+            'amount' => 0,
+            'status' => 0
+        ]);
+
+        Log::create(
+            [
+                'user_id' => $user->id,
+                'log' => 'created new address for '.$coin_type
+            ]
+        );
+        return $user_wallet->address;
+    }
+
 }

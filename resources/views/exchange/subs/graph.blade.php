@@ -79,7 +79,7 @@
         {
             "type": "serial",
             "categoryField": "date",
-            "dataDateFormat": "YYYY-MM-DD",
+            "dataDateFormat": "YYYY-MM-DD H:i:s",
             "angle": 2,
             "depth3D": 1,
             "plotAreaBorderAlpha": 0.4,
@@ -104,7 +104,7 @@
             "trendLines": [],
             "graphs": [
                 {
-                    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                    "balloonText": "Pair:<b>[[pair]]<b><br/>Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
                     "closeField": "close",
                     "fillAlphas": 0.9,
                     "fillColors": "#7f8da9",

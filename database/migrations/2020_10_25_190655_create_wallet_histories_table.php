@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSystemWalletsTable extends Migration
+class CreateWalletHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateSystemWalletsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_wallets', function (Blueprint $table) {
+        Schema::create('wallet_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('ticker');
-            $table->string('name');
+            $table->unsignedBigInteger('user_id');
+            $table->string('trackID');
+            $table->string('transID');
             $table->string('address');
-            $table->text('public_key');
-            $table->text('private_key');
             $table->string('amount');
-            $table->string('url')->nullable();
-            $table->integer('status');
+            $table->string('fee');
+            $table->string('ticker');
+            $table->string('type');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateSystemWalletsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_wallets');
+        Schema::dropIfExists('wallet_histories');
     }
 }

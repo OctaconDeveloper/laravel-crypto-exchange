@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\TokenWalletJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Token;
@@ -62,6 +63,8 @@ class TokenController extends Controller
                     'white_paper' => request()->token_white_paper
                 ]
             );
+            //Create Wallets for all
+            TokenWalletJob::dispatch($token);
             Log::create(
                 [
                     'user_id' => auth()->user()->id,
