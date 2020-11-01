@@ -54,12 +54,12 @@ class ProcessDepositJob implements ShouldQueue
             {
                 if($wallet->ticker === 'BTC')
                 {
-                    // $this->processBitcoin($wallet);
+                    $this->processBitcoin($wallet);
                 }
                 else if($wallet->ticker === 'ETH')
                 {
-                    logger()->info('ETH Here');
-                     $this->processEthereum($wallet);
+                    // logger()->info('ETH Here');
+                    //  $this->processEthereum($wallet);
                 }
                 else 
                 {
